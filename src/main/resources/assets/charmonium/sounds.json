@@ -1,0 +1,320 @@
+{
+  "music.tharna": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "charmonium:music/tharna",
+        "stream": true,
+        "volume": 0.25
+      }
+    ]
+  },
+  "music.steinn": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "charmonium:music/steinn",
+        "stream": true,
+        "volume": 0.5
+      }
+    ]
+  },
+  "music.undir": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "charmonium:music/undir",
+        "stream": true,
+        "volume": 0.25
+      }
+    ]
+  },
+  "music.mus": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "charmonium:music/mus",
+        "stream": true,
+        "volume": 0.4
+      }
+    ]
+  },
+  "music_disc.charmonium": {
+    "sounds": [
+      {
+        "name": "charmonium:music/mus",
+        "stream": true
+      },
+      {
+        "name": "charmonium:music/steinn",
+        "stream": true
+      },
+      {
+        "name": "charmonium:music/tharna",
+        "stream": true
+      },
+      {
+        "name": "charmonium:music/undir",
+        "stream": true
+      }
+    ]
+  },
+  "ambience.beach.long": {
+    "sounds": [
+      {"name": "charmonium:ambience/beach/long1"},
+      {"name": "charmonium:ambience/beach/long2"}
+    ]
+  },
+  "ambience.cave.long": {
+    "sounds": [
+      {"name": "charmonium:ambience/cave/long1"}
+    ]
+  },
+  "ambience.cave.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/cave/short1"},
+      {"name": "charmonium:ambience/cave/short2"},
+      {"name": "charmonium:ambience/cave/short3"}
+    ]
+  },
+  "ambience.crystals.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/crystals/short1"},
+      {"name": "charmonium:ambience/crystals/short2"},
+      {"name": "charmonium:ambience/crystals/short3"},
+      {"name": "charmonium:ambience/crystals/short4"}
+    ]
+  },
+  "ambience.deep.long": {
+    "sounds": [
+      {"name": "charmonium:ambience/deep/long1"},
+      {"name": "charmonium:ambience/deep/long2"}
+    ]
+  },
+  "ambience.deep.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/deep/short1"},
+      {"name": "charmonium:ambience/deep/short2"}
+    ]
+  },
+  "ambience.desert.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/wind1"},
+      {"name": "charmonium:ambience/general/wind2"},
+      {"name": "charmonium:ambience/general/wind3"}
+    ]
+  },
+  "ambience.desert.day_short": {
+    "sounds": [
+      {"name": "charmonium:ambience/desert/day/short1"},
+      {"name": "charmonium:ambience/desert/day/short2"},
+      {"name": "charmonium:ambience/desert/day/short3"}
+    ]
+  },
+  "ambience.desert.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/cicadas"},
+      {"name": "charmonium:ambience/general/wind2"}
+    ]
+  },
+  "ambience.desert.night_short": {
+    "sounds": [
+      {"name": "charmonium:ambience/desert/night/short1"},
+      {"name": "charmonium:ambience/desert/night/short2"},
+      {"name": "charmonium:ambience/desert/night/short3"},
+      {"name": "charmonium:ambience/desert/night/short4"}
+    ]
+  },
+  "ambience.extreme_hills.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/extreme_hills/day/long1"},
+      {"name": "charmonium:ambience/general/wind1"},
+      {"name": "charmonium:ambience/general/wind2"},
+      {"name": "charmonium:ambience/general/wind3"}
+    ]
+  },
+  "ambience.extreme_hills.day_short": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/crow1"},
+      {"name": "charmonium:ambience/general/crow2"},
+      {"name": "charmonium:ambience/general/crow3"},
+      {"name": "charmonium:ambience/general/crow4"}
+    ]
+  },
+  "ambience.extreme_hills.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/wind1"},
+      {"name": "charmonium:ambience/general/wind2"},
+      {"name": "charmonium:ambience/general/wind3"}
+    ]
+  },
+  "ambience.forest.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/forest/day/long1"},
+      {"name": "charmonium:ambience/forest/day/long2"},
+      {"name": "charmonium:ambience/forest/day/long3"}
+    ]
+  },
+  "ambience.forest.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/forest/night/long1"},
+      {"name": "charmonium:ambience/forest/night/long2"}
+    ]
+  },
+  "ambience.icy.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/icy/day/long1"},
+      {"name": "charmonium:ambience/general/wind2"}
+    ]
+  },
+  "ambience.icy.day_short": {
+    "sounds": [
+      {"name": "charmonium:ambience/icy/day/short1"},
+      {"name": "charmonium:ambience/general/crow1"},
+      {"name": "charmonium:ambience/general/crow2"},
+      {"name": "charmonium:ambience/general/crow3"},
+      {"name": "charmonium:ambience/general/crow4"}
+    ]
+  },
+  "ambience.icy.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/wind1"},
+      {"name": "charmonium:ambience/general/wind2"},
+      {"name": "charmonium:ambience/general/wind3"}
+    ]
+  },
+  "ambience.jungle.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/jungle/day/long1"},
+      {"name": "charmonium:ambience/jungle/day/long2"}
+    ]
+  },
+  "ambience.jungle.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/jungle/night/long1"},
+      {"name": "charmonium:ambience/jungle/night/long2"}
+    ]
+  },
+  "ambience.mineshaft.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/mineshaft/short1"},
+      {"name": "charmonium:ambience/mineshaft/short2"},
+      {"name": "charmonium:ambience/mineshaft/short3"},
+      {"name": "charmonium:ambience/mineshaft/short4"},
+      {"name": "charmonium:ambience/mineshaft/short5"}
+    ]
+  },
+  "ambience.nether.long": {
+    "sounds": [
+      {"name": "charmonium:ambience/nether/long1"}
+    ]
+  },
+  "ambience.nether.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/nether/short1"},
+      {"name": "charmonium:ambience/nether/short2"},
+      {"name": "charmonium:ambience/nether/short3"},
+      {"name": "charmonium:ambience/nether/short4"},
+      {"name": "charmonium:ambience/nether/short5"},
+      {"name": "charmonium:ambience/nether/short6"},
+      {"name": "charmonium:ambience/nether/short7"},
+      {"name": "charmonium:ambience/nether/short8"},
+      {"name": "charmonium:ambience/nether/short9"}
+    ]
+  },
+  "ambience.ocean.long": {
+    "sounds": [
+      {"name": "charmonium:ambience/ocean/long1"},
+      {"name": "charmonium:ambience/ocean/long2"}
+    ]
+  },
+  "ambience.plains.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/plains/day/long1"},
+      {"name": "charmonium:ambience/plains/day/long2"},
+      {"name": "charmonium:ambience/plains/day/long3"}
+    ]
+  },
+  "ambience.plains.day_short": {
+    "sounds": [
+    ]
+  },
+  "ambience.plains.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/plains/night/long1"},
+      {"name": "charmonium:ambience/plains/night/long2"}
+    ]
+  },
+  "ambience.plains.night_short": {
+    "sounds": [
+      {"name": "charmonium:ambience/plains/night/short1"},
+      {"name": "charmonium:ambience/plains/night/short2"},
+      {"name": "charmonium:ambience/plains/night/short3"},
+      {"name": "charmonium:ambience/plains/night/short4"},
+      {"name": "charmonium:ambience/plains/night/short5"},
+      {"name": "charmonium:ambience/plains/night/short6"}
+    ]
+  },
+  "ambience.savanna.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/savanna/day/long1"}
+    ]
+  },
+  "ambience.savanna.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/crickets"},
+      {"name": "charmonium:ambience/general/cicadas"}
+    ]
+  },
+  "ambience.swamp.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/swamp/day/long1"}
+    ]
+  },
+  "ambience.swamp.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/swamp/night/long1"},
+      {"name": "charmonium:ambience/swamp/night/long2"}
+    ]
+  },
+  "ambience.taiga.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/taiga/day/long1"},
+      {"name": "charmonium:ambience/taiga/day/long2"},
+      {"name": "charmonium:ambience/taiga/day/long3"}
+    ]
+  },
+  "ambience.taiga.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/taiga/night/long1"}
+    ]
+  },
+  "ambience.end.long": {
+    "sounds": [
+      {"name": "charmonium:ambience/end/long1"}
+    ]
+  },
+  "ambience.village.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/village/short1"},
+      {"name": "charmonium:ambience/village/short2"},
+      {"name": "charmonium:ambience/village/short3"},
+      {"name": "charmonium:ambience/village/short4"},
+      {"name": "charmonium:ambience/village/short5"},
+      {"name": "charmonium:ambience/village/short6"},
+      {"name": "charmonium:ambience/village/short7"},
+      {"name": "charmonium:ambience/village/short8"},
+      {"name": "charmonium:ambience/village/short9"},
+      {"name": "charmonium:ambience/village/short10"},
+      {"name": "charmonium:ambience/village/short11"},
+      {"name": "charmonium:ambience/village/short12"},
+      {"name": "charmonium:ambience/village/short13"}
+    ]
+  },
+  "ambience.high": {
+    "sounds": [
+      {"name": "charmonium:ambience/general/high1"},
+      {"name": "charmonium:ambience/general/high2"}
+    ]
+  }
+}

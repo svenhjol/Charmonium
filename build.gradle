@@ -1,0 +1,108 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+ext.configFile = file('gradle.properties')
+ext.config = parseConfig(configFile)
+
+group = "svenhjol.charmonium" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Charmonium"
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+version = "${mc_version}-${version}.${build_number}"
+
+minecraft {
+    mappings channel: 'snapshot', version: "${mcp_mappings}"
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client = {
+            properties 'forge.logging.markers': 'REGISTRIES'
+            properties 'forge.logging.console.level': 'debug'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+            jvmArgs "-Xmx1500M"
+        }
+        server = {
+            properties 'forge.logging.markers': 'REGISTRIES'
+            properties 'forge.logging.console.level': 'debug'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+
+    compile fg.deobf("svenhjol.charm:Charm:${charm_version}")
+    compile fg.deobf("svenhjol.strange:Strange:${strange_version}")
+    compile fg.deobf("vazkii.arl:AutoRegLib:${arl_version}")
+    compile fg.deobf("vazkii.quark:Quark:${quark_version}")
+}
+
+repositories {
+    maven { // The repo from which to get waila
+        name "Mobius Repo"
+        url "https://tehnut.info/maven"
+    }
+
+    maven { // for JEI
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+
+    maven { // for HWYLA
+        name 'Mobius'
+        url "https://tehnut.info/maven"
+    }
+
+    maven { // for AutoRegLib and Quark
+        name "blamejared"
+        url "http://maven.blamejared.com/"
+    }
+
+    flatDir {
+        dirs "libs"
+    }
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'META-INF/mods.toml'
+        expand 'version': version, 'mc_version': mc_version, 'forge_version': forge_version
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "Charmonium",
+                "Specification-Vendor": "svenhjol",
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": "Charmonium",
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor": "svenhjol",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+static def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
