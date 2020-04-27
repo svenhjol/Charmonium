@@ -52,7 +52,8 @@ dependencies {
     compile fg.deobf("vazkii.arl:AutoRegLib:${arl_version}")
     compile fg.deobf("vazkii.quark:Quark:${quark_version}")
 //    compile fg.deobf("quark-oddities:QuarkOddities:${quark_oddities_version}")
-    compile fg.deobf("dynamic-surroundings-environs:Environs:${environs_version}")
+//    deobfCompile fg.deobf("org.orecruncher.environs:Environs-1.14.4-0.1.0.0")
+//    deobfCompile fg.deobf("org.orecruncher.environs:SoundControl-1.14.4-0.1.0.0")
 }
 
 repositories {

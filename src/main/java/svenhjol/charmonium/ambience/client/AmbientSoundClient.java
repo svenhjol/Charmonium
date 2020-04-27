@@ -41,7 +41,8 @@ public class AmbientSoundClient {
                 ambientSounds.addAll(Arrays.asList(
                     new DeepAmbientSounds(player, soundHandler),
                     new MineshaftAmbientSounds(player, soundHandler),
-                    new CaveAmbientSounds.CrystalCaves(player, soundHandler)
+                    new CaveAmbientSounds.CrystalCaves(player, soundHandler),
+                    new VillageAmbientSounds(player, soundHandler)
                 ));
             }
 
@@ -53,7 +54,6 @@ public class AmbientSoundClient {
                     new HighAmbientSounds(player, soundHandler),
                     new OceanAmbientSounds(player, soundHandler),
                     new NetherAmbientSounds(player, soundHandler),
-                    new VillageAmbientSounds(player, soundHandler),
 
                     new DesertAmbientSounds.Day(player, soundHandler),
                     new DesertAmbientSounds.Night(player, soundHandler),
