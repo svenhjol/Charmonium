@@ -49,8 +49,10 @@ dependencies {
 
     compile fg.deobf("svenhjol.charm:Charm:${charm_version}")
     compile fg.deobf("svenhjol.strange:Strange:${strange_version}")
-    compile fg.deobf("vazkii.arl:AutoRegLib:${arl_version}")
+    compile fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
     compile fg.deobf("vazkii.quark:Quark:${quark_version}")
+    compile fg.deobf("quark-oddities:QuarkOddities:${quark_oddities_version}")
+//    compile fg.deobf("dynamic-surroundings-environs:Environs:${environs_version}")
 }
 
 repositories {
@@ -71,6 +73,11 @@ repositories {
     maven { // for AutoRegLib and Quark
         name "blamejared"
         url "http://maven.blamejared.com/"
+    }
+
+    maven { // for Curseforge mod download
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
     }
 
     flatDir {
