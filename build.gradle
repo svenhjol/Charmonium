@@ -49,12 +49,12 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
 
-    compile fg.deobf("svenhjol.charm:Charm:${charm_version}")
-    compile fg.deobf("svenhjol.strange:Strange:${strange_version}")
-    compile fg.deobf("vazkii.arl:AutoRegLib:${arl_version}")
+    compile fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
     compile fg.deobf("vazkii.quark:Quark:${quark_version}")
-    compile fg.deobf("curse.maven:${environs}")
-    compile fg.deobf("curse.maven:${soundcontrol}")
+    compile fg.deobf("curse.maven:${charm}")
+//    compile fg.deobf("curse.maven:${environs}")
+//    compile fg.deobf("curse.maven:${soundcontrol}")
+//    compile fg.deobf("curse.maven:${strange}")
 }
 
 repositories {
