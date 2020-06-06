@@ -7,10 +7,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
 import svenhjol.charm.Charm;
-import svenhjol.meson.helper.WorldHelper;
-import svenhjol.strange.Strange;
-import svenhjol.charmonium.ambience.client.ambience.BaseAmbientSounds;
+import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.base.CharmoniumSounds;
+import svenhjol.meson.helper.WorldHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -76,7 +75,7 @@ public class CaveAmbientSounds extends BaseAmbientSounds {
         @Override
         public int getShortSoundDelay() {
             if (eagerCheck) {
-                Strange.LOG.debug("[CrystalCaves] eagerly checking");
+                Charmonium.LOG.debug("[CrystalCaves] eagerly checking");
                 delay = world.rand.nextInt(100) + 120;
             } else {
                 delay = 400;

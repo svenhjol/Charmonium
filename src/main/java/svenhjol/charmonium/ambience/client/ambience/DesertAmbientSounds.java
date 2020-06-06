@@ -5,8 +5,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import svenhjol.charm.Charm;
-import svenhjol.strange.Strange;
-import svenhjol.charmonium.ambience.client.ambience.BaseAmbientSounds;
 import svenhjol.charmonium.ambience.client.iface.IBiomeAmbience;
 import svenhjol.charmonium.base.CharmoniumSounds;
 

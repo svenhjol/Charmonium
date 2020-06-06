@@ -4,8 +4,6 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvent;
 import svenhjol.charm.Charm;
-import svenhjol.strange.Strange;
-import svenhjol.charmonium.ambience.client.ambience.BaseAmbientSounds;
 import svenhjol.charmonium.base.CharmoniumSounds;
 
 import javax.annotation.Nullable;
