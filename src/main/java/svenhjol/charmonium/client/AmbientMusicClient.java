@@ -18,7 +18,7 @@ public class AmbientMusicClient {
             if (mc.player == null || mc.player.world == null)
                 return false;
 
-            return mc.player.world.random.nextFloat() < 1.08F
+            return mc.player.world.random.nextFloat() < 0.08F
                 && DimensionHelper.isDimension(mc.player.world, new Identifier("overworld"));
         }));
 
@@ -26,7 +26,7 @@ public class AmbientMusicClient {
         MusicClient.getMusicConditions().add(new MusicCondition(CharmoniumSounds.MUSIC_MUS, 1200, 3600, mc ->
             mc.player != null
                 && mc.player.world.getBiome(mc.player.getBlockPos()).getCategory() == Biome.Category.ICY
-                && mc.player.world.random.nextFloat() < 1.28F
+                && mc.player.world.random.nextFloat() < 0.28F
         ));
 
         // play Undir in nether underground
@@ -36,7 +36,7 @@ public class AmbientMusicClient {
 
             return mc.player.getBlockPos().getY() < 48
                 && DimensionHelper.isDimension(mc.player.world, new Identifier("the_nether"))
-                && mc.player.world.random.nextFloat() < 1.33F;
+                && mc.player.world.random.nextFloat() < 0.33F;
         }));
     }
 }
