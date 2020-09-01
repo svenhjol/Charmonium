@@ -18,7 +18,7 @@ public class Sounds extends MesonModule {
     public static AmbientSoundClient client;
 
     @Override
-    public void initClient() {
+    public void afterInitClient() {
         client = new AmbientSoundClient();
 
         AddEntityCallback.EVENT.register((entity -> {

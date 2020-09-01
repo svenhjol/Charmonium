@@ -10,7 +10,7 @@ public class Music extends MesonModule {
     public static AmbientMusicClient client;
 
     @Override
-    public void initClient() {
+    public void afterInitClient() {
         client = new AmbientMusicClient();
     }
 }
