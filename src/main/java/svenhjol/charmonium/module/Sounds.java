@@ -2,10 +2,10 @@ package svenhjol.charmonium.module;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
-import svenhjol.charm.event.AddEntityCallback;
-import svenhjol.charm.event.PlayerTickCallback;
 import svenhjol.charmonium.client.AmbientSoundClient;
 import svenhjol.meson.MesonModule;
+import svenhjol.meson.event.AddEntityCallback;
+import svenhjol.meson.event.PlayerTickCallback;
 import svenhjol.meson.iface.Config;
 import svenhjol.meson.iface.Module;
 
@@ -18,7 +18,7 @@ public class Sounds extends MesonModule {
     public static AmbientSoundClient client;
 
     @Override
-    public void afterInitClient() {
+    public void clientInit() {
         client = new AmbientSoundClient();
 
         AddEntityCallback.EVENT.register((entity -> {
