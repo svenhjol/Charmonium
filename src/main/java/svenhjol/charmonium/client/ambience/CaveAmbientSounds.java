@@ -30,7 +30,7 @@ public class CaveAmbientSounds extends BaseAmbientSounds {
         if (!world.isSkyVisibleAllowingSea(pos)
             && pos.getY() <= world.getSeaLevel()
         ) {
-            return pos.getY() <= 44 || light <= 12;
+            return pos.getY() <= 44 || light <= 10;
         }
 
         return false;
