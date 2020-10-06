@@ -12,6 +12,9 @@ import svenhjol.charmonium.client.LongSound;
 import svenhjol.charmonium.client.ShortSound;
 import svenhjol.charmonium.iface.IAmbientSounds;
 import svenhjol.charmonium.module.Sounds;
+import svenhjol.meson.Meson;
+
+import java.util.ConcurrentModificationException;
 
 public abstract class BaseAmbientSounds implements IAmbientSounds {
     protected int shortTicks = 0;
@@ -46,7 +49,11 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
 
         if (isValid && hasLongSound() && !isPlayingLongSound()) {
             setLongSound();
-            soundHandler.play(this.longSound);
+            try {
+                soundHandler.play(this.longSound);
+            } catch (ConcurrentModificationException e) {
+                Meson.LOG.debug("Exception in tick");
+            }
         }
     }
 
@@ -80,8 +87,13 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
 
     protected void setShortSound() {
         ShortSound shortSound = new ShortSound((ClientPlayerEntity) player, getShortSound(), getShortSoundVolume() * (float) Sounds.volumeMultiplier);
-        if (!soundHandler.isPlaying(shortSound))
-            soundHandler.play(shortSound);
+
+        try {
+            if (!soundHandler.isPlaying(shortSound))
+                soundHandler.play(shortSound);
+        } catch (ConcurrentModificationException e) {
+            Meson.LOG.debug("Exception in setShortSound");
+        }
     }
 
     protected void setLongSound() {
