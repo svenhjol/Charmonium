@@ -16,6 +16,8 @@ public class VillageAmbientSounds extends BaseAmbientSounds {
     @Override
     public boolean isValid() {
         if (world == null) return false;
+        if (!world.isSkyVisibleAllowingSea(player.getBlockPos())) return false;
+
         return PlayerState.client.village
             && PlayerState.client.isDaytime;
     }
