@@ -43,7 +43,7 @@ public class CaveAmbientSounds extends BaseAmbientSounds {
 
     @Override
     public int getShortSoundDelay() {
-        return world.random.nextInt(300) + 600;
+        return world.random.nextInt(500) + 600;
     }
 
     @Override

@@ -21,7 +21,7 @@ public class MineshaftAmbientSounds extends BaseAmbientSounds {
 
     @Override
     public int getShortSoundDelay() {
-        return world.random.nextInt(120) + 220;
+        return world.random.nextInt(500) + 320;
     }
 
     @Nullable
