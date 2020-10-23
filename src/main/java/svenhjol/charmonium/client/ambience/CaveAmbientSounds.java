@@ -6,9 +6,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import svenhjol.charm.base.helper.DimensionHelper;
 import svenhjol.charmonium.base.CharmoniumSounds;
-import svenhjol.meson.Meson;
-import svenhjol.meson.helper.DimensionHelper;
+
 
 import javax.annotation.Nullable;
 import java.util.List;

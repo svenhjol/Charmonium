@@ -2,15 +2,15 @@ package svenhjol.charmonium.client;
 
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
+import svenhjol.charm.base.handler.ModuleHandler;
 import svenhjol.charm.client.MusicClient;
 import svenhjol.charm.client.MusicCondition;
 import svenhjol.charmonium.base.CharmoniumSounds;
-import svenhjol.meson.Meson;
-import svenhjol.meson.helper.DimensionHelper;
+import svenhjol.charm.base.helper.DimensionHelper;
 
 public class AmbientMusicClient {
     public AmbientMusicClient() {
-        if (!Meson.enabled("charm:music_improvements"))
+        if (!ModuleHandler.enabled("charm:music_improvements"))
             return;
 
         // play Þarna in overworld anywhere

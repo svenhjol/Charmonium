@@ -2,15 +2,15 @@ package svenhjol.charmonium.module;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
+import svenhjol.charm.base.CharmModule;
+import svenhjol.charm.base.iface.Config;
 import svenhjol.charmonium.client.AmbientSoundClient;
-import svenhjol.meson.MesonModule;
-import svenhjol.meson.event.AddEntityCallback;
-import svenhjol.meson.event.PlayerTickCallback;
-import svenhjol.meson.iface.Config;
-import svenhjol.meson.iface.Module;
+import svenhjol.charm.event.AddEntityCallback;
+import svenhjol.charm.event.PlayerTickCallback;
+import svenhjol.charm.base.iface.Module;
 
 @Module(description = "Ambient sounds play according to the biome, time of day and depth below surface.")
-public class Sounds extends MesonModule {
+public class Sounds extends CharmModule {
 
     @Config(name = "Volume multiplier", description = "Volume of ambient sounds is multiplied by this amount.")
     public static double volumeMultiplier = 1.0D;

@@ -8,11 +8,11 @@ import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import svenhjol.charm.Charm;
 import svenhjol.charmonium.client.LongSound;
 import svenhjol.charmonium.client.ShortSound;
 import svenhjol.charmonium.iface.IAmbientSounds;
 import svenhjol.charmonium.module.Sounds;
-import svenhjol.meson.Meson;
 
 import java.util.ConcurrentModificationException;
 
@@ -52,7 +52,7 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
             try {
                 soundHandler.play(this.longSound);
             } catch (ConcurrentModificationException e) {
-                Meson.LOG.debug("Exception in tick");
+                Charm.LOG.debug("Exception in tick");
             }
         }
     }
@@ -92,7 +92,7 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
             if (!soundHandler.isPlaying(shortSound))
                 soundHandler.play(shortSound);
         } catch (ConcurrentModificationException e) {
-            Meson.LOG.debug("Exception in setShortSound");
+            Charm.LOG.debug("Exception in setShortSound");
         }
     }
 

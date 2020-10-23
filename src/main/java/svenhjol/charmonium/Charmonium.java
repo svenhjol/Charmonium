@@ -1,28 +1,27 @@
 package svenhjol.charmonium;
 
+import net.fabricmc.api.ModInitializer;
+import svenhjol.charm.base.handler.ModuleHandler;
 import svenhjol.charmonium.base.CharmoniumSounds;
 import svenhjol.charmonium.module.Music;
 import svenhjol.charmonium.module.Sounds;
-import svenhjol.meson.MesonMod;
-import svenhjol.meson.MesonModule;
 
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class Charmonium extends MesonMod {
+
+public class Charmonium implements ModInitializer {
     public static final String MOD_ID = "charmonium";
 
     @Override
     public void onInitialize() {
-        super.init(MOD_ID);
-        CharmoniumSounds.init(this);
-    }
+        CharmoniumSounds.init();
 
-    @Override
-    public List<Class<? extends MesonModule>> getModules() {
-        return Arrays.asList(
-            Music.class,
-            Sounds.class
-        );
+
+        ModuleHandler.AVAILABLE_MODULES.put(Charmonium.MOD_ID, new ArrayList(Arrays.asList(
+                Music.class,
+                Sounds.class
+        )));
     }
 }

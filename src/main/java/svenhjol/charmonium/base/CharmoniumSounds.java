@@ -4,7 +4,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import svenhjol.charmonium.Charmonium;
-import svenhjol.meson.MesonMod;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +61,7 @@ public class CharmoniumSounds {
         return sound;
     }
 
-    public static void init(MesonMod mod) {
+    public static void init() {
         REGISTER.forEach((res, sound) -> {
             Registry.register(Registry.SOUND_EVENT, res, sound);
         });

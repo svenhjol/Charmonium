@@ -5,7 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import svenhjol.charmonium.base.CharmoniumSounds;
-import svenhjol.meson.helper.DimensionHelper;
+import svenhjol.charm.base.helper.DimensionHelper;
 
 import javax.annotation.Nullable;
 
