@@ -4,12 +4,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import svenhjol.charm.base.CharmModule;
 import svenhjol.charm.base.iface.Config;
+import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.client.AmbientSoundClient;
 import svenhjol.charm.event.AddEntityCallback;
 import svenhjol.charm.event.PlayerTickCallback;
 import svenhjol.charm.base.iface.Module;
 
-@Module(description = "Ambient sounds play according to the biome, time of day and depth below surface.")
+@Module(mod = Charmonium.MOD_ID, description = "Ambient sounds play according to the biome, time of day and depth below surface.")
 public class Sounds extends CharmModule {
 
     @Config(name = "Volume multiplier", description = "Volume of ambient sounds is multiplied by this amount.")
