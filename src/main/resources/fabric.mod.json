@@ -23,7 +23,6 @@
     ]
   },
   "mixins": [
-    "charmonium.mixins.json"
   ],
 
   "depends": {

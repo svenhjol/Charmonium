@@ -3,6 +3,7 @@ package svenhjol.charmonium.base;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import svenhjol.charm.base.handler.RegistryHandler;
 import svenhjol.charmonium.Charmonium;
 
 
@@ -55,15 +56,13 @@ public class CharmoniumSounds {
     public static final SoundEvent AMBIENCE_HIGH = createSound("ambience.high");
 
     public static SoundEvent createSound(String name) {
-        Identifier res = new Identifier(Charmonium.MOD_ID, name);
-        SoundEvent sound = new SoundEvent(res);
-        REGISTER.put(res, sound);
+        Identifier id = new Identifier(Charmonium.MOD_ID, name);
+        SoundEvent sound = new SoundEvent(id);
+        REGISTER.put(id, sound);
         return sound;
     }
 
     public static void init() {
-        REGISTER.forEach((res, sound) -> {
-            Registry.register(Registry.SOUND_EVENT, res, sound);
-        });
+        REGISTER.forEach(RegistryHandler::sound);
     }
 }

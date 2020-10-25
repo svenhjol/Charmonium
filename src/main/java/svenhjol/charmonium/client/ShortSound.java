@@ -4,7 +4,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.MovingSoundInstance;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import svenhjol.charmonium.mixin.accessor.MovingSoundInstanceAccessor;
+import svenhjol.charm.mixin.accessor.MovingSoundInstanceAccessor;
 
 public class ShortSound extends MovingSoundInstance {
     private final ClientPlayerEntity player;

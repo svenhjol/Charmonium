@@ -18,10 +18,9 @@ public class Charmonium implements ModInitializer {
     public void onInitialize() {
         CharmoniumSounds.init();
 
-
-        ModuleHandler.AVAILABLE_MODULES.put(Charmonium.MOD_ID, new ArrayList(Arrays.asList(
-                Music.class,
-                Sounds.class
+        ModuleHandler.AVAILABLE_MODULES.put(Charmonium.MOD_ID, new ArrayList<>(Arrays.asList(
+            Music.class,
+            Sounds.class
         )));
     }
 }

@@ -4,7 +4,7 @@ import net.minecraft.client.sound.MovingSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import svenhjol.charmonium.mixin.accessor.MovingSoundInstanceAccessor;
+import svenhjol.charm.mixin.accessor.MovingSoundInstanceAccessor;
 
 import java.util.function.Predicate;
 

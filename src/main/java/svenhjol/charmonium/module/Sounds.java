@@ -1,5 +1,6 @@
 package svenhjol.charmonium.module;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import svenhjol.charm.base.CharmModule;
@@ -22,18 +23,21 @@ public class Sounds extends CharmModule {
     public void clientInit() {
         client = new AmbientSoundClient();
 
-        AddEntityCallback.EVENT.register((entity -> {
-            if (entity instanceof PlayerEntity
-                && entity.world.isClient) {
-                client.playerJoined((PlayerEntity) entity);
-            }
-            return ActionResult.PASS;
-        }));
+        AddEntityCallback.EVENT.register(this::playerJoined);
+        PlayerTickCallback.EVENT.register(this::playerTick);
+    }
 
-        PlayerTickCallback.EVENT.register((playerEntity -> {
-            if (client != null && client.handler != null) {
-                client.handler.tick();
-            }
-        }));
+    private ActionResult playerJoined(Entity entity) {
+        if (entity instanceof PlayerEntity
+            && entity.world.isClient) {
+            client.playerJoined((PlayerEntity) entity);
+        }
+        return ActionResult.PASS;
+    }
+
+    private void playerTick(PlayerEntity playerEntity) {
+        if (client != null && client.handler != null) {
+            client.handler.tick();
+        }
     }
 }
