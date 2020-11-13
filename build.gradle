@@ -23,6 +23,14 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
 	modImplementation "svenhjol.charm:charm:${charm_version}"
+
+	implementation "com.moandjiezana.toml:toml4j:${project.toml4j_version}"
+	implementation "com.electronwill.night-config:core:${project.tomlnc_version}"
+	implementation "com.electronwill.night-config:toml:${project.tomlnc_version}"
+
+	include "com.moandjiezana.toml:toml4j:${project.toml4j_version}"
+	include "com.electronwill.night-config:core:${project.tomlnc_version}"
+	include "com.electronwill.night-config:toml:${project.tomlnc_version}"
 }
 
 processResources {

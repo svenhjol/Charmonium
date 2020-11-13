@@ -3,7 +3,7 @@ package svenhjol.charmonium.client.ambience;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
-import svenhjol.charm.module.PlayerState;
+import svenhjol.charm.client.PlayerStateClient;
 import svenhjol.charmonium.base.CharmoniumSounds;
 
 import javax.annotation.Nullable;
@@ -16,7 +16,7 @@ public class MineshaftAmbientSounds extends BaseAmbientSounds {
     @Override
     public boolean isValid() {
         if (world == null) return false;
-        return PlayerState.client.mineshaft;
+        return PlayerStateClient.INSTANCE.mineshaft;
     }
 
     @Override

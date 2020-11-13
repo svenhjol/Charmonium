@@ -4,7 +4,7 @@ import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.biome.Biome;
-import svenhjol.charm.module.PlayerState;
+import svenhjol.charm.client.PlayerStateClient;
 import svenhjol.charmonium.base.CharmoniumSounds;
 import svenhjol.charmonium.iface.IBiomeAmbience;
 
@@ -28,7 +28,7 @@ public class PlainsAmbientSounds {
                 || biomeCategory == Biome.Category.MUSHROOM
                 || biomeCategory == Biome.Category.RIVER)
                 && isOutside()
-                && PlayerState.client.isDaytime;
+                && PlayerStateClient.INSTANCE.isDaytime;
         }
     }
 
@@ -60,7 +60,7 @@ public class PlainsAmbientSounds {
                 || biomeCategory == Biome.Category.MUSHROOM
                 || biomeCategory == Biome.Category.RIVER)
                 && isOutside()
-                && !PlayerState.client.isDaytime;
+                && !PlayerStateClient.INSTANCE.isDaytime;
         }
     }
 }
