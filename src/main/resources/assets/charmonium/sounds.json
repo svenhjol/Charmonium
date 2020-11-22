@@ -62,14 +62,6 @@
       {"name": "charmonium:ambience/underground/cave_rocks2"}
     ]
   },
-  "ambience.crystals.short": {
-    "sounds": [
-      {"name": "charmonium:ambience/crystals/crystals1"},
-      {"name": "charmonium:ambience/crystals/crystals2"},
-      {"name": "charmonium:ambience/crystals/crystals3"},
-      {"name": "charmonium:ambience/crystals/crystals4"}
-    ]
-  },
   "ambience.deep.long": {
     "sounds": [
       {"name": "charmonium:ambience/underground/deep_underground1"},
@@ -166,6 +158,12 @@
       {"name": "charmonium:ambience/wind/wind2"},
       {"name": "charmonium:ambience/wind/wind3"},
       {"name": "charmonium:ambience/wind/wind4"}
+    ]
+  },
+  "ambience.icy.thunderstorm": {
+    "sounds": [
+      {"name": "charmonium:ambience/wind/high1"},
+      {"name": "charmonium:ambience/wind/high2"}
     ]
   },
   "ambience.jungle.day_long": {

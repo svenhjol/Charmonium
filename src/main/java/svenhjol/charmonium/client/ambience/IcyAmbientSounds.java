@@ -4,6 +4,7 @@ import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import svenhjol.charm.base.handler.ModuleHandler;
 import svenhjol.charm.client.PlayerStateClient;
 import svenhjol.charmonium.base.CharmoniumSounds;
 import svenhjol.charmonium.iface.IBiomeAmbience;
@@ -19,7 +20,11 @@ public class IcyAmbientSounds {
         @Nullable
         @Override
         public SoundEvent getLongSound() {
-            return CharmoniumSounds.AMBIENCE_ICY_DAY_LONG;
+            if (ModuleHandler.enabled("charm:snow_storms") && world != null && world.isThundering()) {
+                return CharmoniumSounds.AMBIENCE_ICY_THUNDERSTORM;
+            } else {
+                return CharmoniumSounds.AMBIENCE_ICY_DAY_LONG;
+            }
         }
 
         @Nullable
