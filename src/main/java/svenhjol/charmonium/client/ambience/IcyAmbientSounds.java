@@ -75,7 +75,7 @@ public class IcyAmbientSounds {
 
         @Override
         public float getLongSoundVolume() {
-            return super.getLongSoundVolume() + 0.2F;
+            return super.getLongSoundVolume() + 0.25F;
         }
 
         @Override
