@@ -6,6 +6,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import svenhjol.charm.base.handler.ModuleHandler;
 import svenhjol.charm.client.PlayerStateClient;
+import svenhjol.charm.module.SnowStorms;
 import svenhjol.charmonium.base.CharmoniumSounds;
 import svenhjol.charmonium.iface.IBiomeAmbience;
 
@@ -20,11 +21,7 @@ public class IcyAmbientSounds {
         @Nullable
         @Override
         public SoundEvent getLongSound() {
-            if (ModuleHandler.enabled("charm:snow_storms") && world != null && world.isThundering()) {
-                return CharmoniumSounds.AMBIENCE_ICY_THUNDERSTORM;
-            } else {
-                return CharmoniumSounds.AMBIENCE_ICY_DAY_LONG;
-            }
+            return CharmoniumSounds.AMBIENCE_ICY_DAY_LONG;
         }
 
         @Nullable
@@ -62,6 +59,31 @@ public class IcyAmbientSounds {
             return biomeCategory == Biome.Category.ICY
                 && isOutside()
                 && !PlayerStateClient.INSTANCE.isDaytime;
+        }
+    }
+
+    public static class Thunderstorm extends BaseAmbientSounds implements IBiomeAmbience {
+        public Thunderstorm(PlayerEntity player, SoundManager soundHandler) {
+            super(player, soundHandler);
+        }
+
+        @Nullable
+        @Override
+        public SoundEvent getLongSound() {
+            return CharmoniumSounds.AMBIENCE_ICY_THUNDERSTORM;
+        }
+
+        @Override
+        public float getLongSoundVolume() {
+            return super.getLongSoundVolume() + 0.2F;
+        }
+
+        @Override
+        public boolean validBiomeConditions(Biome.Category biomeCategory) {
+            return biomeCategory == Biome.Category.ICY
+                && isOutside()
+                && getWorld().isThundering()
+                && ModuleHandler.enabled(SnowStorms.class);
         }
     }
 }

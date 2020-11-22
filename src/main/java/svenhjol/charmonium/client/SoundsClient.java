@@ -75,6 +75,7 @@ public class SoundsClient extends CharmClientModule {
                 new ForestAmbientSounds.Night(player, soundHandler),
                 new IcyAmbientSounds.Day(player, soundHandler),
                 new IcyAmbientSounds.Night(player, soundHandler),
+                new IcyAmbientSounds.Thunderstorm(player, soundHandler),
                 new JungleAmbientSounds.Day(player, soundHandler),
                 new JungleAmbientSounds.Night(player, soundHandler),
                 new OceanAmbientSounds(player, soundHandler),
