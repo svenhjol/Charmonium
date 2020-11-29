@@ -29,23 +29,18 @@
       }
     ]
   },
-  "music.steinn": {
+  "music.ruin": {
     "category": "music",
     "sounds": [
       {
         "name": "charmonium:music/steinn",
         "stream": true,
-        "volume": 0.47
-      }
-    ]
-  },
-  "music.draugur": {
-    "category": "music",
-    "sounds": [
+        "volume": 0.45
+      },
       {
         "name": "charmonium:music/draugur",
         "stream": true,
-        "volume": 0.42
+        "volume": 0.4
       }
     ]
   },

@@ -15,8 +15,7 @@ public class CharmoniumSounds {
     public static final SoundEvent MUSIC_THARNA = createSound("music.tharna");
     public static final SoundEvent MUSIC_MUS = createSound("music.mus");
     public static final SoundEvent MUSIC_UNDIR = createSound("music.undir");
-    public static final SoundEvent MUSIC_STEINN = createSound("music.steinn");
-    public static final SoundEvent MUSIC_DRAUGUR = createSound("music.draugur");
+    public static final SoundEvent MUSIC_RUIN = createSound("music.ruin");
     public static final SoundEvent MUSIC_DISC = createSound("music_disc.charmonium");
 
     // ambience
