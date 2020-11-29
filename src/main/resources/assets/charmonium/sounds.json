@@ -35,7 +35,7 @@
       {
         "name": "charmonium:music/steinn",
         "stream": true,
-        "volume": 0.6
+        "volume": 0.47
       }
     ]
   },
@@ -45,7 +45,7 @@
       {
         "name": "charmonium:music/draugur",
         "stream": true,
-        "volume": 0.5
+        "volume": 0.42
       }
     ]
   },
