@@ -6,10 +6,7 @@ import svenhjol.charmonium.base.CharmoniumSounds;
 import svenhjol.charmonium.module.Music;
 import svenhjol.charmonium.module.Sounds;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
-
 
 public class Charmonium implements ModInitializer {
     public static final String MOD_ID = "charmonium";
@@ -18,9 +15,9 @@ public class Charmonium implements ModInitializer {
     public void onInitialize() {
         CharmoniumSounds.init();
 
-        ModuleHandler.AVAILABLE_MODULES.put(Charmonium.MOD_ID, new ArrayList<>(Arrays.asList(
+        ModuleHandler.INSTANCE.registerFabricMod(MOD_ID, Arrays.asList(
             Music.class,
             Sounds.class
-        )));
+        ));
     }
 }
