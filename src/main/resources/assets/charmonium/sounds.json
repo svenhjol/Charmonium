@@ -29,6 +29,26 @@
       }
     ]
   },
+  "music.steinn": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "charmonium:music/steinn",
+        "stream": true,
+        "volume": 0.6
+      }
+    ]
+  },
+  "music.draugur": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "charmonium:music/draugur",
+        "stream": true,
+        "volume": 0.5
+      }
+    ]
+  },
   "music_disc.charmonium": {
     "sounds": [
       {
