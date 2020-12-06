@@ -48,7 +48,7 @@ public class MusicClient extends CharmClientModule {
         }));
 
         // play Steinn and Draugur in ruins
-        MusicImprovementsClient.getMusicConditions().add(new MusicCondition(CharmoniumSounds.MUSIC_RUIN, 1200, 2400, mc
-            -> mc.player != null && PlayerStateClient.INSTANCE.ruin));
+        MusicImprovementsClient.getMusicConditions().add(new MusicCondition(CharmoniumSounds.MUSIC_RUIN, 2400, 3600, mc
+            -> mc.player != null && mc.player.world.random.nextFloat() < 0.8F && PlayerStateClient.INSTANCE.ruin));
     }
 }
