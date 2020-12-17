@@ -13,11 +13,11 @@ public class Charmonium implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CharmoniumSounds.init();
-
         ModuleHandler.INSTANCE.registerFabricMod(MOD_ID, Arrays.asList(
             Music.class,
             Sounds.class
         ));
+
+        CharmoniumSounds.init();
     }
 }
