@@ -1,11 +1,11 @@
 package svenhjol.charmonium;
 
 import net.fabricmc.api.ClientModInitializer;
-import svenhjol.charm.base.handler.ClientHandler;
+import svenhjol.charm.base.CharmClientLoader;
 
 public class CharmoniumClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        ClientHandler.INSTANCE.registerFabricMod(Charmonium.MOD_ID);
+        new CharmClientLoader(Charmonium.MOD_ID);
     }
 }
