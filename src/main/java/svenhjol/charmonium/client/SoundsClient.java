@@ -11,6 +11,7 @@ import svenhjol.charm.base.CharmModule;
 import svenhjol.charm.event.AddEntityCallback;
 import svenhjol.charm.event.PlayerTickCallback;
 import svenhjol.charmonium.client.ambience.*;
+import svenhjol.charmonium.module.Sounds;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,34 +58,55 @@ public class SoundsClient extends CharmClientModule {
         public Handler(PlayerEntity player, SoundManager soundHandler) {
             this.player = player;
 
-            ambientSounds.addAll(Arrays.asList(
-                new DeepAmbientSounds(player, soundHandler),
-                new MineshaftAmbientSounds(player, soundHandler),
-                new VillageAmbientSounds(player, soundHandler),
+            // vertical
+            if (Sounds.caveAmbience) ambientSounds.add(new CaveAmbientSounds(player, soundHandler));
+            if (Sounds.deepAmbience) ambientSounds.add(new DeepAmbientSounds(player, soundHandler));
+            if (Sounds.highAmbience) ambientSounds.add(new HighAmbientSounds(player, soundHandler));
 
-                new CaveAmbientSounds(player, soundHandler),
-                new EndAmbientSounds(player, soundHandler),
-                new HighAmbientSounds(player, soundHandler),
+            // structures/locations
+            if (Sounds.mineshaftAmbience) ambientSounds.add(new MineshaftAmbientSounds(player, soundHandler));
+            if (Sounds.villageAmbience) ambientSounds.add(new VillageAmbientSounds(player, soundHandler));
 
-                new BeachAmbientSounds(player, soundHandler),
+            // dimensions
+            if (Sounds.endAmbience) ambientSounds.add(new EndAmbientSounds(player, soundHandler));
+
+            // biomes
+            if (Sounds.beachAmbience) ambientSounds.add(new BeachAmbientSounds(player, soundHandler));
+            if (Sounds.desertAmbience) ambientSounds.addAll(Arrays.asList(
                 new DesertAmbientSounds.Day(player, soundHandler),
-                new DesertAmbientSounds.Night(player, soundHandler),
-                new ExtremeHillsAmbientSounds.Day(player, soundHandler),
-                new ExtremeHillsAmbientSounds.Night(player, soundHandler),
+                new DesertAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.forestAmbience) ambientSounds.addAll(Arrays.asList(
                 new ForestAmbientSounds.Day(player, soundHandler),
-                new ForestAmbientSounds.Night(player, soundHandler),
+                new ForestAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.icyAmbience) ambientSounds.addAll(Arrays.asList(
                 new IcyAmbientSounds.Day(player, soundHandler),
                 new IcyAmbientSounds.Night(player, soundHandler),
-                new IcyAmbientSounds.Thunderstorm(player, soundHandler),
+                new IcyAmbientSounds.Thunderstorm(player, soundHandler)
+            ));
+            if (Sounds.jungleAmbience) ambientSounds.addAll(Arrays.asList(
                 new JungleAmbientSounds.Day(player, soundHandler),
-                new JungleAmbientSounds.Night(player, soundHandler),
-                new OceanAmbientSounds(player, soundHandler),
+                new JungleAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.mountainsAmbience) ambientSounds.addAll(Arrays.asList(
+                new MountainsAmbientSounds.Day(player, soundHandler),
+                new MountainsAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.oceanAmbience) ambientSounds.add(new OceanAmbientSounds(player, soundHandler));
+            if (Sounds.plainsAmbience) ambientSounds.addAll(Arrays.asList(
                 new PlainsAmbientSounds.Day(player, soundHandler),
-                new PlainsAmbientSounds.Night(player, soundHandler),
+                new PlainsAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.savannaAmbience) ambientSounds.addAll(Arrays.asList(
                 new SavannaAmbientSounds.Day(player, soundHandler),
-                new SavannaAmbientSounds.Night(player, soundHandler),
+                new SavannaAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.swampAmbience) ambientSounds.addAll(Arrays.asList(
                 new SwampAmbientSounds.Day(player, soundHandler),
-                new SwampAmbientSounds.Night(player, soundHandler),
+                new SwampAmbientSounds.Night(player, soundHandler)
+            ));
+            if (Sounds.taigaAmbience) ambientSounds.addAll(Arrays.asList(
                 new TaigaAmbientSounds.Day(player, soundHandler),
                 new TaigaAmbientSounds.Night(player, soundHandler)
             ));
