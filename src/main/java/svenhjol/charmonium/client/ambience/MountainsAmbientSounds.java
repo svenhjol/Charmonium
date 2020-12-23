@@ -10,7 +10,7 @@ import svenhjol.charmonium.iface.IBiomeAmbience;
 
 import javax.annotation.Nullable;
 
-public class ExtremeHillsAmbientSounds {
+public class MountainsAmbientSounds {
     public static class Day extends BaseAmbientSounds implements IBiomeAmbience {
         public Day(PlayerEntity player, SoundManager soundHandler) {
             super(player, soundHandler);
