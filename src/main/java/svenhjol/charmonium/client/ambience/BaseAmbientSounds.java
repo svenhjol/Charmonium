@@ -58,7 +58,7 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     }
 
     public boolean isOutside() {
-        if (!DimensionHelper.isOverworld(player.world) && Sounds.outdoorDimensions.size() > 0) {
+        if (!DimensionHelper.isOverworld(player.world)) {
             if (!Sounds.outdoorDimensions.contains(DimensionHelper.getDimension(player.world)))
                 return false;
         }
