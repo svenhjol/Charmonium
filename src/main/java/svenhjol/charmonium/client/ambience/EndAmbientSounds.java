@@ -15,7 +15,7 @@ public class EndAmbientSounds extends BaseAmbientSounds {
 
     public boolean isValid() {
         if (world == null) return false;
-        return DimensionHelper.isEnd(player.world);
+        return DimensionHelper.isEnd(world);
     }
 
     @Override
