@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0
+* Depends on Charm 2.2.0
+* Fix compat issue with Immersive Portals #5
+* Added configurable biome category ambience and dimensions that are considered "outdoors"
+
 ## 2.1.9
 * Depends on Charm 2.1.9
 
