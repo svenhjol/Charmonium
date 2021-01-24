@@ -19,23 +19,23 @@ public class MountainsAmbientSounds {
         @Nullable
         @Override
         public SoundEvent getLongSound() {
-            return CharmoniumSounds.AMBIENCE_EXTREME_HILLS_DAY_LONG;
+            return CharmoniumSounds.AMBIENCE_MOUNTAINS_DAY_LONG;
         }
 
         @Nullable
         @Override
         public SoundEvent getShortSound() {
-            return CharmoniumSounds.AMBIENCE_EXTREME_HILLS_DAY_SHORT;
+            return CharmoniumSounds.AMBIENCE_MOUNTAINS_DAY_SHORT;
         }
 
         @Override
         public float getShortSoundVolume() {
-            return super.getShortSoundVolume() - 0.1F;
+            return super.getShortSoundVolume() - 0.15F;
         }
 
         @Override
         public int getShortSoundDelay() {
-            return world.random.nextInt(600) + 500;
+            return world.random.nextInt(600) + 600;
         }
 
         @Override
@@ -54,7 +54,7 @@ public class MountainsAmbientSounds {
         @Nullable
         @Override
         public SoundEvent getLongSound() {
-            return CharmoniumSounds.AMBIENCE_EXTREME_HILLS_NIGHT_LONG;
+            return CharmoniumSounds.AMBIENCE_MOUNTAINS_NIGHT_LONG;
         }
 
         @Override
