@@ -76,6 +76,10 @@ public class SoundsClient extends CharmClientModule {
                 new DesertAmbientSounds.Day(player, soundHandler),
                 new DesertAmbientSounds.Night(player, soundHandler)
             ));
+            if (Sounds.badlandsAmbience) ambientSounds.addAll(Arrays.asList(
+                new BadlandsAmbientSounds.Day(player, soundHandler),
+                new BadlandsAmbientSounds.Night(player, soundHandler)
+            ));
             if (Sounds.forestAmbience) ambientSounds.addAll(Arrays.asList(
                 new ForestAmbientSounds.Day(player, soundHandler),
                 new ForestAmbientSounds.Night(player, soundHandler)
