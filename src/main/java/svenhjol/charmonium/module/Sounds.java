@@ -38,6 +38,9 @@ public class Sounds extends CharmModule {
     @Config(name = "End ambience", description = "If true, plays ambience when the player is in the End dimension.")
     public static boolean endAmbience = true;
 
+    @Config(name = "Badlands ambience", description = "If true, plays ambience when the player is in a badlands biome.")
+    public static boolean badlandsAmbience = true;
+
     @Config(name = "Beach ambience", description = "If true, plays ambience when the player is in a beach biome.")
     public static boolean beachAmbience = true;
 
