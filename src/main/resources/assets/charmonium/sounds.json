@@ -74,7 +74,13 @@
     "sounds": [
       {"name": "charmonium:ambience/underground/cave_bat"},
       {"name": "charmonium:ambience/underground/cave_rocks1"},
-      {"name": "charmonium:ambience/underground/cave_rocks2"}
+      {"name": "charmonium:ambience/underground/cave_rocks2"},
+      {"name": "charmonium:ambience/underground/cave_rocks4"},
+      {"name": "charmonium:ambience/underground/cave_rocks5"},
+      {"name": "charmonium:ambience/underground/cave_rocks6"},
+      {"name": "charmonium:ambience/underground/cave_rocks7"},
+      {"name": "charmonium:ambience/underground/cave_rocks8"},
+      {"name": "charmonium:ambience/underground/small_drips1"}
     ]
   },
   "ambience.deep.long": {
@@ -86,7 +92,9 @@
   "ambience.deep.short": {
     "sounds": [
       {"name": "charmonium:ambience/underground/cave_drips"},
-      {"name": "charmonium:ambience/underground/cave_rocks3"}
+      {"name": "charmonium:ambience/underground/small_drips1"},
+      {"name": "charmonium:ambience/underground/cave_rocks3"},
+      {"name": "charmonium:ambience/underground/cave_rocks5"}
     ]
   },
   "ambience.desert.day_long": {
@@ -116,7 +124,7 @@
       {"name": "charmonium:ambience/cicadas/cicadas_short3"}
     ]
   },
-  "ambience.extreme_hills.day_long": {
+  "ambience.mountains.day_long": {
     "sounds": [
       {"name": "charmonium:ambience/plains/windy_plains1"},
       {"name": "charmonium:ambience/wind/wind1"},
@@ -124,7 +132,7 @@
       {"name": "charmonium:ambience/wind/wind3"}
     ]
   },
-  "ambience.extreme_hills.day_short": {
+  "ambience.mountains.day_short": {
     "sounds": [
       {"name": "charmonium:ambience/crows/crow1"},
       {"name": "charmonium:ambience/crows/crow2"},
@@ -132,7 +140,7 @@
       {"name": "charmonium:ambience/crows/crow4"}
     ]
   },
-  "ambience.extreme_hills.night_long": {
+  "ambience.mountains.night_long": {
     "sounds": [
       {"name": "charmonium:ambience/wind/wind1"},
       {"name": "charmonium:ambience/wind/wind2"},
@@ -142,7 +150,9 @@
   "ambience.forest.day_long": {
     "sounds": [
       {"name": "charmonium:ambience/birds/green_forest1"},
-      {"name": "charmonium:ambience/birds/green_forest2"}
+      {"name": "charmonium:ambience/birds/green_forest2"},
+      {"name": "charmonium:ambience/birds/green_forest3"},
+      {"name": "charmonium:ambience/birds/green_forest4"}
     ]
   },
   "ambience.forest.night_long": {
@@ -192,6 +202,25 @@
       {"name": "charmonium:ambience/cicadas/cicadas3"}
     ]
   },
+  "ambience.badlands.day_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/badlands/badlands_windy1"},
+      {"name": "charmonium:ambience/badlands/badlands_windy2"}
+    ]
+  },
+  "ambience.badlands.day_short": {
+    "sounds": [
+      {"name": "charmonium:ambience/cicadas/cicadas_short1"},
+      {"name": "charmonium:ambience/cicadas/cicadas_short2"},
+      {"name": "charmonium:ambience/cicadas/cicadas_short3"}
+    ]
+  },
+  "ambience.badlands.night_long": {
+    "sounds": [
+      {"name": "charmonium:ambience/crickets/crickets2"},
+      {"name": "charmonium:ambience/crickets/crickets4"}
+    ]
+  },
   "ambience.mineshaft.short": {
     "sounds": [
       {"name": "charmonium:ambience/mineshaft/woodcreak1"},
@@ -222,7 +251,8 @@
     "sounds": [
       {"name": "charmonium:ambience/birds/night_bird"},
       {"name": "charmonium:ambience/crickets/crickets1"},
-      {"name": "charmonium:ambience/crickets/crickets2"}
+      {"name": "charmonium:ambience/crickets/crickets2"},
+      {"name": "charmonium:ambience/crickets/crickets4"}
     ]
   },
   "ambience.plains.night_short": {
@@ -237,7 +267,10 @@
   "ambience.savanna.day_long": {
     "sounds": [
       {"name": "charmonium:ambience/plains/windy_plains1"},
-      {"name": "charmonium:ambience/plains/windy_plains2"}
+      {"name": "charmonium:ambience/plains/windy_plains2"},
+      {"name": "charmonium:ambience/cicadas/cicadas_warm1"},
+      {"name": "charmonium:ambience/plains/warm_plains1"},
+      {"name": "charmonium:ambience/plains/warm_plains2"}
     ]
   },
   "ambience.savanna.night_long": {
@@ -245,7 +278,8 @@
       {"name": "charmonium:ambience/crickets/crickets1"},
       {"name": "charmonium:ambience/crickets/crickets2"},
       {"name": "charmonium:ambience/cicadas/cicadas1"},
-      {"name": "charmonium:ambience/cicadas/cicadas2"}
+      {"name": "charmonium:ambience/cicadas/cicadas2"},
+      {"name": "charmonium:ambience/crickets/crickets4"}
     ]
   },
   "ambience.swamp.day_long": {
@@ -261,7 +295,8 @@
   "ambience.taiga.day_long": {
     "sounds": [
       {"name": "charmonium:ambience/birds/cold_forest1"},
-      {"name": "charmonium:ambience/birds/cold_forest2"}
+      {"name": "charmonium:ambience/birds/cold_forest2"},
+      {"name": "charmonium:ambience/birds/mountain_forest1"}
     ]
   },
   "ambience.taiga.night_long": {
