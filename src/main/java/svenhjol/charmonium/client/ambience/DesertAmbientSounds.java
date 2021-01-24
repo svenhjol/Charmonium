@@ -34,11 +34,15 @@ public class DesertAmbientSounds {
         }
 
         @Override
+        public float getShortSoundVolume() {
+            return super.getShortSoundVolume() - 0.15F;
+        }
+
+        @Override
         public boolean validBiomeConditions(Biome.Category biomeCategory) {
             return (biomeCategory == Biome.Category.DESERT
-                || biomeCategory == Biome.Category.MESA)
                 && isOutside()
-                && PlayerStateClient.INSTANCE.isDaytime;
+                && PlayerStateClient.INSTANCE.isDaytime);
         }
     }
 
@@ -67,9 +71,8 @@ public class DesertAmbientSounds {
         @Override
         public boolean validBiomeConditions(Biome.Category biomeCategory) {
             return (biomeCategory == Biome.Category.DESERT
-                || biomeCategory == Biome.Category.MESA)
                 && isOutside()
-                && !PlayerStateClient.INSTANCE.isDaytime;
+                && !PlayerStateClient.INSTANCE.isDaytime);
         }
     }
 }
