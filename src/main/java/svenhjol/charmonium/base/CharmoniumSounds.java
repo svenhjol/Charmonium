@@ -19,6 +19,9 @@ public class CharmoniumSounds {
     public static final SoundEvent MUSIC_DISC = createSound("music_disc.charmonium");
 
     // ambience
+    public static final SoundEvent AMBIENCE_BADLANDS_DAY_LONG = createSound("ambience.badlands.day_long");
+    public static final SoundEvent AMBIENCE_BADLANDS_DAY_SHORT = createSound("ambience.badlands.day_short");
+    public static final SoundEvent AMBIENCE_BADLANDS_NIGHT_LONG = createSound("ambience.badlands.night_long");
     public static final SoundEvent AMBIENCE_BEACH_LONG = createSound("ambience.beach.long");
     public static final SoundEvent AMBIENCE_CAVE_LONG = createSound("ambience.cave.long");
     public static final SoundEvent AMBIENCE_CAVE_SHORT = createSound("ambience.cave.short");
@@ -30,9 +33,9 @@ public class CharmoniumSounds {
     public static final SoundEvent AMBIENCE_DESERT_NIGHT_SHORT = createSound("ambience.desert.night_short");
     public static final SoundEvent AMBIENCE_END_SHORT = createSound("ambience.end.short");
     public static final SoundEvent AMBIENCE_END_LONG = createSound("ambience.end.long");
-    public static final SoundEvent AMBIENCE_EXTREME_HILLS_DAY_LONG = createSound("ambience.extreme_hills.day_long");
-    public static final SoundEvent AMBIENCE_EXTREME_HILLS_DAY_SHORT = createSound("ambience.extreme_hills.day_short");
-    public static final SoundEvent AMBIENCE_EXTREME_HILLS_NIGHT_LONG = createSound("ambience.extreme_hills.night_long");
+    public static final SoundEvent AMBIENCE_MOUNTAINS_DAY_LONG = createSound("ambience.mountains.day_long");
+    public static final SoundEvent AMBIENCE_MOUNTAINS_DAY_SHORT = createSound("ambience.mountains.day_short");
+    public static final SoundEvent AMBIENCE_MOUNTAINS_NIGHT_LONG = createSound("ambience.mountains.night_long");
     public static final SoundEvent AMBIENCE_FOREST_DAY_LONG = createSound("ambience.forest.day_long");
     public static final SoundEvent AMBIENCE_FOREST_NIGHT_LONG = createSound("ambience.forest.night_long");
     public static final SoundEvent AMBIENCE_ICY_DAY_LONG = createSound("ambience.icy.day_long");
