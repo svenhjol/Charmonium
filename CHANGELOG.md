@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.1
+* Added badlands biome sounds
+* Added more forest, plains and night sounds
+* Added more cave sounds
+
+## 2.2.2
+* Depends on Charm 2.2.2
+
 ## 2.2.0
 * Depends on Charm 2.2.0
 * Fix compat issue with Immersive Portals #5
