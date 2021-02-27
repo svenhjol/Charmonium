@@ -25,8 +25,8 @@ dependencies {
 	modImplementation "svenhjol.charm:charm:${charm_version}"
 
 	// REI
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${project.rei_version}"
-	modCompile "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
+//	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${project.rei_version}"
+//	modCompile "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
 	implementation "com.moandjiezana.toml:toml4j:${project.toml4j_version}"
 	implementation "com.electronwill.night-config:core:${project.tomlnc_version}"

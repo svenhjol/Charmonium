@@ -21,7 +21,6 @@ public class LongSound extends MovingSoundInstance {
         this.repeat = true;
         this.repeatDelay = 0;
         this.volume = 0.01F;
-        this.field_18935 = true;
         this.looping = true;
         this.predicate = predicate;
         this.longTicks = -50;

@@ -15,7 +15,6 @@ public class ShortSound extends MovingSoundInstance {
         this.repeat = false;
         this.repeatDelay = 0;
         this.volume = volume;
-        this.field_18935 = true;
         this.looping = true;
     }
 
