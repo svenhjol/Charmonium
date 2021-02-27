@@ -21,7 +21,7 @@ public class DeepAmbientSounds extends BaseAmbientSounds {
         if (world == null || !DimensionHelper.isDimension(world, new Identifier("overworld"))) return false;
         BlockPos pos = player.getBlockPos();
         int light = world.getLightLevel(pos);
-        return !world.isSkyVisibleAllowingSea(pos) && pos.getY() <= 32 && light < 10;
+        return !world.isSkyVisibleAllowingSea(pos) && pos.getY() <= 0 && light < 10;
     }
 
     @Override
