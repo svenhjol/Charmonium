@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "svenhjol.charmonium.Charmonium"
+    ],
+    "client": [
+      "svenhjol.charmonium.CharmoniumClient"
     ]
   },
   "mixins": [

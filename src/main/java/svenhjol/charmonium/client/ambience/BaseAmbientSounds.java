@@ -3,12 +3,12 @@ package svenhjol.charmonium.client.ambience;
 import net.minecraft.block.*;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.MovingSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import svenhjol.charm.Charm;
+import svenhjol.charm.base.helper.DimensionHelper;
 import svenhjol.charmonium.client.LongSound;
 import svenhjol.charmonium.client.ShortSound;
 import svenhjol.charmonium.iface.IAmbientSounds;
@@ -58,6 +58,11 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     }
 
     public boolean isOutside() {
+        if (!DimensionHelper.isOverworld(player.world)) {
+            if (!Sounds.outdoorDimensions.contains(DimensionHelper.getDimension(player.world)))
+                return false;
+        }
+
         if (player.isSubmergedInWater()) return false;
 
         int blocks = 16;
