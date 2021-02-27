@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.3.2
+* Bump for Charm 2.3.2
+
 ## 2.3.1
 * Added badlands biome sounds
 * Added more forest, plains and night sounds
