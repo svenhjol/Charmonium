@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import svenhjol.charm.base.helper.DimensionHelper;
 import svenhjol.charmonium.base.CharmoniumSounds;
 
-
 import javax.annotation.Nullable;
 
 public class DeepAmbientSounds extends BaseAmbientSounds {
@@ -21,7 +20,8 @@ public class DeepAmbientSounds extends BaseAmbientSounds {
         if (world == null || !DimensionHelper.isDimension(world, new Identifier("overworld"))) return false;
         BlockPos pos = player.getBlockPos();
         int light = world.getLightLevel(pos);
-        return !world.isSkyVisibleAllowingSea(pos) && pos.getY() <= 0 && light < 10;
+        int bottom = world.getBottomY() < 0 ? 0 : 32;
+        return !world.isSkyVisibleAllowingSea(pos) && pos.getY() <= bottom && light < 10;
     }
 
     @Override
