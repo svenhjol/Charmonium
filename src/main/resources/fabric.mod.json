@@ -25,14 +25,12 @@
       "svenhjol.charmonium.CharmoniumClient"
     ]
   },
-  "mixins": [
-  ],
 
   "depends": {
-    "fabricloader": ">=0.11.2",
+    "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.17.*",
-    "charm": ">=2.4.0"
+    "charm": ">=3.0.0"
   },
   "suggests": {
     "flamingo": "*"
