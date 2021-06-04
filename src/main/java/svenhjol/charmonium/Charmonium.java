@@ -2,7 +2,6 @@ package svenhjol.charmonium;
 
 import net.fabricmc.api.ModInitializer;
 import svenhjol.charm.Charm;
-import svenhjol.charm.init.CharmLoader;
 import svenhjol.charmonium.init.CharmoniumSounds;
 
 public class Charmonium implements ModInitializer {
@@ -10,10 +9,7 @@ public class Charmonium implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Charm.runFirst();
-
-        new CharmLoader(MOD_ID);
-
+        Charm.init(MOD_ID);
         CharmoniumSounds.init();
     }
 }
