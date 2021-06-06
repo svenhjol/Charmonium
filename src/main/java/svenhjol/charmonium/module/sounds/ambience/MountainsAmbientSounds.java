@@ -1,18 +1,18 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.world.biome.Biome;
 import svenhjol.charm.module.player_state.PlayerStateClient;
 import svenhjol.charmonium.init.CharmoniumSounds;
 import svenhjol.charmonium.module.sounds.IBiomeAmbience;
 
 import javax.annotation.Nullable;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
 
 public class MountainsAmbientSounds {
     public static class Day extends BaseAmbientSounds implements IBiomeAmbience {
-        public Day(PlayerEntity player, SoundManager soundHandler) {
+        public Day(Player player, SoundManager soundHandler) {
             super(player, soundHandler);
         }
 
@@ -39,15 +39,15 @@ public class MountainsAmbientSounds {
         }
 
         @Override
-        public boolean validBiomeConditions(Biome.Category biomeCategory) {
-            return biomeCategory == Biome.Category.EXTREME_HILLS
+        public boolean validBiomeConditions(Biome.BiomeCategory biomeCategory) {
+            return biomeCategory == Biome.BiomeCategory.EXTREME_HILLS
                 && PlayerStateClient.INSTANCE.isDaytime
                 && isOutside();
         }
     }
 
     public static class Night extends BaseAmbientSounds implements IBiomeAmbience {
-        public Night(PlayerEntity player, SoundManager soundHandler) {
+        public Night(Player player, SoundManager soundHandler) {
             super(player, soundHandler);
         }
 
@@ -58,8 +58,8 @@ public class MountainsAmbientSounds {
         }
 
         @Override
-        public boolean validBiomeConditions(Biome.Category biomeCategory) {
-            return biomeCategory == Biome.Category.EXTREME_HILLS
+        public boolean validBiomeConditions(Biome.BiomeCategory biomeCategory) {
+            return biomeCategory == Biome.BiomeCategory.EXTREME_HILLS
                 && isOutside()
                 && !PlayerStateClient.INSTANCE.isDaytime;
         }

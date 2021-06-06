@@ -1,6 +1,5 @@
 package svenhjol.charmonium.module.sounds;
 
-import net.minecraft.util.Identifier;
 import svenhjol.charm.annotation.Config;
 import svenhjol.charm.annotation.Module;
 import svenhjol.charm.module.CharmModule;
@@ -8,10 +7,11 @@ import svenhjol.charmonium.Charmonium;
 
 import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.resources.ResourceLocation;
 
 @Module(mod = Charmonium.MOD_ID, client = SoundsClient.class, description = "Ambient sounds play according to the biome, time of day and depth below surface.")
 public class Sounds extends CharmModule {
-    public static List<Identifier> outdoorDimensions = new ArrayList<>();
+    public static List<ResourceLocation> outdoorDimensions = new ArrayList<>();
 
     @Config(name = "Volume multiplier", description = "Volume of ambient sounds is multiplied by this amount.")
     public static double volumeMultiplier = 1.0D;
@@ -76,6 +76,6 @@ public class Sounds extends CharmModule {
     @Override
     public void register() {
         if (configOutdoorDimensions.size() > 0)
-            configOutdoorDimensions.forEach(id -> outdoorDimensions.add(new Identifier(id)));
+            configOutdoorDimensions.forEach(id -> outdoorDimensions.add(new ResourceLocation(id)));
     }
 }

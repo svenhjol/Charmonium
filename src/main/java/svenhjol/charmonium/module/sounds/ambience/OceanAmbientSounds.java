@@ -1,16 +1,16 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.world.biome.Biome;
 import svenhjol.charmonium.init.CharmoniumSounds;
 import svenhjol.charmonium.module.sounds.IBiomeAmbience;
 
 import javax.annotation.Nullable;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
 
 public class OceanAmbientSounds extends BaseAmbientSounds implements IBiomeAmbience {
-    public OceanAmbientSounds(PlayerEntity player, SoundManager soundHandler) {
+    public OceanAmbientSounds(Player player, SoundManager soundHandler) {
         super(player, soundHandler);
     }
 
@@ -21,8 +21,8 @@ public class OceanAmbientSounds extends BaseAmbientSounds implements IBiomeAmbie
     }
 
     @Override
-    public boolean validBiomeConditions(Biome.Category biomeCategory) {
-        return biomeCategory == Biome.Category.OCEAN
+    public boolean validBiomeConditions(Biome.BiomeCategory biomeCategory) {
+        return biomeCategory == Biome.BiomeCategory.OCEAN
             && isOutside();
     }
 }

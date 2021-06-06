@@ -1,27 +1,27 @@
 package svenhjol.charmonium.module.sounds;
 
-import net.minecraft.client.sound.MovingSoundInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import svenhjol.charm.mixin.accessor.MovingSoundInstanceAccessor;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.player.Player;
+import svenhjol.charm.mixin.accessor.AbstractTickableSoundInstanceAccessor;
 
 import java.util.function.Predicate;
 
-public class LongSound extends MovingSoundInstance {
-    private final PlayerEntity player;
+public class LongSound extends AbstractTickableSoundInstance {
+    private final Player player;
     private int longTicks;
-    private final Predicate<PlayerEntity> predicate;
+    private final Predicate<Player> predicate;
     private final float maxVolume;
 
-    public LongSound(PlayerEntity player, SoundEvent sound, float volume, Predicate<PlayerEntity> predicate) {
-        super(sound, SoundCategory.AMBIENT);
+    public LongSound(Player player, SoundEvent sound, float volume, Predicate<Player> predicate) {
+        super(sound, SoundSource.AMBIENT);
         this.maxVolume = volume;
         this.player = player;
-        this.repeat = true;
-        this.repeatDelay = 0;
-        this.volume = 0.01F;
         this.looping = true;
+        this.delay = 0;
+        this.volume = 0.01F;
+        this.relative = true;
         this.predicate = predicate;
         this.longTicks = -50;
     }
@@ -39,13 +39,13 @@ public class LongSound extends MovingSoundInstance {
             this.longTicks = Math.min(this.longTicks, 140);
             this.volume = Math.max(0.0F, Math.min((float) this.longTicks / 140, 1.0F)) * maxVolume;
 
-            boolean donePlaying = ((MovingSoundInstanceAccessor) this).getDone();
+            boolean donePlaying = ((AbstractTickableSoundInstanceAccessor) this).getStopped();
 
             if (!donePlaying && this.volume == 0.0F && this.longTicks < -100)
-                ((MovingSoundInstanceAccessor) this).setDone(true);
+                ((AbstractTickableSoundInstanceAccessor) this).setStopped(true);
 
         } else {
-            ((MovingSoundInstanceAccessor) this).setDone(true);
+            ((AbstractTickableSoundInstanceAccessor) this).setStopped(true);
         }
     }
 }

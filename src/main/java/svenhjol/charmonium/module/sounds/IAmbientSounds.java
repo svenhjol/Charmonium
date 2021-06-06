@@ -1,16 +1,15 @@
 package svenhjol.charmonium.module.sounds;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvent;
-
 import javax.annotation.Nullable;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.player.Player;
 
 public interface IAmbientSounds {
-    ClientWorld getWorld();
+    ClientLevel getWorld();
 
-    PlayerEntity getPlayer();
+    Player getPlayer();
 
     SoundManager getSoundManager();
 

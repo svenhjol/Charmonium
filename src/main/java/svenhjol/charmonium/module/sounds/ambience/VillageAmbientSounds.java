@@ -1,22 +1,22 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvent;
 import svenhjol.charm.module.player_state.PlayerStateClient;
 import svenhjol.charmonium.init.CharmoniumSounds;
 
 import javax.annotation.Nullable;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.player.Player;
 
 public class VillageAmbientSounds extends BaseAmbientSounds {
-    public VillageAmbientSounds(PlayerEntity player, SoundManager soundHandler) {
+    public VillageAmbientSounds(Player player, SoundManager soundHandler) {
         super(player, soundHandler);
     }
 
     @Override
     public boolean isValid() {
         if (world == null) return false;
-        if (!world.isSkyVisibleAllowingSea(player.getBlockPos())) return false;
+        if (!world.canSeeSkyFromBelowWater(player.blockPosition())) return false;
 
         return PlayerStateClient.INSTANCE.village
             && PlayerStateClient.INSTANCE.isDaytime;

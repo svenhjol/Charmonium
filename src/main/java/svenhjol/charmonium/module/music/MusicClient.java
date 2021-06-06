@@ -1,7 +1,7 @@
 package svenhjol.charmonium.module.music;
 
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
 import svenhjol.charm.handler.ModuleHandler;
 import svenhjol.charm.helper.DimensionHelper;
 import svenhjol.charm.module.CharmClientModule;
@@ -23,18 +23,18 @@ public class MusicClient extends CharmClientModule {
 
         // play Þarna in overworld anywhere
         MusicImprovementsClient.getMusicConditions().add(new MusicCondition(CharmoniumSounds.MUSIC_THARNA, 1200, 3600, mc -> {
-            if (mc.player == null || mc.player.world == null)
+            if (mc.player == null || mc.player.level == null)
                 return false;
 
-            return mc.player.world.random.nextFloat() < 0.08F
-                && DimensionHelper.isDimension(mc.player.world, new Identifier("overworld"));
+            return mc.player.level.random.nextFloat() < 0.08F
+                && DimensionHelper.isDimension(mc.player.level, new ResourceLocation("overworld"));
         }));
 
         // play Mús in cold environments
         MusicImprovementsClient.getMusicConditions().add(new MusicCondition(CharmoniumSounds.MUSIC_MUS, 1200, 3600, mc ->
             mc.player != null
-                && mc.player.world.getBiome(mc.player.getBlockPos()).getCategory() == Biome.Category.ICY
-                && mc.player.world.random.nextFloat() < 0.28F
+                && mc.player.level.getBiome(mc.player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.ICY
+                && mc.player.level.random.nextFloat() < 0.28F
         ));
 
         // play Undir in nether underground
@@ -42,13 +42,13 @@ public class MusicClient extends CharmClientModule {
             if (mc.player == null)
                 return false;
 
-            return mc.player.getBlockPos().getY() < 48
-                && DimensionHelper.isDimension(mc.player.world, new Identifier("the_nether"))
-                && mc.player.world.random.nextFloat() < 0.33F;
+            return mc.player.blockPosition().getY() < 48
+                && DimensionHelper.isDimension(mc.player.level, new ResourceLocation("the_nether"))
+                && mc.player.level.random.nextFloat() < 0.33F;
         }));
 
         // play Steinn and Draugur in ruins
         MusicImprovementsClient.getMusicConditions().add(new MusicCondition(CharmoniumSounds.MUSIC_RUIN, 2400, 3600, mc
-            -> mc.player != null && mc.player.world.random.nextFloat() < 0.8F && PlayerStateClient.INSTANCE.ruin));
+            -> mc.player != null && mc.player.level.random.nextFloat() < 0.8F && PlayerStateClient.INSTANCE.ruin));
     }
 }

@@ -1,14 +1,14 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
 import svenhjol.charm.module.player_state.PlayerStateClient;
 import svenhjol.charmonium.module.sounds.LongSound;
 
 @SuppressWarnings("unused")
 public abstract class BiomeAmbientSounds extends BaseAmbientSounds {
-    public BiomeAmbientSounds(PlayerEntity player, SoundManager soundHandler) {
+    public BiomeAmbientSounds(Player player, SoundManager soundHandler) {
         super(player, soundHandler);
     }
 
@@ -29,5 +29,5 @@ public abstract class BiomeAmbientSounds extends BaseAmbientSounds {
         return isValid() && !PlayerStateClient.INSTANCE.isDaytime;
     }
 
-    public abstract Biome.Category getBiomeCategory();
+    public abstract Biome.BiomeCategory getBiomeCategory();
 }

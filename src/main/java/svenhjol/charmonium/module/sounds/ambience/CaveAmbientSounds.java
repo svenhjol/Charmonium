@@ -1,29 +1,29 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import svenhjol.charm.helper.DimensionHelper;
 import svenhjol.charmonium.init.CharmoniumSounds;
 
 import javax.annotation.Nullable;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.player.Player;
 
 public class CaveAmbientSounds extends BaseAmbientSounds {
-    public CaveAmbientSounds(PlayerEntity player, SoundManager soundHandler) {
+    public CaveAmbientSounds(Player player, SoundManager soundHandler) {
         super(player, soundHandler);
     }
 
-    public static boolean isValidCave(ClientWorld world, PlayerEntity player) {
-        if (world == null || !DimensionHelper.isDimension(world, new Identifier("overworld"))) return false;
-        if (player.isSubmergedInWater()) return false;
+    public static boolean isValidCave(ClientLevel world, Player player) {
+        if (world == null || !DimensionHelper.isDimension(world, new ResourceLocation("overworld"))) return false;
+        if (player.isUnderWater()) return false;
 
-        BlockPos pos = player.getBlockPos();
-        int light = world.getLightLevel(pos);
+        BlockPos pos = player.blockPosition();
+        int light = world.getMaxLocalRawBrightness(pos);
 
-        if (!world.isSkyVisibleAllowingSea(pos)
+        if (!world.canSeeSkyFromBelowWater(pos)
             && pos.getY() <= world.getSeaLevel()
         ) {
             return pos.getY() <= 44 || light <= 10;

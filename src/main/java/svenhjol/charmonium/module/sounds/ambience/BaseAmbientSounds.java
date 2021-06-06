@@ -1,12 +1,17 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.block.*;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.sound.MovingSoundInstance;
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HugeMushroomBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import svenhjol.charm.Charm;
 import svenhjol.charm.helper.DimensionHelper;
 import svenhjol.charmonium.module.sounds.LongSound;
@@ -19,16 +24,16 @@ import java.util.ConcurrentModificationException;
 public abstract class BaseAmbientSounds implements IAmbientSounds {
     protected int shortTicks = 0;
     protected boolean isValid = false;
-    protected MovingSoundInstance longSound = null;
+    protected AbstractTickableSoundInstance longSound = null;
 
-    protected final PlayerEntity player;
-    protected final ClientWorld world;
+    protected final Player player;
+    protected final ClientLevel world;
     protected final SoundManager soundHandler;
 
-    public BaseAmbientSounds(PlayerEntity player, SoundManager soundHandler) {
+    public BaseAmbientSounds(Player player, SoundManager soundHandler) {
         this.player = player;
         this.soundHandler = soundHandler;
-        this.world = (ClientWorld) player.world;
+        this.world = (ClientLevel) player.level;
     }
 
     public void tick() {
@@ -58,43 +63,43 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     }
 
     public boolean isOutside() {
-        if (!DimensionHelper.isOverworld(player.world)) {
-            if (!Sounds.outdoorDimensions.contains(DimensionHelper.getDimension(player.world)))
+        if (!DimensionHelper.isOverworld(player.level)) {
+            if (!Sounds.outdoorDimensions.contains(DimensionHelper.getDimension(player.level)))
                 return false;
         }
 
-        if (player.isSubmergedInWater()) return false;
+        if (player.isUnderWater()) return false;
 
         int blocks = 16;
         int start = 1;
 
-        BlockPos playerPos = player.getBlockPos();
+        BlockPos playerPos = player.blockPosition();
 
         for (int i = start; i < start + blocks; i++) {
             BlockPos check = new BlockPos(playerPos.getX(), playerPos.getY() + i, playerPos.getZ());
             BlockState state = world.getBlockState(check);
             Block block = state.getBlock();
 
-            if (world.isSkyVisibleAllowingSea(check)) return true;
+            if (world.canSeeSkyFromBelowWater(check)) return true;
 
-            if (world.isAir(check)) continue;
+            if (world.isEmptyBlock(check)) continue;
             if (state.getMaterial() == Material.GLASS
-                || (block instanceof PillarBlock && state.getMaterial() == Material.WOOD) // no more LogBlock, wtf?
-                || block instanceof MushroomBlock
+                || (block instanceof RotatedPillarBlock && state.getMaterial() == Material.WOOD) // no more LogBlock, wtf?
+                || block instanceof HugeMushroomBlock
                 || block instanceof StemBlock
             ) continue;
 
-            if (state.isOpaque()) return false;
+            if (state.canOcclude()) return false;
         }
 
-        return player.getBlockPos().getY() >= 48;
+        return player.blockPosition().getY() >= 48;
     }
 
     protected void setShortSound() {
-        ShortSound shortSound = new ShortSound((ClientPlayerEntity) player, getShortSound(), getShortSoundVolume() * (float) Sounds.volumeMultiplier);
+        ShortSound shortSound = new ShortSound((LocalPlayer) player, getShortSound(), getShortSoundVolume() * (float) Sounds.volumeMultiplier);
 
         try {
-            if (!soundHandler.isPlaying(shortSound))
+            if (!soundHandler.isActive(shortSound))
                 soundHandler.play(shortSound);
         } catch (ConcurrentModificationException e) {
             Charm.LOG.debug("Exception in setShortSound");
@@ -106,7 +111,7 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     }
 
     public boolean isPlayingLongSound() {
-        return this.longSound != null && !this.longSound.isDone();
+        return this.longSound != null && !this.longSound.isStopped();
     }
 
     public float getShortSoundVolume() {
@@ -130,12 +135,12 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     }
 
     @Override
-    public ClientWorld getWorld() {
+    public ClientLevel getWorld() {
         return world;
     }
 
     @Override
-    public PlayerEntity getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 

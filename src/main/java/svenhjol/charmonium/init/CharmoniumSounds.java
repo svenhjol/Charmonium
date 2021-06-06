@@ -1,15 +1,15 @@
 package svenhjol.charmonium.init;
 
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
 import svenhjol.charm.helper.RegistryHelper;
 import svenhjol.charmonium.Charmonium;
 
 import java.util.HashMap;
 import java.util.Map;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 
 public class CharmoniumSounds {
-    private static final Map<Identifier, SoundEvent> REGISTER = new HashMap<>();
+    private static final Map<ResourceLocation, SoundEvent> REGISTER = new HashMap<>();
 
     // music
     public static final SoundEvent MUSIC_THARNA = createSound("music.tharna");
@@ -59,7 +59,7 @@ public class CharmoniumSounds {
     public static final SoundEvent AMBIENCE_HIGH = createSound("ambience.high");
 
     public static SoundEvent createSound(String name) {
-        Identifier id = new Identifier(Charmonium.MOD_ID, name);
+        ResourceLocation id = new ResourceLocation(Charmonium.MOD_ID, name);
         SoundEvent sound = new SoundEvent(id);
         REGISTER.put(id, sound);
         return sound;

@@ -1,27 +1,27 @@
 package svenhjol.charmonium.module.sounds.ambience;
 
-import net.minecraft.client.sound.SoundManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import svenhjol.charm.helper.DimensionHelper;
 import svenhjol.charmonium.init.CharmoniumSounds;
 
 import javax.annotation.Nullable;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.player.Player;
 
 public class DeepAmbientSounds extends BaseAmbientSounds {
-    public DeepAmbientSounds(PlayerEntity player, SoundManager soundHandler) {
+    public DeepAmbientSounds(Player player, SoundManager soundHandler) {
         super(player, soundHandler);
     }
 
     @Override
     public boolean isValid() {
-        if (world == null || !DimensionHelper.isDimension(world, new Identifier("overworld"))) return false;
-        BlockPos pos = player.getBlockPos();
-        int light = world.getLightLevel(pos);
-        int bottom = world.getBottomY() < 0 ? 0 : 32;
-        return !world.isSkyVisibleAllowingSea(pos) && pos.getY() <= bottom && light < 10;
+        if (world == null || !DimensionHelper.isDimension(world, new ResourceLocation("overworld"))) return false;
+        BlockPos pos = player.blockPosition();
+        int light = world.getMaxLocalRawBrightness(pos);
+        int bottom = world.getMinBuildHeight() < 0 ? 0 : 32;
+        return !world.canSeeSkyFromBelowWater(pos) && pos.getY() <= bottom && light < 10;
     }
 
     @Override
