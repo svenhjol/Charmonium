@@ -30,7 +30,7 @@
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.17.*",
-    "charm": ">=3.0.0"
+    "charm": ">=3.0.7"
   },
   "suggests": {
     "flamingo": "*"
