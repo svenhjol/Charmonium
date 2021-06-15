@@ -14,7 +14,7 @@
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/charmonium/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -30,7 +30,7 @@
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.17.*",
-    "charm": ">=3.0.7"
+    "charm": ">=3.1.0"
   },
   "suggests": {
     "flamingo": "*"
