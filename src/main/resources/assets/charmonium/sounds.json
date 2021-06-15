@@ -44,22 +44,6 @@
       }
     ]
   },
-  "music_disc.charmonium": {
-    "sounds": [
-      {
-        "name": "charmonium:silence",
-        "stream": true
-      },
-      {
-        "name": "charmonium:silence",
-        "stream": true
-      },
-      {
-        "name": "charmonium:silence",
-        "stream": true
-      }
-    ]
-  },
   "ambience.beach.long": {
     "sounds": [
       {"name": "charmonium:silence"}
