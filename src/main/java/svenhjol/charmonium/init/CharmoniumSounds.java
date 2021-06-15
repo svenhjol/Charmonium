@@ -1,12 +1,12 @@
 package svenhjol.charmonium.init;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import svenhjol.charm.helper.RegistryHelper;
 import svenhjol.charmonium.Charmonium;
 
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 
 public class CharmoniumSounds {
     private static final Map<ResourceLocation, SoundEvent> REGISTER = new HashMap<>();
@@ -16,7 +16,6 @@ public class CharmoniumSounds {
     public static final SoundEvent MUSIC_MUS = createSound("music.mus");
     public static final SoundEvent MUSIC_UNDIR = createSound("music.undir");
     public static final SoundEvent MUSIC_RUIN = createSound("music.ruin");
-    public static final SoundEvent MUSIC_DISC = createSound("music_disc.charmonium");
 
     // ambience
     public static final SoundEvent AMBIENCE_BADLANDS_DAY_LONG = createSound("ambience.badlands.day_long");
