@@ -1,19 +1,23 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+runServer {
+	standardInput = System.in
+}
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings minecraft.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -22,11 +26,11 @@ dependencies {
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
-	modImplementation "svenhjol.charm:charm:${charm_version}"
+	modImplementation "svenhjol.charm:charm:${project.charm_version}"
 
-	// REI
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${project.rei_version}"
-	modCompile "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
+	// REI. Disable the modRuntime line if REI is broken.
+	modApi "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
 	implementation "com.moandjiezana.toml:toml4j:${project.toml4j_version}"
 	implementation "com.electronwill.night-config:core:${project.tomlnc_version}"
@@ -40,33 +44,35 @@ dependencies {
 processResources {
 	inputs.property "version", project.version
 
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
+	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
 
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}
+	exclude("META-INF/*.materials")
 }
 
-// ensure that the encoding is set to UTF-8, no matter what the system default is
-// this fixes some edge cases with special characters not displaying correctly
-// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-tasks.withType(JavaCompile) {
-	options.encoding = "UTF-8"
+tasks.withType(JavaCompile).configureEach {
+	// ensure that the encoding is set to UTF-8, no matter what the system default is
+	// this fixes some edge cases with special characters not displaying correctly
+	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+	// If Javadoc is generated, this must be specified in that task too.
+	it.options.encoding = "UTF-8"
+
+	// Minecraft 1.17 (21w19a) upwards uses Java 16.
+	it.options.release = 16
 }
 
-// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-// if it is present.
-// If you remove this task, sources will not be generated.
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = "sources"
-	from sourceSets.main.allSource
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
 }
 
 jar {
-	from "LICENSE"
+	from("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}"}
+	}
 }
 
 // configure the maven publication
@@ -91,7 +97,6 @@ publishing {
 }
 
 repositories {
-	flatDir {
-		dirs "libs"
-	}
+	flatDir { dirs "libs" }
+	maven { url "https://maven.shedaniel.me" }
 }

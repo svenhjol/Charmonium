@@ -1,23 +1,15 @@
 package svenhjol.charmonium;
 
 import net.fabricmc.api.ModInitializer;
-import svenhjol.charm.base.CharmLoader;
-import svenhjol.charmonium.base.CharmoniumSounds;
-import svenhjol.charmonium.module.Music;
-import svenhjol.charmonium.module.Sounds;
-
-import java.util.Arrays;
+import svenhjol.charm.Charm;
+import svenhjol.charmonium.init.CharmoniumSounds;
 
 public class Charmonium implements ModInitializer {
     public static final String MOD_ID = "charmonium";
 
     @Override
     public void onInitialize() {
-        new CharmLoader(MOD_ID, Arrays.asList(
-            Music.class,
-            Sounds.class
-        ));
-
+        Charm.init(MOD_ID);
         CharmoniumSounds.init();
     }
 }

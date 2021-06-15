@@ -21,6 +21,7 @@
 /libs
 /web/node_modules
 /web/vendor
+copycharm.sh
 
 ## Windows
 Thumbs.db

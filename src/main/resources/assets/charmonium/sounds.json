@@ -3,7 +3,7 @@
     "category": "music",
     "sounds": [
       {
-        "name": "charmonium:music/tharna",
+        "name": "charmonium:silence",
         "stream": true,
         "volume": 0.25
       }
@@ -13,7 +13,7 @@
     "category": "music",
     "sounds": [
       {
-        "name": "charmonium:music/undir",
+        "name": "charmonium:silence",
         "stream": true,
         "volume": 0.25
       }
@@ -23,7 +23,7 @@
     "category": "music",
     "sounds": [
       {
-        "name": "charmonium:music/mus",
+        "name": "charmonium:silence",
         "stream": true,
         "volume": 0.4
       }
@@ -33,214 +33,145 @@
     "category": "music",
     "sounds": [
       {
-        "name": "charmonium:music/steinn",
+        "name": "charmonium:silence",
         "stream": true,
         "volume": 0.45
       },
       {
-        "name": "charmonium:music/draugur",
+        "name": "charmonium:silence",
         "stream": true,
         "volume": 0.4
       }
     ]
   },
-  "music_disc.charmonium": {
-    "sounds": [
-      {
-        "name": "charmonium:music/mus",
-        "stream": true
-      },
-      {
-        "name": "charmonium:music/tharna",
-        "stream": true
-      },
-      {
-        "name": "charmonium:music/undir",
-        "stream": true
-      }
-    ]
-  },
   "ambience.beach.long": {
     "sounds": [
-      {"name": "charmonium:ambience/ocean/beach"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.cave.long": {
     "sounds": [
-      {"name": "charmonium:ambience/underground/cave_drone"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.cave.short": {
     "sounds": [
-      {"name": "charmonium:ambience/underground/cave_bat"},
-      {"name": "charmonium:ambience/underground/cave_rocks1"},
-      {"name": "charmonium:ambience/underground/cave_rocks2"},
-      {"name": "charmonium:ambience/underground/cave_rocks4"},
-      {"name": "charmonium:ambience/underground/cave_rocks5"},
-      {"name": "charmonium:ambience/underground/cave_rocks6"},
-      {"name": "charmonium:ambience/underground/cave_rocks7"},
-      {"name": "charmonium:ambience/underground/cave_rocks8"},
-      {"name": "charmonium:ambience/underground/small_drips1"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.deep.long": {
     "sounds": [
-      {"name": "charmonium:ambience/underground/deep_underground1"},
-      {"name": "charmonium:ambience/underground/deep_underground2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.deep.short": {
     "sounds": [
-      {"name": "charmonium:ambience/underground/cave_drips"},
-      {"name": "charmonium:ambience/underground/small_drips1"},
-      {"name": "charmonium:ambience/underground/cave_rocks3"},
-      {"name": "charmonium:ambience/underground/cave_rocks5"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.desert.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/wind1"},
-      {"name": "charmonium:ambience/wind/wind2"},
-      {"name": "charmonium:ambience/wind/wind3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.desert.day_short": {
     "sounds": [
-      {"name": "charmonium:ambience/cicadas/cicadas_short1"},
-      {"name": "charmonium:ambience/cicadas/cicadas_short2"},
-      {"name": "charmonium:ambience/cicadas/cicadas_short3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.desert.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/cicadas/cicadas1"},
-      {"name": "charmonium:ambience/wind/wind2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.desert.night_short": {
     "sounds": [
-      {"name": "charmonium:ambience/cicadas/cicadas_short1"},
-      {"name": "charmonium:ambience/cicadas/cicadas_short2"},
-      {"name": "charmonium:ambience/cicadas/cicadas_short3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.mountains.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/plains/windy_plains1"},
-      {"name": "charmonium:ambience/wind/wind1"},
-      {"name": "charmonium:ambience/wind/wind2"},
-      {"name": "charmonium:ambience/wind/wind3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.mountains.day_short": {
     "sounds": [
-      {"name": "charmonium:ambience/crows/crow1"},
-      {"name": "charmonium:ambience/crows/crow2"},
-      {"name": "charmonium:ambience/crows/crow3"},
-      {"name": "charmonium:ambience/crows/crow4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.mountains.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/wind1"},
-      {"name": "charmonium:ambience/wind/wind2"},
-      {"name": "charmonium:ambience/wind/wind3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.forest.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/birds/green_forest1"},
-      {"name": "charmonium:ambience/birds/green_forest2"},
-      {"name": "charmonium:ambience/birds/green_forest3"},
-      {"name": "charmonium:ambience/birds/green_forest4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.forest.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/crickets/crickets1"},
-      {"name": "charmonium:ambience/crickets/crickets2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.icy.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/plains/cold_plains"},
-      {"name": "charmonium:ambience/wind/wind4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.icy.day_short": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/cold_wind1"},
-      {"name": "charmonium:ambience/wind/cold_wind2"},
-      {"name": "charmonium:ambience/crows/crow1"},
-      {"name": "charmonium:ambience/crows/crow2"},
-      {"name": "charmonium:ambience/crows/crow3"},
-      {"name": "charmonium:ambience/crows/crow4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.icy.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/wind1"},
-      {"name": "charmonium:ambience/wind/wind2"},
-      {"name": "charmonium:ambience/wind/wind3"},
-      {"name": "charmonium:ambience/wind/wind4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.icy.thunderstorm": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/high1"},
-      {"name": "charmonium:ambience/wind/high2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.jungle.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/birds/lush_forest"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.jungle.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/crickets/crickets3"},
-      {"name": "charmonium:ambience/cicadas/cicadas3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.badlands.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/badlands/badlands_windy1"},
-      {"name": "charmonium:ambience/badlands/badlands_windy2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.badlands.day_short": {
     "sounds": [
-      {"name": "charmonium:ambience/cicadas/cicadas_short1"},
-      {"name": "charmonium:ambience/cicadas/cicadas_short2"},
-      {"name": "charmonium:ambience/cicadas/cicadas_short3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.badlands.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/crickets/crickets2"},
-      {"name": "charmonium:ambience/crickets/crickets4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.mineshaft.short": {
     "sounds": [
-      {"name": "charmonium:ambience/mineshaft/woodcreak1"},
-      {"name": "charmonium:ambience/mineshaft/woodcreak2"},
-      {"name": "charmonium:ambience/mineshaft/woodcreak3"},
-      {"name": "charmonium:ambience/mineshaft/woodcreak4"},
-      {"name": "charmonium:ambience/mineshaft/woodcreak5"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.ocean.long": {
     "sounds": [
-      {"name": "charmonium:ambience/ocean/sea1"},
-      {"name": "charmonium:ambience/ocean/sea2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.plains.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/plains/open_plains1"},
-      {"name": "charmonium:ambience/plains/open_plains2"},
-      {"name": "charmonium:ambience/plains/open_plains3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.plains.day_short": {
@@ -249,99 +180,62 @@
   },
   "ambience.plains.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/birds/night_bird"},
-      {"name": "charmonium:ambience/crickets/crickets1"},
-      {"name": "charmonium:ambience/crickets/crickets2"},
-      {"name": "charmonium:ambience/crickets/crickets4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.plains.night_short": {
     "sounds": [
-      {"name": "charmonium:ambience/birds/sunrise_bird1"},
-      {"name": "charmonium:ambience/birds/sunrise_bird2"},
-      {"name": "charmonium:ambience/birds/sunrise_bird3"},
-      {"name": "charmonium:ambience/birds/sunrise_bird4"},
-      {"name": "charmonium:ambience/birds/sunrise_bird5"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.savanna.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/plains/windy_plains1"},
-      {"name": "charmonium:ambience/plains/windy_plains2"},
-      {"name": "charmonium:ambience/cicadas/cicadas_warm1"},
-      {"name": "charmonium:ambience/plains/warm_plains1"},
-      {"name": "charmonium:ambience/plains/warm_plains2"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.savanna.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/crickets/crickets1"},
-      {"name": "charmonium:ambience/crickets/crickets2"},
-      {"name": "charmonium:ambience/cicadas/cicadas1"},
-      {"name": "charmonium:ambience/cicadas/cicadas2"},
-      {"name": "charmonium:ambience/crickets/crickets4"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.swamp.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/swamp/swamp"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.swamp.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/crickets/crickets3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.taiga.day_long": {
     "sounds": [
-      {"name": "charmonium:ambience/birds/cold_forest1"},
-      {"name": "charmonium:ambience/birds/cold_forest2"},
-      {"name": "charmonium:ambience/birds/mountain_forest1"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.taiga.night_long": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/wind1"},
-      {"name": "charmonium:ambience/wind/wind3"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.end.short": {
     "sounds": [
-      {"name": "charmonium:ambience/dimensions/dimensionfx1"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx2"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx3"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx4"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx5"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx6"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx7"},
-      {"name": "charmonium:ambience/dimensions/dimensionfx8"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.end.long": {
     "sounds": [
-      {"name": "charmonium:ambience/dimensions/end"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.village.short": {
     "sounds": [
-      {"name": "charmonium:ambience/village/village1"},
-      {"name": "charmonium:ambience/village/village2"},
-      {"name": "charmonium:ambience/village/village3"},
-      {"name": "charmonium:ambience/village/village4"},
-      {"name": "charmonium:ambience/village/village5"},
-      {"name": "charmonium:ambience/village/village6"},
-      {"name": "charmonium:ambience/village/village7"},
-      {"name": "charmonium:ambience/village/village8"},
-      {"name": "charmonium:ambience/village/village9"},
-      {"name": "charmonium:ambience/village/village10"},
-      {"name": "charmonium:ambience/village/village11"},
-      {"name": "charmonium:ambience/village/village12"}
+      {"name": "charmonium:silence"}
     ]
   },
   "ambience.high": {
     "sounds": [
-      {"name": "charmonium:ambience/wind/high1"},
-      {"name": "charmonium:ambience/wind/high2"}
+      {"name": "charmonium:silence"}
     ]
   }
 }
