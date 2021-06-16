@@ -22,6 +22,7 @@
 /web/node_modules
 /web/vendor
 copycharm.sh
+replace.sh
 
 ## Windows
 Thumbs.db
@@ -70,7 +71,3 @@ buildmc.sh
 runClient.launch
 runServer.launch
 *.code-workspace
-
-/b0rk
-/b0rker
-copycharm.sh
