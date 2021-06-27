@@ -26,7 +26,7 @@ dependencies {
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
-	modImplementation "svenhjol.charm:charm:${project.charm_version}"
+//	modImplementation "svenhjol.charm:charm:${project.charm_version}"
 
 	// REI. Disable the modRuntime line if REI is broken.
 	modApi "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
