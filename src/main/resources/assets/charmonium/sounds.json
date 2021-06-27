@@ -44,6 +44,11 @@
       }
     ]
   },
+  "ambience.amethyst.short": {
+    "sounds": [
+      {"name": "charmonium:ambience/amethyst/amethyst1"}
+    ]
+  },
   "ambience.beach.long": {
     "sounds": [
       {"name": "charmonium:ambience/ocean/beach"}

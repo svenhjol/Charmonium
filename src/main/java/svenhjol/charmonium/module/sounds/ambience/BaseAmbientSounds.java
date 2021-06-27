@@ -96,7 +96,7 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     }
 
     protected void setShortSound() {
-        ShortSound shortSound = new ShortSound((LocalPlayer) player, getShortSound(), getShortSoundVolume() * (float) Sounds.volumeMultiplier);
+        ShortSound shortSound = new ShortSound((LocalPlayer) player, getShortSound(), getShortSoundVolume() * (float) Sounds.volumeMultiplier, getShortSoundPitch());
 
         try {
             if (!soundHandler.isActive(shortSound))
@@ -117,6 +117,8 @@ public abstract class BaseAmbientSounds implements IAmbientSounds {
     public float getShortSoundVolume() {
         return 0.4F;
     }
+
+    public float getShortSoundPitch() { return 1.0F + ((world.random.nextFloat() * 0.2F) - 0.1F); }
 
     public float getLongSoundVolume() {
         return 0.3F;

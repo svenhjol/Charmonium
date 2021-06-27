@@ -1,5 +1,11 @@
 package svenhjol.charmonium.module.sounds;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import svenhjol.charm.event.AddEntityCallback;
 import svenhjol.charm.event.PlayerTickCallback;
 import svenhjol.charm.module.CharmClientModule;
@@ -9,12 +15,6 @@ import svenhjol.charmonium.module.sounds.ambience.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.sounds.SoundManager;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 
 public class SoundsClient extends CharmClientModule {
     public Handler handler;
@@ -65,6 +65,7 @@ public class SoundsClient extends CharmClientModule {
             // structures/locations
             if (Sounds.mineshaftAmbience) ambientSounds.add(new MineshaftAmbientSounds(player, soundHandler));
             if (Sounds.villageAmbience) ambientSounds.add(new VillageAmbientSounds(player, soundHandler));
+            ambientSounds.add(new AmethystAmbientSounds(player, soundHandler));
 
             // dimensions
             if (Sounds.endAmbience) ambientSounds.add(new EndAmbientSounds(player, soundHandler));

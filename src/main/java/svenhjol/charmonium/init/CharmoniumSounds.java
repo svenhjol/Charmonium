@@ -18,6 +18,7 @@ public class CharmoniumSounds {
     public static final SoundEvent MUSIC_RUIN = createSound("music.ruin");
 
     // ambience
+    public static final SoundEvent AMBIENCE_AMETHYST_SHORT = createSound("ambience.amethyst.short");
     public static final SoundEvent AMBIENCE_BADLANDS_DAY_LONG = createSound("ambience.badlands.day_long");
     public static final SoundEvent AMBIENCE_BADLANDS_DAY_SHORT = createSound("ambience.badlands.day_short");
     public static final SoundEvent AMBIENCE_BADLANDS_NIGHT_LONG = createSound("ambience.badlands.night_long");
@@ -32,6 +33,7 @@ public class CharmoniumSounds {
     public static final SoundEvent AMBIENCE_DESERT_NIGHT_SHORT = createSound("ambience.desert.night_short");
     public static final SoundEvent AMBIENCE_END_SHORT = createSound("ambience.end.short");
     public static final SoundEvent AMBIENCE_END_LONG = createSound("ambience.end.long");
+    public static final SoundEvent AMBIENCE_MINESHAFT_SHORT = createSound("ambience.mineshaft.short");
     public static final SoundEvent AMBIENCE_MOUNTAINS_DAY_LONG = createSound("ambience.mountains.day_long");
     public static final SoundEvent AMBIENCE_MOUNTAINS_DAY_SHORT = createSound("ambience.mountains.day_short");
     public static final SoundEvent AMBIENCE_MOUNTAINS_NIGHT_LONG = createSound("ambience.mountains.night_long");
@@ -43,7 +45,6 @@ public class CharmoniumSounds {
     public static final SoundEvent AMBIENCE_ICY_THUNDERSTORM = createSound("ambience.icy.thunderstorm");
     public static final SoundEvent AMBIENCE_JUNGLE_DAY_LONG = createSound("ambience.jungle.day_long");
     public static final SoundEvent AMBIENCE_JUNGLE_NIGHT_LONG = createSound("ambience.jungle.night_long");
-    public static final SoundEvent AMBIENCE_MINESHAFT_SHORT = createSound("ambience.mineshaft.short");
     public static final SoundEvent AMBIENCE_OCEAN_LONG = createSound("ambience.ocean.long");
     public static final SoundEvent AMBIENCE_PLAINS_DAY_LONG = createSound("ambience.plains.day_long");
     public static final SoundEvent AMBIENCE_PLAINS_NIGHT_LONG = createSound("ambience.plains.night_long");

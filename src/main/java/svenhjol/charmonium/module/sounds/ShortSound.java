@@ -10,11 +10,16 @@ public class ShortSound extends AbstractTickableSoundInstance {
     private final LocalPlayer player;
 
     public ShortSound(LocalPlayer player, SoundEvent sound, float volume) {
+        this(player, sound, volume, 1.0F);
+    }
+
+    public ShortSound(LocalPlayer player, SoundEvent sound, float volume, float pitch) {
         super(sound, SoundSource.AMBIENT);
         this.player = player;
         this.looping = false;
         this.delay = 0;
         this.volume = volume;
+        this.pitch = pitch;
         this.relative = true;
     }
 
