@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.module.CharmoniumModule;
-import svenhjol.charmonium.module.situational_ambience.SituationalSounds.Mineshaft;
+import svenhjol.charmonium.module.situational_ambience.sounds.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class SituationalAmbience extends CharmoniumModule {
     }
 
     public void trySetupSoundHandler(Player player) {
-        if (player instanceof LocalPlayer)
+        if (player instanceof LocalPlayer && handler == null)
             handler = new Handler(player);
     }
 
@@ -48,7 +48,13 @@ public class SituationalAmbience extends CharmoniumModule {
             this.player = player;
 
             // TODO: config for these
-            Mineshaft.init(player, sounds);
+            AlienSound.init(player, sounds);
+            DeepslateSound.init(player, sounds);
+            GeodeSound.init(player, sounds);
+            GravelSound.init(player, sounds);
+            HighSound.init(player, sounds);
+            MineshaftSound.init(player, sounds);
+            VillageSound.init(player, sounds);
         }
 
         public void tick() {

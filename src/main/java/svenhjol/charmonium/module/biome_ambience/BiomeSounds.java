@@ -16,8 +16,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.beach.day");
-            NIGHT = RegistryHelper.sound("biomes.beach.night");
+            DAY = RegistryHelper.sound("ambience.beach.day");
+            NIGHT = RegistryHelper.sound("ambience.beach.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.BEACH && WorldHelper.isOutside(player);
@@ -32,8 +32,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.badlands.day");
-            NIGHT = RegistryHelper.sound("biomes.badlands.night");
+            DAY = RegistryHelper.sound("ambience.badlands.day");
+            NIGHT = RegistryHelper.sound("ambience.badlands.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.MESA && WorldHelper.isOutside(player);
@@ -48,8 +48,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.desert.day");
-            NIGHT = RegistryHelper.sound("biomes.desert.night");
+            DAY = RegistryHelper.sound("ambience.desert.day");
+            NIGHT = RegistryHelper.sound("ambience.desert.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.DESERT && WorldHelper.isOutside(player);
@@ -64,8 +64,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.forest.day");
-            NIGHT = RegistryHelper.sound("biomes.forest.night");
+            DAY = RegistryHelper.sound("ambience.forest.day");
+            NIGHT = RegistryHelper.sound("ambience.forest.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.FOREST && WorldHelper.isOutside(player);
@@ -80,8 +80,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.icy.day");
-            NIGHT = RegistryHelper.sound("biomes.icy.night");
+            DAY = RegistryHelper.sound("ambience.icy.day");
+            NIGHT = RegistryHelper.sound("ambience.icy.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.ICY && WorldHelper.isOutside(player);
@@ -96,8 +96,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.jungle.day");
-            NIGHT = RegistryHelper.sound("biomes.jungle.night");
+            DAY = RegistryHelper.sound("ambience.jungle.day");
+            NIGHT = RegistryHelper.sound("ambience.jungle.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.JUNGLE && WorldHelper.isOutside(player);
@@ -112,8 +112,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.mountains.day");
-            NIGHT = RegistryHelper.sound("biomes.mountains.night");
+            DAY = RegistryHelper.sound("ambience.mountains.day");
+            NIGHT = RegistryHelper.sound("ambience.mountains.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS && WorldHelper.isOutside(player);
@@ -128,8 +128,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.ocean.day");
-            NIGHT = RegistryHelper.sound("biomes.ocean.night");
+            DAY = RegistryHelper.sound("ambience.ocean.day");
+            NIGHT = RegistryHelper.sound("ambience.ocean.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.OCEAN && WorldHelper.isOutside(player);
@@ -144,8 +144,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.plains.day");
-            NIGHT = RegistryHelper.sound("biomes.plains.night");
+            DAY = RegistryHelper.sound("ambience.plains.day");
+            NIGHT = RegistryHelper.sound("ambience.plains.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> (biome.getBiomeCategory() == BiomeCategory.PLAINS
@@ -162,8 +162,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.savanna.day");
-            NIGHT = RegistryHelper.sound("biomes.savanna.night");
+            DAY = RegistryHelper.sound("ambience.savanna.day");
+            NIGHT = RegistryHelper.sound("ambience.savanna.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.SAVANNA && WorldHelper.isOutside(player);
@@ -178,8 +178,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.swamp.day");
-            NIGHT = RegistryHelper.sound("biomes.swamp.night");
+            DAY = RegistryHelper.sound("ambience.swamp.day");
+            NIGHT = RegistryHelper.sound("ambience.swamp.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> (biome.getBiomeCategory() == BiomeCategory.SWAMP
@@ -196,14 +196,27 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(Player player, List<BiomeSound> sounds) {
-            DAY = RegistryHelper.sound("biomes.taiga.day");
-            NIGHT = RegistryHelper.sound("biomes.taiga.night");
+            DAY = RegistryHelper.sound("ambience.taiga.day");
+            NIGHT = RegistryHelper.sound("ambience.taiga.night");
 
             Predicate<Biome> biomeCondition = biome
                 -> biome.getBiomeCategory() == BiomeCategory.TAIGA && WorldHelper.isOutside(player);
 
             sounds.add(new BiomeSound(player, biomeCondition.and(b -> WorldHelper.isDay(player)), () -> DAY));
             sounds.add(new BiomeSound(player, biomeCondition.and(b -> WorldHelper.isNight(player)), () -> NIGHT));
+        }
+    }
+
+    public static class TheEnd {
+        public static SoundEvent SOUND;
+
+        public static void init(Player player, List<BiomeSound> sounds) {
+            SOUND = RegistryHelper.sound("ambience.the_end");
+
+            Predicate<Biome> biomeCondition = biome
+                -> biome.getBiomeCategory() == BiomeCategory.THEEND;
+
+            sounds.add(new BiomeSound(player, biomeCondition, () -> SOUND));
         }
     }
 }

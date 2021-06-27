@@ -18,6 +18,7 @@ public class LoopingSound extends AbstractTickableSoundInstance {
 
     public LoopingSound(Player player, SoundEvent sound, float volume, float pitch, Predicate<Player> predicate) {
         super(sound, SoundSource.AMBIENT);
+
         this.maxVolume = volume;
         this.player = player;
         this.looping = true;

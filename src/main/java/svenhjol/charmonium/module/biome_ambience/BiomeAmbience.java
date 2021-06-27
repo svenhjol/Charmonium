@@ -36,7 +36,7 @@ public class BiomeAmbience extends CharmoniumModule {
     }
 
     public void trySetupSoundHandler(Player player) {
-        if (player instanceof LocalPlayer)
+        if (player instanceof LocalPlayer && handler == null)
             handler = new Handler(player);
     }
 
@@ -60,6 +60,7 @@ public class BiomeAmbience extends CharmoniumModule {
             Savanna.init(player, sounds);
             Swamp.init(player, sounds);
             Taiga.init(player, sounds);
+            TheEnd.init(player, sounds);
         }
 
         public void tick() {

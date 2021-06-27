@@ -3,6 +3,7 @@ package svenhjol.charmonium.module.situational_ambience;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
@@ -21,6 +22,7 @@ public class SituationalSound implements IAmbientSound {
     protected ClientLevel level;
     protected Function<SituationalSound, SoundEvent> soundCondition;
     protected Predicate<SituationalSound> validCondition;
+    protected BlockPos pos;
 
     public SituationalSound(Player player, Predicate<SituationalSound> validCondition, Function<SituationalSound, SoundEvent> soundCondition) {
         this.player = player;
@@ -61,7 +63,7 @@ public class SituationalSound implements IAmbientSound {
         isValid = isValid();
 
         if (isValid) {
-            SingleSound sound = new SingleSound(getPlayer(), getSound(), getVolume(), getPitch());
+            SingleSound sound = new SingleSound(getPlayer(), getSound(), getVolume(), getPitch(), getPos());
             SoundManager manager = getSoundManager();
 
             try {
@@ -81,6 +83,15 @@ public class SituationalSound implements IAmbientSound {
 
     @Override
     public int getDelay() {
-        return level.random.nextInt(300) + 300;
+        return level.random.nextInt(200) + 200;
+    }
+
+    public void setPos(BlockPos pos) {
+        this.pos = pos;
+    }
+
+    @Nullable
+    public BlockPos getPos() {
+        return this.pos;
     }
 }
