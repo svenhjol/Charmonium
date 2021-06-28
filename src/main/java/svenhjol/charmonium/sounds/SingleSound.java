@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.mixin.accessor.AbstractTickableSoundInstanceAccessor;
 
@@ -36,7 +35,7 @@ public class SingleSound extends AbstractTickableSoundInstance {
 
     @Override
     public void tick() {
-        if (!this.player.isAlive())
+        if (player.level == null || !player.isAlive())
             ((AbstractTickableSoundInstanceAccessor)this).setStopped(true);
     }
 }

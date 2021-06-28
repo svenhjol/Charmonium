@@ -83,7 +83,6 @@ public class BiomeSound implements IAmbientSound {
         if (biome == null)
             return false;
 
-
         return this.biomeCondition.test(biome);
     }
 
