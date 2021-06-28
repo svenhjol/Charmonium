@@ -30,7 +30,7 @@ public class BiomeAmbience extends CharmoniumModule {
     }
 
     private void handleEntityUnload(Entity entity, Level level) {
-        if (handler != null)
+        if (entity instanceof LocalPlayer && handler != null)
             handler.stop();
     }
 
