@@ -25,7 +25,7 @@
       {
         "name": "charmonium:music/cold1",
         "stream": true,
-        "volume": 0.4
+        "volume": 0.32
       }
     ]
   },
@@ -35,7 +35,7 @@
       {
         "name": "charmonium:music/ruin1",
         "stream": true,
-        "volume": 0.4
+        "volume": 0.32
       }
     ]
   },
