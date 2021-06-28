@@ -45,7 +45,7 @@ public class MansionSound extends SituationalSound {
 
             baseDelay = 120;
 
-            AABB bb = new AABB(player.blockPosition()).inflate(16);
+            AABB bb = new AABB(player.blockPosition()).inflate(8);
             List<Monster> monsters = level.getEntitiesOfClass(Monster.class, bb);
 
             Optional<BlockPos> optBlock1 = BlockPos.findClosestMatch(player.blockPosition(), 8, 8, pos -> {
@@ -81,6 +81,6 @@ public class MansionSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.35F;
+        return 0.4F;
     }
 }
