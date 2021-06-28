@@ -56,11 +56,11 @@ public class CaveWaterSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.3F;
+        return 0.25F;
     }
 
     @Override
     public float getPitch() {
-        return 0.77F + (0.15F * level.random.nextFloat());
+        return 0.77F + (0.3F * level.random.nextFloat());
     }
 }
