@@ -65,6 +65,11 @@ public class GeodeSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.5F;
+        return 0.35F;
+    }
+
+    @Override
+    public float getPitch() {
+        return 0.8F + (0.4F * level.random.nextFloat());
     }
 }

@@ -292,7 +292,9 @@
   },
   "situational.geode": {
     "sounds": [
-      {"name": "charmonium:situational/crystal/crystal1"}
+      {"name": "charmonium:situational/geode/geode1"},
+      {"name": "charmonium:situational/geode/geode2"},
+      {"name": "charmonium:situational/geode/geode3"}
     ]
   },
   "situational.gravel": {
