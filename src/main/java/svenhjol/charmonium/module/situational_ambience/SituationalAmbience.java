@@ -54,6 +54,7 @@ public class SituationalAmbience extends CharmoniumModule {
 
             // TODO: config for these
             AlienSound.init(this);
+            CaveWaterSound.init(this);
             DeepslateSound.init(this);
             GeodeSound.init(this);
             GravelSound.init(this);
