@@ -6,8 +6,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -19,7 +19,7 @@ public class UndergroundSounds {
             super(player, validCondition, soundCondition);
         }
 
-        public static void init(Player player, List<UndergroundSound> sounds) {
+        public static void init(SoundHandler<UndergroundSound> handler) {
             SOUND = RegistryHelper.sound("ambience.cave");
 
             // config check
@@ -27,6 +27,7 @@ public class UndergroundSounds {
 
             // prepare conditions to play the sound
             Predicate<UndergroundSound> validCondition = underground -> {
+                Player player = underground.getPlayer();
                 ClientLevel level = underground.getLevel();
 
                 if (!UndergroundAmbience.validDimensions.contains(DimensionHelper.getDimension(level))) return false;
@@ -41,7 +42,7 @@ public class UndergroundSounds {
                 return false;
             };
 
-            sounds.add(new Cave(player, validCondition, () -> SOUND));
+            handler.getSounds().add(new Cave(handler.getPlayer(), validCondition, () -> SOUND));
         }
     }
 
@@ -52,7 +53,7 @@ public class UndergroundSounds {
             super(player, validCondition, soundCondition);
         }
 
-        public static void init(Player player, List<UndergroundSound> sounds) {
+        public static void init(SoundHandler<UndergroundSound> handler) {
             SOUND = RegistryHelper.sound("ambience.deep_cave");
 
             // config check
@@ -60,6 +61,7 @@ public class UndergroundSounds {
 
             // prepare conditions to play the sound
             Predicate<UndergroundSound> validCondition = underground -> {
+                Player player = underground.getPlayer();
                 ClientLevel level = underground.getLevel();
 
                 if (!UndergroundAmbience.validDimensions.contains(DimensionHelper.getDimension(level))) return false;
@@ -71,7 +73,7 @@ public class UndergroundSounds {
                 return !level.canSeeSkyFromBelowWater(pos) && pos.getY() <= bottom && light < UndergroundAmbience.lightLevel;
             };
 
-            sounds.add(new DeepCave(player, validCondition, () -> SOUND));
+            handler.getSounds().add(new DeepCave(handler.getPlayer(), validCondition, () -> SOUND));
         }
     }
 }

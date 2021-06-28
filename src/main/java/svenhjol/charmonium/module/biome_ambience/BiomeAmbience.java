@@ -3,62 +3,69 @@ package svenhjol.charmonium.module.biome_ambience;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.annotation.Module;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.CharmoniumModule;
-
-import java.util.ArrayList;
-import java.util.List;
+import svenhjol.charmonium.module.biome_ambience.BiomeSounds.*;
 
 @Module(description = "Ambient background sound plays according the biome and time of day.")
 public class BiomeAmbience extends CharmoniumModule {
-    private Player player;
-    private boolean hasInitSounds;
-    private final List<BiomeSound> sounds = new ArrayList<>();
+    public Handler handler;
 
     @Override
     public void init() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
+        ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
     }
 
     private void handleEntityLoad(Entity entity, Level level) {
         if (entity instanceof Player)
-            this.player = (Player)entity;
+            trySetupSoundHandler((Player)entity);
+    }
 
-        if (!hasInitSounds)
-            initSounds();
+    private void handleEntityUnload(Entity entity, Level level) {
+        if (handler != null)
+            handler.stop();
     }
 
     private void handleClientTick(Minecraft client) {
-        if (client.player != null && client.level != null)
-            tick();
+        if (handler != null)
+            handler.tick();
     }
 
-    private void initSounds() {
-        BiomeSounds.Beach.init(player, sounds);
-        BiomeSounds.Badlands.init(player, sounds);
-        BiomeSounds.Desert.init(player, sounds);
-        BiomeSounds.Forest.init(player, sounds);
-        BiomeSounds.Icy.init(player, sounds);
-        BiomeSounds.Jungle.init(player, sounds);
-        BiomeSounds.Mountains.init(player, sounds);
-        BiomeSounds.Ocean.init(player, sounds);
-        BiomeSounds.Plains.init(player, sounds);
-        BiomeSounds.Savanna.init(player, sounds);
-        BiomeSounds.Swamp.init(player, sounds);
-        BiomeSounds.Taiga.init(player, sounds);
-        BiomeSounds.TheEnd.init(player, sounds);
+    public void trySetupSoundHandler(Player player) {
+        if (!(player instanceof LocalPlayer)) return;
 
-        hasInitSounds = true;
+        if (handler == null)
+            handler = new Handler(player);
+
+        handler.updatePlayer(player);
     }
 
-    private void tick() {
-        if (!player.isAlive() || player.level == null)
-            return;
+    public static class Handler extends SoundHandler<BiomeSound> {
+        private Handler(@NotNull Player player) {
+            super(player);
 
-        sounds.forEach(BiomeSound::tick);
+            // TODO: config for each biome type
+            Beach.init(this);
+            Badlands.init(this);
+            Desert.init(this);
+            Forest.init(this);
+            Icy.init(this);
+            Jungle.init(this);
+            Mountains.init(this);
+            Ocean.init(this);
+            Plains.init(this);
+            Savanna.init(this);
+            Swamp.init(this);
+            Taiga.init(this);
+            TheEnd.init(this);
+        }
     }
 }

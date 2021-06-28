@@ -1,9 +1,7 @@
 package svenhjol.charmonium.module.biome_ambience;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +19,7 @@ public class BiomeSound implements IAmbientSound {
     protected boolean isValid = false;
     protected Player player;
     protected ClientLevel level;
-    protected AbstractTickableSoundInstance soundInstance = null;
+    protected LoopingSound soundInstance = null;
     protected Supplier<SoundEvent> soundCondition;
     protected Predicate<Biome> biomeCondition;
 
@@ -30,6 +28,11 @@ public class BiomeSound implements IAmbientSound {
         this.level = (ClientLevel) player.level;
         this.soundCondition = soundCondition;
         this.biomeCondition = biomeCondition;
+    }
+
+    @Override
+    public void updatePlayer(Player player) {
+        this.player = player;
     }
 
     @Override
@@ -43,8 +46,8 @@ public class BiomeSound implements IAmbientSound {
     }
 
     @Override
-    public SoundManager getSoundManager() {
-        return Minecraft.getInstance().getSoundManager();
+    public AbstractTickableSoundInstance getSoundInstance() {
+        return soundInstance;
     }
 
     @Override
@@ -57,8 +60,8 @@ public class BiomeSound implements IAmbientSound {
         if (!isValid && nowValid)
             isValid = true;
 
-        if (isValid && !isPlayingSound()) {
-            this.soundInstance = new LoopingSound(player, getSound(), getVolume(), getPitch(), p -> isValid);
+        if (isValid && !isPlaying()) {
+            soundInstance = new LoopingSound(player, getSound(), getVolume(), getPitch(), p -> isValid);
             try {
                 getSoundManager().play(this.soundInstance);
             } catch (ConcurrentModificationException e) {
@@ -67,13 +70,12 @@ public class BiomeSound implements IAmbientSound {
         }
     }
 
-    public boolean isPlayingSound() {
-        return this.soundInstance != null && !this.soundInstance.isStopped();
-    }
-
     @Override
     public boolean isValid() {
         if (level == null)
+            return false;
+
+        if (!player.isAlive())
             return false;
 
         BlockPos pos = player.blockPosition();
@@ -81,12 +83,13 @@ public class BiomeSound implements IAmbientSound {
         if (biome == null)
             return false;
 
+
         return this.biomeCondition.test(biome);
     }
 
     @Nullable
     @Override
     public SoundEvent getSound() {
-        return this.soundCondition.get();
+        return soundCondition.get();
     }
 }

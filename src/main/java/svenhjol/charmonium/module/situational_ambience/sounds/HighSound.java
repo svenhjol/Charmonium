@@ -6,9 +6,9 @@ import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -19,7 +19,7 @@ public class HighSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(Player player, List<SituationalSound> sounds) {
+    public static void init(SoundHandler<SituationalSound> handler) {
         SOUND = RegistryHelper.sound("situational.high");
 
         Predicate<SituationalSound> validCondition = situation -> {
@@ -28,17 +28,17 @@ public class HighSound extends SituationalSound {
             if (!DimensionHelper.isOverworld(level))
                 return false; // TODO: config for dimensions
 
-            if (!WorldHelper.isOutside(player))
+            if (!WorldHelper.isOutside(handler.getPlayer()))
                 return false;
 
             int top = level.getMaxBuildHeight() > 256 ? 200 : 150;
 
             return DimensionHelper.isOverworld(level)
-                && player.blockPosition().getY() > top;
+                && handler.getPlayer().blockPosition().getY() > top;
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
-        sounds.add(new HighSound(player, validCondition, soundCondition));
+        handler.getSounds().add(new HighSound(handler.getPlayer(), validCondition, soundCondition));
     }
 
     @Override

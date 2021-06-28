@@ -9,9 +9,9 @@ import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -23,10 +23,11 @@ public class MineshaftSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(Player player, List<SituationalSound> sounds) {
+    public static void init(SoundHandler<SituationalSound> handler) {
         SOUND = RegistryHelper.sound("situational.mineshaft");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
             if (!DimensionHelper.isOverworld(level))
@@ -55,7 +56,7 @@ public class MineshaftSound extends SituationalSound {
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
-        sounds.add(new MineshaftSound(player, validCondition, soundCondition));
+        handler.getSounds().add(new MineshaftSound(handler.getPlayer(), validCondition, soundCondition));
     }
 
     @Override

@@ -1,9 +1,7 @@
 package svenhjol.charmonium.module.underground_ambience;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
@@ -19,7 +17,7 @@ public class UndergroundSound implements IAmbientSound {
     protected boolean isValid = false;
     protected Player player;
     protected ClientLevel level;
-    protected AbstractTickableSoundInstance soundInstance = null;
+    protected LoopingSound soundInstance = null;
     protected Supplier<SoundEvent> soundCondition;
     protected Predicate<UndergroundSound> validCondition;
 
@@ -41,8 +39,13 @@ public class UndergroundSound implements IAmbientSound {
     }
 
     @Override
-    public SoundManager getSoundManager() {
-        return Minecraft.getInstance().getSoundManager();
+    public void updatePlayer(Player player) {
+        this.player = player;
+    }
+
+    @Override
+    public AbstractTickableSoundInstance getSoundInstance() {
+        return soundInstance;
     }
 
     @Override
@@ -55,18 +58,14 @@ public class UndergroundSound implements IAmbientSound {
         if (!isValid && nowValid)
             isValid = true;
 
-        if (isValid && !isPlayingSound()) {
-            this.soundInstance = new LoopingSound(player, getSound(), getVolume(), getPitch(), p -> isValid);
+        if (isValid && !isPlaying()) {
+            soundInstance = new LoopingSound(player, getSound(), getVolume(), getPitch(), p -> isValid);
             try {
-                getSoundManager().play(this.soundInstance);
+                getSoundManager().play(soundInstance);
             } catch (ConcurrentModificationException e) {
                 Charmonium.LOG.debug("Exception in tick");
             }
         }
-    }
-
-    public boolean isPlayingSound() {
-        return this.soundInstance != null && !this.soundInstance.isStopped();
     }
 
     @Override
@@ -74,12 +73,15 @@ public class UndergroundSound implements IAmbientSound {
         if (level == null)
             return false;
 
-        return this.validCondition.test(this);
+        if (!player.isAlive())
+            return false;
+
+        return validCondition.test(this);
     }
 
     @Nullable
     @Override
     public SoundEvent getSound() {
-        return this.soundCondition.get();
+        return soundCondition.get();
     }
 }
