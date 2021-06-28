@@ -61,6 +61,7 @@ public class SituationalAmbience extends CharmoniumModule {
             GeodeSound.init(this);
             GravelSound.init(this);
             HighSound.init(this);
+            MansionSound.init(this);
             MineshaftSound.init(this);
             NightPlainsSound.init(this);
             SnowstormSound.init(this);
