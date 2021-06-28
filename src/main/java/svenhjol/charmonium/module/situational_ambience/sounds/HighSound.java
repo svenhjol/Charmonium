@@ -23,18 +23,14 @@ public class HighSound extends SituationalSound {
         SOUND = RegistryHelper.sound("situational.high");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
-                return false; // TODO: config for dimensions
-
-            if (!WorldHelper.isOutside(handler.getPlayer()))
-                return false;
+            if (!DimensionHelper.isOverworld(level)) return false; // TODO: config for dimensions
+            if (!WorldHelper.isOutside(player)) return false;
 
             int top = level.getMaxBuildHeight() > 256 ? 200 : 150;
-
-            return DimensionHelper.isOverworld(level)
-                && handler.getPlayer().blockPosition().getY() > top;
+            return DimensionHelper.isOverworld(level) && player.blockPosition().getY() > top;
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;

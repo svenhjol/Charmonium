@@ -27,7 +27,6 @@ public class AlienSound extends SituationalSound {
             if (!DimensionHelper.isEnd(level))
                 return false; // TODO: config for dimensions
 
-            // TODO: random position for effect
             return true;
         };
 

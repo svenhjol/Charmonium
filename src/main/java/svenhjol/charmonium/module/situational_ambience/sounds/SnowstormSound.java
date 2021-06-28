@@ -35,11 +35,8 @@ public class SnowstormSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!WorldHelper.isOutside(player))
-                return false;
-
-            if (!level.isThundering())
-                return false;
+            if (!WorldHelper.isOutside(player)) return false;
+            if (!level.isThundering()) return false;
 
             Biome biome = level.getBiome(player.blockPosition());
             BiomeCategory category = biome.getBiomeCategory();

@@ -30,11 +30,9 @@ public class MineshaftSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
-                return false;
-
-            if (WorldHelper.isOutside(player))
-                return false;
+            if (!DimensionHelper.isOverworld(level)) return false;
+            if (WorldHelper.isOutside(player)) return false;
+            if (!WorldHelper.isBelowSeaLevel(player)) return false;
 
             Optional<BlockPos> optBlock = BlockPos.findClosestMatch(player.blockPosition(), 16, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
