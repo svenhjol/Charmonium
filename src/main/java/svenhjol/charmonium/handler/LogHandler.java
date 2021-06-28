@@ -18,7 +18,7 @@ public class LogHandler {
     }
 
     public void debug(Marker marker, String msg) {
-        if (false) {
+        if (true) {
             info(marker, msg);
         } else {
             getLogger().debug(marker, msg);

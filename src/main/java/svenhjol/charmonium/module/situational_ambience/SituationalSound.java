@@ -1,6 +1,5 @@
 package svenhjol.charmonium.module.situational_ambience;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
@@ -16,13 +15,14 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class SituationalSound implements IAmbientSound {
-    protected int soundTicks = 0;
+    protected int soundTicks = 100; // set something high here so it doesn't autoplay when player logs in
     protected boolean isValid;
     protected Player player;
     protected ClientLevel level;
     protected Function<SituationalSound, SoundEvent> soundCondition;
     protected Predicate<SituationalSound> validCondition;
     protected BlockPos pos;
+    protected SingleSound soundInstance;
 
     public SituationalSound(Player player, Predicate<SituationalSound> validCondition, Function<SituationalSound, SoundEvent> soundCondition) {
         this.player = player;
@@ -42,13 +42,21 @@ public class SituationalSound implements IAmbientSound {
     }
 
     @Override
-    public SoundManager getSoundManager() {
-        return Minecraft.getInstance().getSoundManager();
+    public void updatePlayer(Player player) {
+        this.player = player;
+    }
+
+    @Override
+    public SingleSound getSoundInstance() {
+        return soundInstance;
     }
 
     @Override
     public boolean isValid() {
         if (level == null)
+            return false;
+
+        if (!player.isAlive())
             return false;
 
         return validCondition.test(this);
@@ -63,12 +71,12 @@ public class SituationalSound implements IAmbientSound {
         isValid = isValid();
 
         if (isValid) {
-            SingleSound sound = new SingleSound(getPlayer(), getSound(), getVolume(), getPitch(), getPos());
+            soundInstance = new SingleSound(getPlayer(), getSound(), getVolume(), getPitch(), getPos());
             SoundManager manager = getSoundManager();
 
             try {
-                if (!manager.isActive(sound))
-                    manager.play(sound);
+                if (!manager.isActive(soundInstance))
+                    manager.play(soundInstance);
             } catch (ConcurrentModificationException e) {
                 Charmonium.LOG.warn("Exception in manager.play");
             }
@@ -92,6 +100,6 @@ public class SituationalSound implements IAmbientSound {
 
     @Nullable
     public BlockPos getPos() {
-        return this.pos;
+        return pos;
     }
 }

@@ -1,6 +1,8 @@
 package svenhjol.charmonium.iface;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
@@ -12,18 +14,32 @@ public interface IAmbientSound {
 
     Player getPlayer();
 
-    SoundManager getSoundManager();
+    AbstractTickableSoundInstance getSoundInstance();
 
     boolean isValid();
 
     void tick();
 
-    @Nullable
-    default SoundEvent getSound() { return null; }
+    void updatePlayer(Player player);
+
+    default SoundManager getSoundManager() {
+        return Minecraft.getInstance().getSoundManager();
+    }
+
+    default boolean isPlaying() {
+        return getSoundInstance() != null && getSoundManager().isActive(getSoundInstance());
+    }
+
+    default void stop() {
+        getSoundManager().stop(getSoundInstance());
+    }
 
     default int getDelay() { return 0; }
 
-    default float getVolume() { return 1.0F; }
+    default float getVolume() { return 0.55F; }
 
     default float getPitch() { return 1.0F; }
+
+    @Nullable
+    default SoundEvent getSound() { return null; }
 }

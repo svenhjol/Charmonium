@@ -6,54 +6,61 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import svenhjol.charmonium.helper.DimensionHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
-import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class GravelSound extends SituationalSound {
+public class CaveWaterSound extends SituationalSound {
     public static SoundEvent SOUND;
 
-    private GravelSound(Player player, Predicate<SituationalSound> validCondition, Function<SituationalSound, SoundEvent> soundCondition) {
+    private CaveWaterSound(Player player, Predicate<SituationalSound> validCondition, Function<SituationalSound, SoundEvent> soundCondition) {
         super(player, validCondition, soundCondition);
     }
 
     public static void init(SoundHandler<SituationalSound> handler) {
-        SOUND = RegistryHelper.sound("situational.gravel");
+        SOUND = RegistryHelper.sound("situational.cave_water");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
+            if (WorldHelper.isOutside(player))
                 return false;
 
-            if (WorldHelper.isOutside(handler.getPlayer()))
-                return false;
-
-            Optional<BlockPos> optBlock = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 8, 4, pos -> {
+            Optional<BlockPos> optWater = BlockPos.findClosestMatch(player.blockPosition(), 12, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
-                return block == Blocks.GRAVEL;
+                return block == Blocks.WATER;
             });
 
-            return optBlock.isPresent();
+            if (optWater.isPresent()) {
+                situation.setPos(optWater.get());
+                return true;
+            }
+
+            return false;
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
-        handler.getSounds().add(new GravelSound(handler.getPlayer(), validCondition, soundCondition));
+        handler.getSounds().add(new CaveWaterSound(handler.getPlayer(), validCondition, soundCondition));
     }
 
     @Override
     public int getDelay() {
-        return level.random.nextInt(450) + 400;
+        return level.random.nextInt(120) + 120;
     }
 
     @Override
     public float getVolume() {
-        return 0.45F;
+        return 0.25F;
+    }
+
+    @Override
+    public float getPitch() {
+        return 0.77F + (0.3F * level.random.nextFloat());
     }
 }

@@ -1,32 +1,29 @@
 package svenhjol.charmonium.module.extra_music;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.client.resources.sounds.SoundInstance;
-import net.minecraft.client.sounds.SoundManager;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.module.CharmoniumModule;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 @SuppressWarnings("unused")
 @Module(description = "Adds custom music tracks that play in certain situations.")
 public class ExtraMusic extends CharmoniumModule {
-    private static SoundInstance currentMusic;
-    private static ResourceLocation currentDim = null;
-    private static MusicCondition lastCondition;
     private static final List<MusicCondition> musicConditions = new ArrayList<>();
-    private static int timeUntilNextMusic = 100;
-
     public static boolean isEnabled;
 
     public static SoundEvent MUSIC_OVERWORLD;
@@ -47,93 +44,71 @@ public class ExtraMusic extends CharmoniumModule {
         // static boolean for mixins to check
         isEnabled = Charmonium.isEnabled("extra_music");
 
+        // overworld music
         getMusicConditions().add(new MusicCondition(MUSIC_OVERWORLD, 1200, 3600, mc -> {
-            if (mc.player == null || mc.player.level == null)
+            if (mc.player == null || mc.player.level == null) return false;
+
+            return mc.player.level.random.nextFloat() < 0.08F
+                && DimensionHelper.isOverworld(mc.player.level);
+        }));
+
+        // cold music, look for player pos in icy biome
+        getMusicConditions().add(new MusicCondition(MUSIC_COLD, 1200, 3600, mc ->
+            mc.player != null
+                && mc.player.level.getBiome(mc.player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.ICY
+                && mc.player.level.random.nextFloat() < 0.28F
+        ));
+
+        // nether music, look for player at low position in the nether
+        getMusicConditions().add(new MusicCondition(MUSIC_NETHER, 1200, 3600, mc -> {
+            if (mc.player == null)
                 return false;
 
-            return mc.player.level.random.nextFloat() < 1F
-                && DimensionHelper.isOverworld(mc.player.level);
+            return mc.player.blockPosition().getY() < 48
+                && DimensionHelper.isNether(mc.player.level)
+                && mc.player.level.random.nextFloat() < 0.33F;
+        }));
+
+        // ruin music, look around player for stone bricks and cobblestone
+        getMusicConditions().add(new MusicCondition(MUSIC_RUIN, 1200, 3600, mc -> {
+            if (mc.player == null)
+                return false;
+
+            Level level = mc.player.level;
+
+            Optional<BlockPos> optMatch1 = BlockPos.findClosestMatch(mc.player.blockPosition(), 16, 16, pos -> {
+                Block block = level.getBlockState(pos).getBlock();
+                return block == Blocks.STONE_BRICKS
+                    || block == Blocks.CRACKED_STONE_BRICKS
+                    || block == Blocks.MOSSY_STONE_BRICKS
+                    || block == Blocks.DEEPSLATE_BRICKS;
+            });
+
+            Optional<BlockPos> optMatch2 = BlockPos.findClosestMatch(mc.player.blockPosition(), 16, 16, pos -> {
+                Block block = level.getBlockState(pos).getBlock();
+                return block == Blocks.COBBLESTONE
+                    || block == Blocks.MOSSY_COBBLESTONE
+                    || block == Blocks.COBBLED_DEEPSLATE
+                    || block == Blocks.IRON_DOOR
+                    || block == Blocks.IRON_BARS;
+            });
+
+            return mc.player.blockPosition().getY() < 64
+                && DimensionHelper.isOverworld(level)
+                && optMatch1.isPresent()
+                && optMatch2.isPresent()
+                && level.random.nextFloat() < 0.33F;
         }));
     }
 
-    public static boolean handleTick(SoundInstance current) {
-        Minecraft mc = Minecraft.getInstance();
-
-        if (mc.level == null) return false;
-        if (lastCondition == null)
-            lastCondition = getMusicCondition();
-
-        if (currentMusic != null) {
-            if (!DimensionHelper.isDimension(mc.level, currentDim)) {
-                Charmonium.LOG.debug("[Music Improvements] Stopping music as the dimension is no longer correct");
-                forceStop();
-                currentMusic = null;
-            }
-
-            if (currentMusic != null && !mc.getSoundManager().isActive(currentMusic)) {
-                Charmonium.LOG.debug("[Music Improvements] Music has finished, setting currentMusic to null");
-                timeUntilNextMusic = Math.min(Mth.nextInt(new Random(), lastCondition.getMinDelay(), 3600), timeUntilNextMusic);
-                currentMusic = null;
-            }
-        }
-
-        timeUntilNextMusic = Math.min(timeUntilNextMusic, lastCondition.getMaxDelay());
-
-        if (currentMusic == null && timeUntilNextMusic-- <= 0) {
-            MusicCondition condition = getMusicCondition();
-            Charmonium.LOG.debug("[Music Improvements] Selected music condition with sound: " + condition.getSound().getLocation());
-            forceStop();
-
-            currentDim = DimensionHelper.getDimension(mc.level);
-            currentMusic = SimpleSoundInstance.forMusic(condition.getSound());
-
-            if (currentMusic.getSound() != SoundManager.EMPTY_SOUND) {
-                mc.getSoundManager().play(currentMusic);
-                lastCondition = condition;
-                timeUntilNextMusic = Integer.MAX_VALUE;
-            }
-        }
-
-        mc.getSoundManager().tick(true);
-        return true;
-    }
-
-    public static boolean handleStop() {
-        if (currentMusic != null) {
-            Minecraft.getInstance().getSoundManager().stop(currentMusic);
-            currentMusic = null;
-            timeUntilNextMusic = lastCondition != null ? new Random().nextInt(Math.min(lastCondition.getMinDelay(), 3600) + 100) + 1000 : timeUntilNextMusic + 100;
-            Charmonium.LOG.debug("[Music Improvements] Stop was called, setting timeout to " + timeUntilNextMusic);
-        }
-        return true;
-    }
-
-    public static boolean handlePlaying(net.minecraft.sounds.Music music) {
-        return currentMusic != null && music.getEvent().getLocation().equals(currentMusic.getLocation());
-    }
-
-    public static void forceStop() {
-        Minecraft.getInstance().getSoundManager().stop(currentMusic);
-        currentMusic = null;
-        timeUntilNextMusic = 3600;
-    }
-
-    public static MusicCondition getMusicCondition() {
-        MusicCondition condition = null;
-
-        // select an available condition from the pool of conditions
+    @Nullable
+    public static Music getMusic() {
         for (MusicCondition c : musicConditions) {
-            if (c.handle()) {
-                condition = c;
-                break;
-            }
+            if (c.handle())
+                return c.getMusic();
         }
 
-        // if none available, default to vanilla music selection
-        if (condition == null)
-            condition = new MusicCondition(Minecraft.getInstance().getSituationalMusic());
-
-        return condition;
+        return null;
     }
 
     public static List<MusicCondition> getMusicConditions() {
@@ -162,6 +137,10 @@ public class ExtraMusic extends CharmoniumModule {
         public boolean handle() {
             if (condition == null) return false;
             return condition.test(Minecraft.getInstance());
+        }
+
+        public Music getMusic() {
+            return new Music(sound, minDelay, maxDelay, false);
         }
 
         public SoundEvent getSound() {

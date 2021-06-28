@@ -10,9 +10,9 @@ import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -24,7 +24,7 @@ public class GeodeSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(Player player, List<SituationalSound> sounds) {
+    public static void init(SoundHandler<SituationalSound> handler) {
         SOUND = RegistryHelper.sound("situational.geode");
 
         Predicate<SituationalSound> validCondition = situation -> {
@@ -33,15 +33,15 @@ public class GeodeSound extends SituationalSound {
             if (!DimensionHelper.isOverworld(level))
                 return false;
 
-            if (WorldHelper.isOutside(player))
+            if (WorldHelper.isOutside(handler.getPlayer()))
                 return false;
 
-            Optional<BlockPos> optAmethyst = BlockPos.findClosestMatch(player.blockPosition(), 12, 8, pos -> {
+            Optional<BlockPos> optAmethyst = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 12, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
                 return block instanceof AmethystBlock;
             });
 
-            Optional<BlockPos> optSmoothBasalt = BlockPos.findClosestMatch(player.blockPosition(), 12, 8, pos -> {
+            Optional<BlockPos> optSmoothBasalt = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 12, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
                 return block == Blocks.SMOOTH_BASALT;
             });
@@ -55,7 +55,7 @@ public class GeodeSound extends SituationalSound {
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
-        sounds.add(new GeodeSound(player, validCondition, soundCondition));
+        handler.getSounds().add(new GeodeSound(handler.getPlayer(), validCondition, soundCondition));
     }
 
     @Override
@@ -65,6 +65,11 @@ public class GeodeSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.3F;
+        return 0.35F;
+    }
+
+    @Override
+    public float getPitch() {
+        return 0.8F + (0.4F * level.random.nextFloat());
     }
 }

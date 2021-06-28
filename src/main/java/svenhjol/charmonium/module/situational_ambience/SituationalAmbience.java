@@ -9,11 +9,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.annotation.Module;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.CharmoniumModule;
 import svenhjol.charmonium.module.situational_ambience.sounds.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Module(description = "Sounds that play according to an event or location.")
 public class SituationalAmbience extends CharmoniumModule {
@@ -22,6 +20,7 @@ public class SituationalAmbience extends CharmoniumModule {
     @Override
     public void init() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
+        ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
     }
 
@@ -30,38 +29,42 @@ public class SituationalAmbience extends CharmoniumModule {
             trySetupSoundHandler((Player)entity);
     }
 
+    private void handleEntityUnload(Entity entity, Level level) {
+        if (entity instanceof LocalPlayer && handler != null)
+            handler.stop();
+    }
+
     private void handleClientTick(Minecraft client) {
-        if (client.player != null && client.level != null && handler != null)
+        if (handler != null && !client.isPaused())
             handler.tick();
     }
 
     public void trySetupSoundHandler(Player player) {
-        if (player instanceof LocalPlayer && handler == null)
+        if (!(player instanceof LocalPlayer)) return;
+
+        if (handler == null)
             handler = new Handler(player);
+
+        handler.updatePlayer(player);
     }
 
-    public static class Handler {
-        private final Player player;
-        private final List<SituationalSound> sounds = new ArrayList<>();
-
+    public static class Handler extends SoundHandler<SituationalSound> {
         public Handler(@NotNull Player player) {
-            this.player = player;
+            super(player);
 
             // TODO: config for these
-            AlienSound.init(player, sounds);
-            DeepslateSound.init(player, sounds);
-            GeodeSound.init(player, sounds);
-            GravelSound.init(player, sounds);
-            HighSound.init(player, sounds);
-            MineshaftSound.init(player, sounds);
-            VillageSound.init(player, sounds);
-        }
-
-        public void tick() {
-            if (!player.isAlive() || player.level == null)
-                return;
-
-            sounds.forEach(SituationalSound::tick);
+            AlienSound.init(this);
+            BleakSound.init(this);
+            CaveWaterSound.init(this);
+            DeepslateSound.init(this);
+            DrySound.init(this);
+            GeodeSound.init(this);
+            GravelSound.init(this);
+            HighSound.init(this);
+            MineshaftSound.init(this);
+            NightPlainsSound.init(this);
+            SnowstormSound.init(this);
+            VillageSound.init(this);
         }
     }
 }

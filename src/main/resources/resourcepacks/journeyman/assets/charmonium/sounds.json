@@ -25,7 +25,7 @@
       {
         "name": "charmonium:music/cold1",
         "stream": true,
-        "volume": 0.4
+        "volume": 0.32
       }
     ]
   },
@@ -35,7 +35,7 @@
       {
         "name": "charmonium:music/ruin1",
         "stream": true,
-        "volume": 0.4
+        "volume": 0.32
       }
     ]
   },
@@ -241,6 +241,13 @@
       {"name": "charmonium:situational/crickets/crickets2"}
     ]
   },
+  "situational.cave_water": {
+    "sounds": [
+      {"name": "charmonium:situational/cave_water/cave_water1"},
+      {"name": "charmonium:situational/cave_water/cave_water2"},
+      {"name": "charmonium:situational/cave_water/cave_water3"}
+    ]
+  },
   "situational.alien": {
     "sounds": [
       {"name": "charmonium:situational/alien/alien1"},
@@ -303,7 +310,9 @@
   },
   "situational.geode": {
     "sounds": [
-      {"name": "charmonium:situational/crystal/crystal1"}
+      {"name": "charmonium:situational/geode/geode1"},
+      {"name": "charmonium:situational/geode/geode2"},
+      {"name": "charmonium:situational/geode/geode3"}
     ]
   },
   "situational.gravel": {

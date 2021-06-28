@@ -11,8 +11,10 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.annotation.Config;
 import svenhjol.charmonium.annotation.Module;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.CharmoniumModule;
-import svenhjol.charmonium.module.underground_ambience.UndergroundSounds.*;
+import svenhjol.charmonium.module.underground_ambience.UndergroundSounds.Cave;
+import svenhjol.charmonium.module.underground_ambience.UndergroundSounds.DeepCave;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +48,7 @@ public class UndergroundAmbience extends CharmoniumModule {
         configDimensions.forEach(dim -> validDimensions.add(new ResourceLocation(dim)));
 
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
+        ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
     }
 
@@ -54,32 +57,31 @@ public class UndergroundAmbience extends CharmoniumModule {
             trySetupSoundHandler((Player)entity);
     }
 
+    private void handleEntityUnload(Entity entity, Level level) {
+        if (entity instanceof LocalPlayer && handler != null)
+            handler.stop();
+    }
+
     private void handleClientTick(Minecraft client) {
-        if (client.player != null && client.level != null && handler != null)
+        if (handler != null && !client.isPaused())
             handler.tick();
     }
 
     public void trySetupSoundHandler(Player player) {
-        if (player instanceof LocalPlayer && handler == null)
+        if (!(player instanceof LocalPlayer)) return;
+
+        if (handler == null)
             handler = new Handler(player);
+
+        handler.updatePlayer(player);
     }
 
-    public static class Handler {
-        private final Player player;
-        private final List<UndergroundSound> sounds = new ArrayList<>();
-
+    public static class Handler extends SoundHandler<UndergroundSound> {
         public Handler(@NotNull Player player) {
-            this.player = player;
+            super(player);
 
-            Cave.init(player, sounds);
-            DeepCave.init(player, sounds);
-        }
-
-        public void tick() {
-            if (!player.isAlive() || player.level == null)
-                return;
-
-            sounds.forEach(UndergroundSound::tick);
+            Cave.init(this);
+            DeepCave.init(this);
         }
     }
 }

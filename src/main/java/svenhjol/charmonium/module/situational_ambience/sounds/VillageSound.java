@@ -8,6 +8,7 @@ import net.minecraft.world.phys.AABB;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
 import java.util.List;
@@ -21,10 +22,11 @@ public class VillageSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(Player player, List<SituationalSound> sounds) {
+    public static void init(SoundHandler<SituationalSound> handler) {
         SOUND = RegistryHelper.sound("situational.village");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
             if (!DimensionHelper.isOverworld(level))
@@ -39,7 +41,7 @@ public class VillageSound extends SituationalSound {
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
-        sounds.add(new VillageSound(player, validCondition, soundCondition));
+        handler.getSounds().add(new VillageSound(handler.getPlayer(), validCondition, soundCondition));
     }
 
     @Override
