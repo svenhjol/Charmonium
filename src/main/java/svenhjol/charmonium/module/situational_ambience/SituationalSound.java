@@ -15,7 +15,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class SituationalSound implements IAmbientSound {
-    protected int soundTicks = 0;
+    protected int soundTicks = 100; // set something high here so it doesn't autoplay when player logs in
     protected boolean isValid;
     protected Player player;
     protected ClientLevel level;
