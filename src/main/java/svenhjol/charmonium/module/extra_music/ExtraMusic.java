@@ -97,7 +97,7 @@ public class ExtraMusic extends CharmoniumModule {
                 && DimensionHelper.isOverworld(level)
                 && optMatch1.isPresent()
                 && optMatch2.isPresent()
-                && level.random.nextFloat() < 1F;
+                && level.random.nextFloat() < 0.33F;
         }));
     }
 
