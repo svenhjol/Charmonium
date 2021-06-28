@@ -35,7 +35,7 @@ public class SituationalAmbience extends CharmoniumModule {
     }
 
     private void handleClientTick(Minecraft client) {
-        if (handler != null)
+        if (handler != null && !client.isPaused())
             handler.tick();
     }
 
