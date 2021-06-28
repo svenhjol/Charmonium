@@ -255,11 +255,20 @@
   },
   "situational.mineshaft": {
     "sounds": [
-      {"name": "charmonium:situational/mineshaft/mineshaft1"},
-      {"name": "charmonium:situational/mineshaft/mineshaft2"},
-      {"name": "charmonium:situational/mineshaft/mineshaft3"},
-      {"name": "charmonium:situational/mineshaft/mineshaft4"},
-      {"name": "charmonium:situational/mineshaft/mineshaft5"}
+      {"name": "charmonium:situational/wood_creaking/wood_creaking1"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking2"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking3"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking4"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking5"}
+    ]
+  },
+  "situational.mansion": {
+    "sounds": [
+      {"name": "charmonium:situational/wood_creaking/wood_creaking1"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking2"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking3"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking4"},
+      {"name": "charmonium:situational/wood_creaking/wood_creaking5"}
     ]
   },
   "situational.village": {
@@ -281,13 +290,15 @@
   "situational.snowstorm": {
     "sounds": [
       {"name": "charmonium:situational/strong_wind/strong_wind1"},
-      {"name": "charmonium:situational/strong_wind/strong_wind2"}
+      {"name": "charmonium:situational/strong_wind/strong_wind2"},
+      {"name": "charmonium:situational/strong_wind/strong_wind3"}
     ]
   },
   "situational.high": {
     "sounds": [
       {"name": "charmonium:situational/strong_wind/strong_wind1"},
-      {"name": "charmonium:situational/strong_wind/strong_wind2"}
+      {"name": "charmonium:situational/strong_wind/strong_wind2"},
+      {"name": "charmonium:situational/strong_wind/strong_wind3"}
     ]
   },
   "situational.geode": {
