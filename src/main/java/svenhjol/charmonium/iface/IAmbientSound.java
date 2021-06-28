@@ -27,11 +27,11 @@ public interface IAmbientSound {
     }
 
     default boolean isPlaying() {
-        return getSoundInstance() != null && getSoundManager().isActive(getSoundInstance());
+        return getSoundInstance() != null && !getSoundInstance().isStopped();
     }
 
     default void stop() {
-        if (getSoundInstance() != null && !getSoundInstance().isStopped())
+        if (isPlaying())
             getSoundManager().stop(getSoundInstance());
     }
 
