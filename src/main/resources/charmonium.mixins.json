@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "client": [
     "accessor.AbstractTickableSoundInstanceAccessor",
-    "extra_music.OverrideMusicTick"
+    "extra_music.TryCustomMusic"
   ],
   "injectors": {
     "defaultRequire": 1
