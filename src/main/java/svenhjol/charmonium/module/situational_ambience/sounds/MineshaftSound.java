@@ -66,6 +66,6 @@ public class MineshaftSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.3F;
+        return 0.33F;
     }
 }
