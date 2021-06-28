@@ -1,8 +1,13 @@
 package svenhjol.charmonium.module.extra_music;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.helper.DimensionHelper;
@@ -12,6 +17,7 @@ import svenhjol.charmonium.module.CharmoniumModule;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 @SuppressWarnings("unused")
@@ -38,11 +44,60 @@ public class ExtraMusic extends CharmoniumModule {
         // static boolean for mixins to check
         isEnabled = Charmonium.isEnabled("extra_music");
 
+        // overworld music
         getMusicConditions().add(new MusicCondition(MUSIC_OVERWORLD, 1200, 3600, mc -> {
             if (mc.player == null || mc.player.level == null) return false;
 
-            return mc.player.level.random.nextFloat() < 1F
+            return mc.player.level.random.nextFloat() < 0.08F
                 && DimensionHelper.isOverworld(mc.player.level);
+        }));
+
+        // cold music, look for player pos in icy biome
+        getMusicConditions().add(new MusicCondition(MUSIC_COLD, 1200, 3600, mc ->
+            mc.player != null
+                && mc.player.level.getBiome(mc.player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.ICY
+                && mc.player.level.random.nextFloat() < 0.28F
+        ));
+
+        // nether music, look for player at low position in the nether
+        getMusicConditions().add(new MusicCondition(MUSIC_NETHER, 1200, 3600, mc -> {
+            if (mc.player == null)
+                return false;
+
+            return mc.player.blockPosition().getY() < 48
+                && DimensionHelper.isNether(mc.player.level)
+                && mc.player.level.random.nextFloat() < 0.33F;
+        }));
+
+        // ruin music, look around player for stone bricks and cobblestone
+        getMusicConditions().add(new MusicCondition(MUSIC_RUIN, 1200, 3600, mc -> {
+            if (mc.player == null)
+                return false;
+
+            Level level = mc.player.level;
+
+            Optional<BlockPos> optMatch1 = BlockPos.findClosestMatch(mc.player.blockPosition(), 16, 16, pos -> {
+                Block block = level.getBlockState(pos).getBlock();
+                return block == Blocks.STONE_BRICKS
+                    || block == Blocks.CRACKED_STONE_BRICKS
+                    || block == Blocks.MOSSY_STONE_BRICKS
+                    || block == Blocks.DEEPSLATE_BRICKS;
+            });
+
+            Optional<BlockPos> optMatch2 = BlockPos.findClosestMatch(mc.player.blockPosition(), 16, 16, pos -> {
+                Block block = level.getBlockState(pos).getBlock();
+                return block == Blocks.COBBLESTONE
+                    || block == Blocks.MOSSY_COBBLESTONE
+                    || block == Blocks.COBBLED_DEEPSLATE
+                    || block == Blocks.IRON_DOOR
+                    || block == Blocks.IRON_BARS;
+            });
+
+            return mc.player.blockPosition().getY() < 64
+                && DimensionHelper.isOverworld(level)
+                && optMatch1.isPresent()
+                && optMatch2.isPresent()
+                && level.random.nextFloat() < 1F;
         }));
     }
 
@@ -85,7 +140,7 @@ public class ExtraMusic extends CharmoniumModule {
         }
 
         public Music getMusic() {
-            return new Music(sound, minDelay, maxDelay, true);
+            return new Music(sound, minDelay, maxDelay, false);
         }
 
         public SoundEvent getSound() {
