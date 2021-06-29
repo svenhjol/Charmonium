@@ -29,8 +29,9 @@ public class CaveWaterSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (WorldHelper.isOutside(player))
-                return false;
+            if (WorldHelper.isOutside(player)) return false;
+            if (player.isUnderWater()) return false;
+            if (!WorldHelper.isBelowSeaLevel(player)) return false;
 
             Optional<BlockPos> optWater = BlockPos.findClosestMatch(player.blockPosition(), 12, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
@@ -56,7 +57,7 @@ public class CaveWaterSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.25F;
+        return 0.22F;
     }
 
     @Override

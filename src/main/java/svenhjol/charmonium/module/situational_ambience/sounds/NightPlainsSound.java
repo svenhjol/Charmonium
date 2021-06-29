@@ -36,11 +36,9 @@ public class NightPlainsSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (WorldHelper.isDay(player))
-                return false;
-
-            if (!WorldHelper.isOutside(player))
-                return false;
+            if (WorldHelper.isDay(player)) return false;
+            if (!WorldHelper.isOutside(player)) return false;
+            if (WorldHelper.isBelowSeaLevel(player)) return false;
 
             Biome biome = level.getBiome(player.blockPosition());
             BiomeCategory category = biome.getBiomeCategory();

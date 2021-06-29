@@ -28,20 +28,19 @@ public class GeodeSound extends SituationalSound {
         SOUND = RegistryHelper.sound("situational.geode");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
-                return false;
+            if (!DimensionHelper.isOverworld(level)) return false;
+            if (WorldHelper.isOutside(player)) return false;
+            if (!WorldHelper.isBelowSeaLevel(player)) return false;
 
-            if (WorldHelper.isOutside(handler.getPlayer()))
-                return false;
-
-            Optional<BlockPos> optAmethyst = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 12, 8, pos -> {
+            Optional<BlockPos> optAmethyst = BlockPos.findClosestMatch(player.blockPosition(), 12, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
                 return block instanceof AmethystBlock;
             });
 
-            Optional<BlockPos> optSmoothBasalt = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 12, 8, pos -> {
+            Optional<BlockPos> optSmoothBasalt = BlockPos.findClosestMatch(player.blockPosition(), 12, 8, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
                 return block == Blocks.SMOOTH_BASALT;
             });

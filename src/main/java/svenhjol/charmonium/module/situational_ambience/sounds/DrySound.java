@@ -37,11 +37,9 @@ public class DrySound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (WorldHelper.isNight(player))
-                return false;
-
-            if (!WorldHelper.isOutside(player))
-                return false;
+            if (!WorldHelper.isOutside(player)) return false;
+            if (WorldHelper.isNight(player)) return false;
+            if (WorldHelper.isBelowSeaLevel(player)) return false;
 
             Biome biome = level.getBiome(player.blockPosition());
             BiomeCategory category = biome.getBiomeCategory();

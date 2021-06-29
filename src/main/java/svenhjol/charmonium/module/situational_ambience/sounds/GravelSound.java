@@ -27,13 +27,13 @@ public class GravelSound extends SituationalSound {
         SOUND = RegistryHelper.sound("situational.gravel");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
-                return false;
-
-            if (WorldHelper.isOutside(handler.getPlayer()))
-                return false;
+            // basic condition filtering
+            if (!DimensionHelper.isOverworld(level)) return false;
+            if (WorldHelper.isOutside(player)) return false;
+            if (!WorldHelper.isBelowSeaLevel(player)) return false;
 
             Optional<BlockPos> optBlock = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 8, 4, pos -> {
                 Block block = level.getBlockState(pos).getBlock();

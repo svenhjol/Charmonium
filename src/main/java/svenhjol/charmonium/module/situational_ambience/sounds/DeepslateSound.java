@@ -27,15 +27,14 @@ public class DeepslateSound extends SituationalSound {
         SOUND = RegistryHelper.sound("situational.deepslate");
 
         Predicate<SituationalSound> validCondition = situation -> {
+            Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
-                return false;
+            if (!DimensionHelper.isOverworld(level)) return false;
+            if (WorldHelper.isOutside(player)) return false;
+            if (!WorldHelper.isBelowSeaLevel(player)) return false;
 
-            if (WorldHelper.isOutside(handler.getPlayer()))
-                return false;
-
-            Optional<BlockPos> optBlock = BlockPos.findClosestMatch(handler.getPlayer().blockPosition(), 8, 4, pos -> {
+            Optional<BlockPos> optBlock = BlockPos.findClosestMatch(player.blockPosition(), 8, 4, pos -> {
                 Block block = level.getBlockState(pos).getBlock();
                 return block == Blocks.DEEPSLATE;
             });

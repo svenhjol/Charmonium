@@ -29,11 +29,8 @@ public class VillageSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level))
-                return false;
-
-            if (WorldHelper.isNight(player))
-                return false;
+            if (!DimensionHelper.isOverworld(level)) return false;
+            if (WorldHelper.isNight(player)) return false;
 
             AABB bb = new AABB(player.blockPosition()).inflate(32);
             List<Villager> villagers = level.getEntitiesOfClass(Villager.class, bb);

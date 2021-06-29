@@ -52,6 +52,10 @@ public class WorldHelper {
         return player.blockPosition().getY() >= 48;
     }
 
+    public static boolean isBelowSeaLevel(Player player) {
+        return player.blockPosition().getY() < player.level.getSeaLevel();
+    }
+
     public static double getDistanceSquared(BlockPos pos1, BlockPos pos2) {
         double d0 = pos1.getX();
         double d1 = pos1.getZ();
