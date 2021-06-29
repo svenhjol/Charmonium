@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_16",
   "client": [
     "accessor.AbstractTickableSoundInstanceAccessor",
-    "extra_music.TryCustomMusic"
+    "extra_music.TryCustomMusicMixin"
   ],
   "injectors": {
     "defaultRequire": 1

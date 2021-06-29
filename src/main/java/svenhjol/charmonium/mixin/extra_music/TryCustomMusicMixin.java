@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import svenhjol.charmonium.module.extra_music.ExtraMusic;
 
 @Mixin(Minecraft.class)
-public class TryCustomMusic {
+public class TryCustomMusicMixin {
     @Inject(
         method = "getSituationalMusic",
         at = @At(
