@@ -16,6 +16,7 @@ public class Charmonium implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         loader = new CharmoniumLoader(MOD_ID);
+
         initBuiltInResourcePack();
     }
 

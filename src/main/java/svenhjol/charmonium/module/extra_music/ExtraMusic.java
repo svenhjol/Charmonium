@@ -11,6 +11,7 @@ import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.module.CharmoniumModule;
+import svenhjol.charmonium.module.player_state.PlayerState;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ import java.util.function.Predicate;
 public class ExtraMusic extends CharmoniumModule {
     private static final List<MusicCondition> musicConditions = new ArrayList<>();
     public static boolean isEnabled;
-    public static boolean isInRuin;
 
     public static SoundEvent MUSIC_OVERWORLD;
     public static SoundEvent MUSIC_COLD;
@@ -80,8 +80,8 @@ public class ExtraMusic extends CharmoniumModule {
         // ruin music
         getMusicConditions().add(new MusicCondition(MUSIC_RUIN, 1200, 3600, mc ->
             mc.player != null
-                && isInRuin
-                && mc.player.level.random.nextFloat() < 0.33F
+                && PlayerState.insideRuin
+                && mc.player.level.random.nextFloat() < 1F
         ));
     }
 
