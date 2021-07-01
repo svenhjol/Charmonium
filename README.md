@@ -1,8 +1,10 @@
 # Charmonium
 
-Charmonium: adds ambient sound and additional music tracks to Minecraft. Requires [Charm](https://github.com/svenhjol/Charm/).
+Charmonium: adds ambient sound and additional music tracks to Minecraft.
+It is a client-only mod and does **not** require [Charm](https://github.com/svenhjol/Charm/) to be present on the server.
+However, if Charm is available, then this mod gets a little smarter.
 
-This is the **Fabric version** of Charmonium for Minecraft **1.16.4**.
+This is a **Fabric version** of Charmonium for Minecraft **1.17**.
 
 If you are looking for the Forge version of Charmonium, it's in [this repository](https://github.com/svenhjol/CharmoniumForge/).
 
