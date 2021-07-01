@@ -40,7 +40,7 @@ dependencies {
 	include "com.electronwill.night-config:toml:${project.tomlnc_version}"
 
 	// Enable charm at runtime for testing state sync
-	//modRuntime "svenhjol.charm:charm:${project.charm_version}"
+	modRuntime "svenhjol.charm:charm:${project.charm_version}"
 }
 
 processResources {
