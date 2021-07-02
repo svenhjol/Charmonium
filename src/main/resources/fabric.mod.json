@@ -20,6 +20,9 @@
   "entrypoints": {
     "client": [
       "svenhjol.charmonium.Charmonium"
+    ],
+    "modmenu": [
+      "svenhjol.charmonium.integration.modmenu.CharmoniumModMenuPlugin"
     ]
   },
 
@@ -34,6 +37,6 @@
   },
   "suggests": {
     "flamingo": "*",
-    "charm": ">=3.2.0"
+    "charm": ">=3.3.0"
   }
 }

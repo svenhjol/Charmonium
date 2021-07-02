@@ -41,6 +41,14 @@ dependencies {
 
 	// Enable charm at runtime for testing state sync
 //	modRuntime "svenhjol.charm:charm:${project.charm_version}"
+
+	// Cloth Config
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	// ModMenu
+	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {
@@ -101,4 +109,5 @@ publishing {
 repositories {
 	flatDir { dirs "libs" }
 	maven { url "https://maven.shedaniel.me" }
+//	maven { url "https://maven.terraformersmc.com" }
 }
