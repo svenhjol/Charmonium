@@ -26,7 +26,7 @@ public class HighSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level)) return false; // TODO: config for dimensions
+            if (!DimensionHelper.isOverworld(level)) return false;
             if (!WorldHelper.isOutside(player)) return false;
 
             int top = level.getMaxBuildHeight() > 256 ? 200 : 150;
@@ -44,6 +44,6 @@ public class HighSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.35F;
+        return 0.7F;
     }
 }

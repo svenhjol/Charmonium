@@ -23,11 +23,7 @@ public class AlienSound extends SituationalSound {
 
         Predicate<SituationalSound> validCondition = situation -> {
             ClientLevel level = situation.getLevel();
-
-            if (!DimensionHelper.isEnd(level))
-                return false; // TODO: config for dimensions
-
-            return true;
+            return DimensionHelper.isEnd(level);
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
@@ -41,6 +37,6 @@ public class AlienSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.45F;
+        return 0.85F;
     }
 }

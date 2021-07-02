@@ -56,6 +56,6 @@ public class NightPlainsSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.36F;
+        return 0.72F;
     }
 }

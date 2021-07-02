@@ -57,6 +57,6 @@ public class DrySound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.36F;
+        return 0.7F;
     }
 }

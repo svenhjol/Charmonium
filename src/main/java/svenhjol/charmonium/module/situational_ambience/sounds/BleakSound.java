@@ -56,6 +56,6 @@ public class BleakSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.35F;
+        return 0.7F;
     }
 }

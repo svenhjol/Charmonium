@@ -61,7 +61,7 @@ public class BiomeSound implements IAmbientSound {
             isValid = true;
 
         if (isValid && !isPlaying()) {
-            soundInstance = new LoopingSound(player, getSound(), getVolume(), getPitch(), p -> isValid);
+            soundInstance = new LoopingSound(player, getSound(), getVolume() * getVolumeScaling(), getPitch(), p -> isValid);
             try {
                 getSoundManager().play(this.soundInstance);
             } catch (ConcurrentModificationException e) {
@@ -90,5 +90,10 @@ public class BiomeSound implements IAmbientSound {
     @Override
     public SoundEvent getSound() {
         return soundCondition.get();
+    }
+
+    @Override
+    public float getVolumeScaling() {
+        return BiomeAmbience.volumeScaling;
     }
 }

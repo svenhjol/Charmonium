@@ -3,9 +3,9 @@ package svenhjol.charmonium.module.biome_ambience;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biome.BiomeCategory;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
-import svenhjol.charmonium.handler.SoundHandler;
 
 import java.util.function.Predicate;
 

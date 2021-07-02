@@ -21,19 +21,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
 @ClientModule(mod = Charmonium.MOD_ID, description = "Plays ambient background sound when the player is underground at different depths and light levels.")
 public class UndergroundAmbience extends CharmModule {
     public Handler handler;
+
+    @Config(name = "Volume scaling", description = "Affects the volume of all underground ambient sounds. 1.0 is full volume.")
+    public static float volumeScaling = 0.55F;
 
     @Config(name = "Valid dimensions", description = "Dimensions in which underground ambience will be played.")
     public static List<String> configDimensions = Arrays.asList(
         "minecraft:overworld"
     );
 
-    @Config(name = "Play cave ambience", description = "If true, the cave ambience will be played. Cave ambience is normally a low frequency drone.")
+    @Config(name = "Cave ambience", description = "If true, the cave ambience will be played. Cave ambience is normally a low frequency drone.")
     public static boolean playCaveAmbience = true;
 
-    @Config(name = "Play deepcave ambience", description = "If true, the deepcave ambience will be played. This takes effect when the player is deep underground and at low light level.")
+    @Config(name = "Deepcave ambience", description = "If true, the deepcave ambience will be played. This takes effect when the player is deep underground and at low light level.")
     public static boolean playDeepCaveAmbience = true;
 
     @Config(name = "Cave depth", description = "When the player is lower than this depth then cave background sound will be always be triggered.")

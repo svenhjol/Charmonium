@@ -95,6 +95,11 @@ public class SituationalSound implements IAmbientSound {
         return level.random.nextInt(200) + 200;
     }
 
+    @Override
+    public float getVolumeScaling() {
+        return SituationalAmbience.volumeScaling;
+    }
+
     public void setPos(BlockPos pos) {
         this.pos = pos;
     }

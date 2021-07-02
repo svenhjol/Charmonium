@@ -5,10 +5,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
-import svenhjol.charmonium.helper.DimensionHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
-import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
 import java.util.List;
@@ -29,7 +28,6 @@ public class VillageSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level)) return false;
             if (WorldHelper.isNight(player)) return false;
 
             AABB bb = new AABB(player.blockPosition()).inflate(32);
@@ -48,6 +46,6 @@ public class VillageSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.5F;
+        return 0.7F;
     }
 }

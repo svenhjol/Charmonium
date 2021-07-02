@@ -54,6 +54,6 @@ public class SnowstormSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.56F;
+        return 0.9F;
     }
 }

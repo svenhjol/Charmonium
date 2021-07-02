@@ -84,4 +84,9 @@ public class UndergroundSound implements IAmbientSound {
     public SoundEvent getSound() {
         return soundCondition.get();
     }
+
+    @Override
+    public float getVolumeScaling() {
+        return UndergroundAmbience.volumeScaling;
+    }
 }

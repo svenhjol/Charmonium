@@ -7,10 +7,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import svenhjol.charmonium.helper.DimensionHelper;
+import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
-import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
 import java.util.Optional;
@@ -31,7 +30,6 @@ public class GeodeSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level)) return false;
             if (WorldHelper.isOutside(player)) return false;
             if (!WorldHelper.isBelowSeaLevel(player)) return false;
 
@@ -64,7 +62,7 @@ public class GeodeSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.35F;
+        return 0.7F;
     }
 
     @Override

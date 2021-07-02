@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
@@ -35,7 +34,6 @@ public class MansionSound extends SituationalSound {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();
 
-            if (!DimensionHelper.isOverworld(level)) return false;
             if (WorldHelper.isBelowSeaLevel(player)) return false;
 
             if (!level.getBiome(player.blockPosition()).getGenerationSettings().isValidStart(StructureFeatures.WOODLAND_MANSION.feature)) {
@@ -45,7 +43,7 @@ public class MansionSound extends SituationalSound {
 
             baseDelay = 120;
 
-            AABB bb = new AABB(player.blockPosition()).inflate(8);
+            AABB bb = new AABB(player.blockPosition()).inflate(10);
             List<Monster> monsters = level.getEntitiesOfClass(Monster.class, bb);
 
             Optional<BlockPos> optBlock1 = BlockPos.findClosestMatch(player.blockPosition(), 8, 8, pos -> {
@@ -81,6 +79,6 @@ public class MansionSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.4F;
+        return 0.82F;
     }
 }
