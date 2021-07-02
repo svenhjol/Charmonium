@@ -37,7 +37,9 @@ public interface IAmbientSound {
 
     default int getDelay() { return 0; }
 
-    default float getVolume() { return 0.55F; }
+    default float getVolume() { return 1.0F; }
+
+    default float getVolumeScaling() { return 0.55F; }
 
     default float getPitch() { return 1.0F; }
 
