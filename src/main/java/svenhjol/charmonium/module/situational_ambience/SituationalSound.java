@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.helper.LogHelper;
 import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.SingleSound;
 
@@ -79,7 +79,7 @@ public class SituationalSound implements IAmbientSound {
                 if (!manager.isActive(soundInstance))
                     manager.play(soundInstance);
             } catch (ConcurrentModificationException e) {
-                Charmonium.LOG.warn("Exception in manager.play");
+                LogHelper.debug(this.getClass(), "Exception in manager.play");
             }
         }
     }

@@ -8,17 +8,18 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import svenhjol.charmonium.annotation.Module;
+import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.module.CharmoniumModule;
+import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.biome_ambience.BiomeSounds.*;
 
-@Module(description = "Ambient background sound plays according the biome and time of day.")
-public class BiomeAmbience extends CharmoniumModule {
+@ClientModule(mod = Charmonium.MOD_ID, description = "Plays ambient background sound according to the biome and time of day.")
+public class BiomeAmbience extends CharmModule {
     public Handler handler;
 
     @Override
-    public void init() {
+    public void runWhenEnabled() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);

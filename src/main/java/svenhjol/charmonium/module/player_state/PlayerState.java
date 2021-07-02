@@ -9,12 +9,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import svenhjol.charm.api.CharmNetworkReferences;
 import svenhjol.charm.api.CharmPlayerStateKeys;
-import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.helper.NetworkHelper;
-import svenhjol.charmonium.module.CharmoniumModule;
+import svenhjol.charmonium.loader.CharmModule;
 
-@Module(alwaysEnabled = true)
-public class PlayerState extends CharmoniumModule {
+public class PlayerState extends CharmModule {
     private static final ResourceLocation MSG_CLIENT = new ResourceLocation(CharmNetworkReferences.ClientUpdatePlayerState.getSerializedName());
 
     // special state properties fetched from server

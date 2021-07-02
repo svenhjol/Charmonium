@@ -5,7 +5,7 @@ import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.helper.LogHelper;
 import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.LoopingSound;
 
@@ -63,7 +63,7 @@ public class UndergroundSound implements IAmbientSound {
             try {
                 getSoundManager().play(soundInstance);
             } catch (ConcurrentModificationException e) {
-                Charmonium.LOG.debug("Exception in tick");
+                LogHelper.debug(this.getClass(), "Exception in tick");
             }
         }
     }

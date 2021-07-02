@@ -7,7 +7,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.helper.LogHelper;
 import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.LoopingSound;
 
@@ -65,7 +65,7 @@ public class BiomeSound implements IAmbientSound {
             try {
                 getSoundManager().play(this.soundInstance);
             } catch (ConcurrentModificationException e) {
-                Charmonium.LOG.debug("Exception in tick");
+                LogHelper.debug(this.getClass(), "Exception in tick");
             }
         }
     }

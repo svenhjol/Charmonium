@@ -1,32 +1,19 @@
 package svenhjol.charmonium;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resources.ResourceLocation;
-import svenhjol.charmonium.handler.LogHandler;
-import svenhjol.charmonium.init.CharmoniumLoader;
+import svenhjol.charmonium.init.CharmoniumLog;
+import svenhjol.charmonium.init.CharmoniumPacks;
+import svenhjol.charmonium.loader.CharmModule;
+import svenhjol.charmonium.loader.ClientLoader;
 
 public class Charmonium implements ClientModInitializer {
     public static final String MOD_ID = "charmonium";
-    public static final LogHandler LOG = new LogHandler("Charmonium");
-    public static CharmoniumLoader loader;
+    public static ClientLoader<CharmModule> LOADER = new ClientLoader<>(MOD_ID, "svenhjol.charmonium.module");
 
     @Override
     public void onInitializeClient() {
-        loader = new CharmoniumLoader(MOD_ID);
-
-        initBuiltInResourcePack();
-    }
-
-    private void initBuiltInResourcePack() {
-        ResourceLocation packId = new ResourceLocation(MOD_ID, "journeyman");
-        FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(container
-            -> ResourceManagerHelper.registerBuiltinResourcePack(packId, container, ResourcePackActivationType.DEFAULT_ENABLED));
-    }
-
-    public static boolean isEnabled(String module) {
-        return CharmoniumLoader.isEnabled(module);
+        CharmoniumLog.init();
+        CharmoniumPacks.init();
+        LOADER.init();
     }
 }

@@ -9,10 +9,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
-import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.module.CharmoniumModule;
+import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.underground_ambience.UndergroundSounds.Cave;
 import svenhjol.charmonium.module.underground_ambience.UndergroundSounds.DeepCave;
 
@@ -20,8 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Module(description = "Ambient background sound plays when underground.")
-public class UndergroundAmbience extends CharmoniumModule {
+@ClientModule(mod = Charmonium.MOD_ID, description = "Plays ambient background sound when the player is underground at different depths and light levels.")
+public class UndergroundAmbience extends CharmModule {
     public Handler handler;
 
     @Config(name = "Valid dimensions", description = "Dimensions in which underground ambience will be played.")
@@ -44,7 +45,7 @@ public class UndergroundAmbience extends CharmoniumModule {
     public static List<ResourceLocation> validDimensions = new ArrayList<>();
 
     @Override
-    public void init() {
+    public void runWhenEnabled() {
         configDimensions.forEach(dim -> validDimensions.add(new ResourceLocation(dim)));
 
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);

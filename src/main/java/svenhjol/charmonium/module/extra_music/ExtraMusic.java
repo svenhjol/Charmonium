@@ -6,11 +6,11 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
-import svenhjol.charmonium.annotation.Module;
 import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.RegistryHelper;
-import svenhjol.charmonium.module.CharmoniumModule;
+import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.player_state.PlayerState;
 
 import javax.annotation.Nullable;
@@ -20,8 +20,8 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 @SuppressWarnings("unused")
-@Module(description = "Adds custom music tracks that play in certain situations.")
-public class ExtraMusic extends CharmoniumModule {
+@ClientModule(mod = Charmonium.MOD_ID, description = "Plays custom music tracks according to the location of the player.")
+public class ExtraMusic extends CharmModule {
     private static final List<MusicCondition> musicConditions = new ArrayList<>();
     public static boolean isEnabled;
 
@@ -51,9 +51,9 @@ public class ExtraMusic extends CharmoniumModule {
     }
 
     @Override
-    public void init() {
+    public void runWhenEnabled() {
         // static boolean for mixins to check
-        isEnabled = Charmonium.isEnabled("extra_music");
+        isEnabled = Charmonium.LOADER.isEnabled("extra_music");
 
         if (playCreativeMusic) {
             getMusicConditions().add(new MusicCondition(SoundEvents.MUSIC_CREATIVE, 1200, 3600, mc ->

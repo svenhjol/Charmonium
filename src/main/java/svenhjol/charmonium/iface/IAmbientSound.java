@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 public interface IAmbientSound {
     ClientLevel getLevel();
 

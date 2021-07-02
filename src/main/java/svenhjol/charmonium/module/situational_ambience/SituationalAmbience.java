@@ -8,17 +8,18 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import svenhjol.charmonium.annotation.Module;
+import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.module.CharmoniumModule;
+import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.situational_ambience.sounds.*;
 
-@Module(description = "Sounds that play according to an event or location.")
-public class SituationalAmbience extends CharmoniumModule {
+@ClientModule(mod = Charmonium.MOD_ID, description = "Plays specific ambient sound according to the situation or location.")
+public class SituationalAmbience extends CharmModule {
     public Handler handler;
 
     @Override
-    public void init() {
+    public void runWhenEnabled() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);

@@ -9,6 +9,10 @@ import net.minecraft.world.level.block.StemBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
+/**
+ * @version charmonium-1
+ */
+@SuppressWarnings("unused")
 public class WorldHelper {
     public static boolean isDay(Player player) {
         long dayTime = player.level.getDayTime() % 24000;
