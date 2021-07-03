@@ -46,6 +46,7 @@ public class SituationalSound implements IAmbientSound {
     @Override
     public void updatePlayer(Player player) {
         this.player = player;
+        this.level = (ClientLevel) player.level;
     }
 
     @Override

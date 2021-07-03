@@ -33,6 +33,7 @@ public class BiomeSound implements IAmbientSound {
     @Override
     public void updatePlayer(Player player) {
         this.player = player;
+        this.level = (ClientLevel) player.level;
     }
 
     @Override
@@ -83,9 +84,9 @@ public class BiomeSound implements IAmbientSound {
         if (biome == null)
             return false;
 
-        int top = level.getMaxBuildHeight() > 256 ? 200 : 150;
-        if (player.blockPosition().getY() > top)
-            return false;
+//        int top = level.getMaxBuildHeight() > 256 ? 200 : 150;
+//        if (player.blockPosition().getY() > top)
+//            return false;
 
         return this.biomeCondition.test(biome);
     }

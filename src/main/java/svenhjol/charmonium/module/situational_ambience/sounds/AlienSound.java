@@ -3,9 +3,9 @@ package svenhjol.charmonium.module.situational_ambience.sounds;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
-import svenhjol.charmonium.helper.DimensionHelper;
-import svenhjol.charmonium.helper.RegistryHelper;
+import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.handler.SoundHandler;
+import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
 import java.util.function.Function;
@@ -23,7 +23,8 @@ public class AlienSound extends SituationalSound {
 
         Predicate<SituationalSound> validCondition = situation -> {
             ClientLevel level = situation.getLevel();
-            return DimensionHelper.isEnd(level);
+            Player player = situation.getPlayer();
+            return level.getBiome(player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.THEEND;
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
