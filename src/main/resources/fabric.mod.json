@@ -4,12 +4,12 @@
   "version": "${version}",
 
   "name": "Charmonium",
-  "description": "Ambient sounds and additional music for Charm.",
+  "description": "Ambient sounds and additional music to enhance vanilla gameplay.",
   "authors": [
     "svenhjol"
   ],
   "contact": {
-    "homepage": "https://svenhjol.github.io/Charm/",
+    "homepage": "https://svenhjol.github.io/Charm/Charmonium",
     "sources": "https://github.com/svenhjol/Charmonium"
   },
 
@@ -18,21 +18,25 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "client": [
       "svenhjol.charmonium.Charmonium"
     ],
-    "client": [
-      "svenhjol.charmonium.CharmoniumClient"
+    "modmenu": [
+      "svenhjol.charmonium.integration.modmenu.CharmoniumModMenuPlugin"
     ]
   },
+
+  "mixins": [
+    "charmonium.mixins.json"
+  ],
 
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": "1.17.*",
-    "charm": ">=3.1.0"
+    "minecraft": "1.17.*"
   },
   "suggests": {
-    "flamingo": "*"
+    "flamingo": "*",
+    "charm": ">=3.3.0"
   }
 }

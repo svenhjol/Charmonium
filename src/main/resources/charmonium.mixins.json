@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8.2",
+  "package": "svenhjol.charmonium.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "accessor.AbstractTickableSoundInstanceAccessor",
+    "extra_music.TryCustomMusicMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
