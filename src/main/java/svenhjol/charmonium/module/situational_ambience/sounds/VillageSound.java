@@ -41,11 +41,11 @@ public class VillageSound extends SituationalSound {
 
     @Override
     public int getDelay() {
-        return level.random.nextInt(500) + 320;
+        return level.random.nextInt(400) + 320;
     }
 
     @Override
     public float getVolume() {
-        return 0.7F;
+        return 0.92F;
     }
 }

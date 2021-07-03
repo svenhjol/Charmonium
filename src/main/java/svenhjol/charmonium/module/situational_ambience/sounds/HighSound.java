@@ -39,11 +39,11 @@ public class HighSound extends SituationalSound {
 
     @Override
     public int getDelay() {
-        return level.random.nextInt(250) + 250;
+        return level.random.nextInt(100) + 100;
     }
 
     @Override
     public float getVolume() {
-        return 0.7F;
+        return 0.9F;
     }
 }
