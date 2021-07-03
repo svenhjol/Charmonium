@@ -83,6 +83,10 @@ public class BiomeSound implements IAmbientSound {
         if (biome == null)
             return false;
 
+        int top = level.getMaxBuildHeight() > 256 ? 200 : 150;
+        if (player.blockPosition().getY() > top)
+            return false;
+
         return this.biomeCondition.test(biome);
     }
 
