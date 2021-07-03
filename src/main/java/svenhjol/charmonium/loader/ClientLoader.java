@@ -1,5 +1,6 @@
 package svenhjol.charmonium.loader;
 
+import com.moandjiezana.toml.Toml;
 import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.helper.ConfigHelper;
 
@@ -33,8 +34,9 @@ public class ClientLoader<T extends CharmModule> extends ModuleLoader<T> {
 
     @Override
     protected void setupModuleConfig(List<T> modules) {
-        ConfigHelper.applyConfig(getModId(), modules);
-        modules.forEach(module -> module.setEnabled(!ConfigHelper.isModuleDisabled(getModId(), module.getName())));
+        Toml toml = ConfigHelper.readConfig(getModId());
+        ConfigHelper.applyConfig(toml, modules);
+        modules.forEach(module -> module.setEnabled(!ConfigHelper.isModuleDisabled(toml, module.getName())));
         ConfigHelper.writeConfig(getModId(), modules);
     }
 }
