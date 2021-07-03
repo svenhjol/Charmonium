@@ -1,5 +1,6 @@
 package svenhjol.charmonium.module.situational_ambience;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class SituationalSound implements IAmbientSound {
+    protected Minecraft client;
     protected Player player;
     protected ClientLevel level;
     protected Function<SituationalSound, SoundEvent> soundCondition;
@@ -27,6 +29,7 @@ public class SituationalSound implements IAmbientSound {
     protected boolean playUnderWater = false;
 
     public SituationalSound(Player player, Predicate<SituationalSound> validCondition, Function<SituationalSound, SoundEvent> soundCondition) {
+        this.client = Minecraft.getInstance();
         this.player = player;
         this.level = (ClientLevel) player.level;
         this.soundCondition = soundCondition;
@@ -57,7 +60,7 @@ public class SituationalSound implements IAmbientSound {
     @Override
     public boolean isValid() {
         // initial filters
-        if (level == null) return false;
+        if (client.level == null || level == null) return false;
         if (!player.isAlive()) return false;
         if (player.isUnderWater() && !playUnderWater) return false;
 

@@ -1,5 +1,6 @@
 package svenhjol.charmonium.module.biome_ambience;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.core.BlockPos;
@@ -16,6 +17,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class BiomeSound implements IAmbientSound {
+    protected Minecraft client;
     protected boolean isValid = false;
     protected Player player;
     protected ClientLevel level;
@@ -24,6 +26,7 @@ public class BiomeSound implements IAmbientSound {
     protected Predicate<Biome> biomeCondition;
 
     protected BiomeSound(Player player, Predicate<Biome> biomeCondition, Supplier<SoundEvent> soundCondition) {
+        this.client = Minecraft.getInstance();
         this.player = player;
         this.level = (ClientLevel) player.level;
         this.soundCondition = soundCondition;
@@ -73,7 +76,7 @@ public class BiomeSound implements IAmbientSound {
 
     @Override
     public boolean isValid() {
-        if (level == null)
+        if (client.level == null || level == null)
             return false;
 
         if (!player.isAlive())
