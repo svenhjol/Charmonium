@@ -59,7 +59,7 @@ public class UndergroundSound implements IAmbientSound {
             isValid = true;
 
         if (isValid && !isPlaying()) {
-            soundInstance = new LoopingSound(player, getSound(), getVolume(), getPitch(), p -> isValid);
+            soundInstance = new LoopingSound(player, getSound(), getVolume() * getVolumeScaling(), getPitch(), p -> isValid);
             try {
                 getSoundManager().play(soundInstance);
             } catch (ConcurrentModificationException e) {

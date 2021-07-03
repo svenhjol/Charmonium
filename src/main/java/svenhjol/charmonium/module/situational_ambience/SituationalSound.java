@@ -72,7 +72,7 @@ public class SituationalSound implements IAmbientSound {
         isValid = isValid();
 
         if (isValid) {
-            soundInstance = new SingleSound(getPlayer(), getSound(), getVolume(), getPitch(), getPos());
+            soundInstance = new SingleSound(getPlayer(), getSound(), getVolume() * getVolumeScaling(), getPitch(), getPos());
             SoundManager manager = getSoundManager();
 
             try {
