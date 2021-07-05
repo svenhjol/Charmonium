@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
 /**
- * @version charmonium-1
+ * @version 1.0.0-charmonium
  */
 @SuppressWarnings("unused")
 public class WorldHelper {
