@@ -52,12 +52,12 @@ public class CaveWaterSound extends SituationalSound {
 
     @Override
     public int getDelay() {
-        return level.random.nextInt(120) + 120;
+        return level.random.nextInt(150) + 120;
     }
 
     @Override
     public float getVolume() {
-        return 0.44F;
+        return 0.38F;
     }
 
     @Override
