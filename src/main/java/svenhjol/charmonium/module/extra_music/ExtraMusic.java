@@ -55,15 +55,6 @@ public class ExtraMusic extends CharmModule {
         // static boolean for mixins to check
         isEnabled = Charmonium.LOADER.isEnabled("extra_music");
 
-        if (playCreativeMusic) {
-            getMusicConditions().add(new MusicCondition(SoundEvents.MUSIC_CREATIVE, 1200, 3600, mc ->
-                mc.player != null
-                    && (!mc.player.isCreative() || !mc.player.isSpectator())
-                    && DimensionHelper.isOverworld(mc.player.level)
-                    && new Random().nextFloat() < 0.25F
-            ));
-        }
-
         // overworld music
         if (playOverworldMusic) {
             getMusicConditions().add(new MusicCondition(MUSIC_OVERWORLD, 1200, 3600, mc ->
@@ -95,7 +86,17 @@ public class ExtraMusic extends CharmModule {
             getMusicConditions().add(new MusicCondition(MUSIC_RUIN, 1200, 3600, mc ->
                 mc.player != null
                     && PlayerState.insideOverworldRuin
-                    && mc.player.level.random.nextFloat() < 1F
+                    && mc.player.level.random.nextFloat() < 0.33F
+            ));
+        }
+
+        // creative tracks in survival mode
+        if (playCreativeMusic) {
+            getMusicConditions().add(new MusicCondition(SoundEvents.MUSIC_CREATIVE, 1200, 3600, mc ->
+                mc.player != null
+                    && (!mc.player.isCreative() || !mc.player.isSpectator())
+                    && DimensionHelper.isOverworld(mc.player.level)
+                    && new Random().nextFloat() < 0.25F
             ));
         }
     }
@@ -127,7 +128,7 @@ public class ExtraMusic extends CharmModule {
             this.condition = condition;
         }
 
-        public MusicCondition(net.minecraft.sounds.Music music) {
+        public MusicCondition(Music music) {
             this.sound = music.getEvent();
             this.minDelay = music.getMinDelay();
             this.maxDelay = music.getMaxDelay();
