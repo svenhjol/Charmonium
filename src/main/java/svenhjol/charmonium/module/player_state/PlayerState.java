@@ -16,7 +16,7 @@ public class PlayerState extends CharmModule {
     private static final ResourceLocation MSG_CLIENT = new ResourceLocation(CharmNetworkReferences.ClientUpdatePlayerState.getSerializedName());
 
     // special state properties fetched from server
-    public static boolean insideRuin;
+    public static boolean insideOverworldRuin;
 
     @Override
     public void register() {
@@ -29,7 +29,7 @@ public class PlayerState extends CharmModule {
         if (nbt == null) return;
 
         client.execute(() -> {
-            insideRuin = nbt.getBoolean(CharmPlayerStateKeys.InsideStronghold.getSerializedName());
+            insideOverworldRuin = nbt.getBoolean(CharmPlayerStateKeys.InsideOverworldRuin.toString());
         });
     }
 }

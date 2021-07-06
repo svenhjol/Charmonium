@@ -10,13 +10,14 @@
   ],
   "contact": {
     "homepage": "https://svenhjol.github.io/Charm/Charmonium",
-    "sources": "https://github.com/svenhjol/Charmonium"
+    "sources": "https://github.com/svenhjol/Charmonium",
+    "issues": "https://github.com/svenhjol/Charmonium/issues"
   },
 
   "license": "MIT",
   "icon": "assets/charmonium/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "svenhjol.charmonium.Charmonium"

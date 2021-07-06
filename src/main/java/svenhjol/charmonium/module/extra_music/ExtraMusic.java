@@ -94,7 +94,7 @@ public class ExtraMusic extends CharmModule {
         if (playRuinMusic) {
             getMusicConditions().add(new MusicCondition(MUSIC_RUIN, 1200, 3600, mc ->
                 mc.player != null
-                    && PlayerState.insideRuin
+                    && PlayerState.insideOverworldRuin
                     && mc.player.level.random.nextFloat() < 1F
             ));
         }
