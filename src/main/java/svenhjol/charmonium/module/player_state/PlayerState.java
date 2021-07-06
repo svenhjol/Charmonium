@@ -9,9 +9,12 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import svenhjol.charm.api.CharmNetworkReferences;
 import svenhjol.charm.api.CharmPlayerStateKeys;
+import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.helper.NetworkHelper;
 import svenhjol.charmonium.loader.CharmModule;
 
+@ClientModule(mod = Charmonium.MOD_ID, description = "Updates player state from Charm, if present.", alwaysEnabled = true)
 public class PlayerState extends CharmModule {
     private static final ResourceLocation MSG_CLIENT = new ResourceLocation(CharmNetworkReferences.ClientUpdatePlayerState.getSerializedName());
 
@@ -28,8 +31,7 @@ public class PlayerState extends CharmModule {
         CompoundTag nbt = NetworkHelper.decodeNbt(data);
         if (nbt == null) return;
 
-        client.execute(() -> {
-            insideOverworldRuin = nbt.getBoolean(CharmPlayerStateKeys.InsideOverworldRuin.toString());
-        });
+        client.execute(()
+            -> insideOverworldRuin = nbt.getBoolean(CharmPlayerStateKeys.InsideOverworldRuin.toString()));
     }
 }
