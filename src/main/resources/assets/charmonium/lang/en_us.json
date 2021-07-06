@@ -1,5 +1,5 @@
 {
-  "cloth.title": "Charmonium configuration",
-  "cloth.category.title": "Charmonium",
-  "cloth.category.module_enabled": "Module Enabled"
+  "cloth.charmonium.title": "Charmonium configuration",
+  "cloth.charmonium.category.title": "Charmonium",
+  "cloth.charmonium.category.module_enabled": "Module Enabled"
 }
