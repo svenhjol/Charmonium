@@ -62,7 +62,7 @@ public class GeodeSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.7F;
+        return 0.6F;
     }
 
     @Override
