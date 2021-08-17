@@ -67,7 +67,7 @@ public class ExtraMusic extends CharmModule {
             getMusicConditions().add(new MusicCondition(MUSIC_COLD, 1200, 3600, mc ->
                 mc.player != null
                     && mc.player.level.getBiome(mc.player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.ICY
-                    && mc.player.level.random.nextFloat() < 0.28F
+                    && mc.player.level.random.nextFloat() < 0.2F
             ));
         }
 
