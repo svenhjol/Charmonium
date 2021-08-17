@@ -32,7 +32,14 @@ public class VillageSound extends SituationalSound {
 
             AABB bb = new AABB(player.blockPosition()).inflate(32);
             List<Villager> villagers = level.getEntitiesOfClass(Villager.class, bb);
-            return villagers.size() >= 2;
+
+            if (villagers.size() >= 2) {
+                Villager villager = villagers.get(player.getRandom().nextInt(villagers.size()));
+                situation.setPos(villager.blockPosition());
+                return true;
+            }
+
+            return false;
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;
