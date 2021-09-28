@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "charmonium",
+  "version": "${version}",
+
+  "name": "Charmonium",
+  "description": "Ambient sounds and additional music to enhance vanilla gameplay.",
+  "authors": [
+    "svenhjol"
+  ],
+  "contact": {
+    "homepage": "https://svenhjol.github.io/Charm/Charmonium",
+    "sources": "https://github.com/svenhjol/Charmonium",
+    "issues": "https://github.com/svenhjol/Charmonium/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/charmonium/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "svenhjol.charmonium.Charmonium"
+    ]
+  },
+
+  "mixins": [
+    "charmonium.mixins.json"
+  ],
+  "accessWidener": "charmonium.accesswidener",
+
+  "depends": {
+    "fabricloader": ">=0.11.7",
+    "fabric": "*",
+    "minecraft": "1.18.*"
+  },
+  "suggests": {
+    "flamingo": "*",
+    "charm": ">=4.0.0"
+  }
+}
