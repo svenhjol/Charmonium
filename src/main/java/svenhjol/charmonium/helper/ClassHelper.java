@@ -15,6 +15,7 @@ import java.lang.reflect.Constructor;
 import java.net.JarURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarEntry;
@@ -49,7 +50,7 @@ public class ClassHelper {
         if (url.toString().startsWith("jar:")) {
             try {
                 JarURLConnection connection = (JarURLConnection) url.openConnection();
-                File file = new File(connection.getJarFileURL().toURI());
+                File file = Paths.get(connection.getJarFileURL().toURI()).toFile();
 
                 packageName = packageName.replaceAll("\\.", "/");
                 try {
@@ -75,7 +76,7 @@ public class ClassHelper {
             }
 
         } else {
-            File dir = new File(classLoaderResource.toURI());
+            File dir = Paths.get(classLoaderResource.toURI()).toFile();
             classes.addAll(findClasses(dir, packageName));
         }
 
