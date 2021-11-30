@@ -67,7 +67,9 @@ public class BiomeSounds {
             NIGHT = RegistryHelper.sound("ambience.forest.night");
 
             Predicate<Biome> biomeCondition = biome
-                -> biome.getBiomeCategory() == BiomeCategory.FOREST && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.FOREST
+                && WorldHelper.isOutside(handler.getPlayer())
+                && !WorldHelper.isThundering(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -150,7 +152,8 @@ public class BiomeSounds {
                 -> (biome.getBiomeCategory() == BiomeCategory.PLAINS
                     || biome.getBiomeCategory() == BiomeCategory.RIVER
                     || biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS)
-                && WorldHelper.isOutside(handler.getPlayer());
+                && WorldHelper.isOutside(handler.getPlayer())
+                && !WorldHelper.isThundering(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -200,7 +203,9 @@ public class BiomeSounds {
             NIGHT = RegistryHelper.sound("ambience.taiga.night");
 
             Predicate<Biome> biomeCondition = biome
-                -> biome.getBiomeCategory() == BiomeCategory.TAIGA && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.TAIGA
+                && WorldHelper.isOutside(handler.getPlayer())
+                && !WorldHelper.isThundering(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));

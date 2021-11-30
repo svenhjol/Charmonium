@@ -24,6 +24,10 @@ public class WorldHelper {
         return dayTime >= 12700;
     }
 
+    public static boolean isThundering(Player player) {
+        return player.level.isThundering();
+    }
+
     public static boolean isOutside(Player player) {
         if (!DimensionHelper.isOverworld(player.level))
             return false; // TODO: configurable outdoor dimensions
