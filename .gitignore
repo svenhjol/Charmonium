@@ -18,7 +18,7 @@
 /*.iml
 /src/main/main.iml
 /heap
-/libs
+/lib
 /web/node_modules
 /web/vendor
 copycharm.sh

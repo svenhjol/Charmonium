@@ -115,7 +115,7 @@ public class BiomeSounds {
             NIGHT = RegistryHelper.sound("ambience.mountains.night");
 
             Predicate<Biome> biomeCondition = biome
-                -> biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.MOUNTAIN && WorldHelper.isOutside(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -148,7 +148,8 @@ public class BiomeSounds {
 
             Predicate<Biome> biomeCondition = biome
                 -> (biome.getBiomeCategory() == BiomeCategory.PLAINS
-                    || biome.getBiomeCategory() == BiomeCategory.RIVER)
+                    || biome.getBiomeCategory() == BiomeCategory.RIVER
+                    || biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS)
                 && WorldHelper.isOutside(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(b -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
