@@ -28,6 +28,9 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "Badlands ambience", description = "If true, plays ambient sounds in badlands (mesa) biomes.")
     public static boolean badlands = true;
 
+    @Config(name = "Cave biome ambience", description = "If true, plays ambience sounds in underground biomes such as dripstone and lush caves.")
+    public static boolean caves = true;
+
     @Config(name = "Desert ambience", description = "If true, plays ambient sounds in desert biomes.")
     public static boolean desert = true;
 
@@ -98,6 +101,7 @@ public class BiomeAmbience extends CharmModule {
 
             if (beach) Beach.init(this);
             if (badlands) Badlands.init(this);
+            if (caves) Caves.init(this);
             if (desert) Desert.init(this);
             if (forest) Forest.init(this);
             if (icy) Icy.init(this);
