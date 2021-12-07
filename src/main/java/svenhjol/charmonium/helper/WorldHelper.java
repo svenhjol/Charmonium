@@ -57,7 +57,7 @@ public class WorldHelper {
             if (state.canOcclude()) return false;
         }
 
-        return player.blockPosition().getY() >= 48;
+        return true;
     }
 
     public static boolean isBelowSeaLevel(Player player) {
