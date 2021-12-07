@@ -39,12 +39,14 @@ public class WorldHelper {
 
         BlockPos playerPos = player.blockPosition();
 
+        if (player.level.canSeeSky(playerPos)) return true;
+        if (player.level.canSeeSkyFromBelowWater(playerPos)) return true;
+
         for (int i = start; i < start + blocks; i++) {
             BlockPos check = new BlockPos(playerPos.getX(), playerPos.getY() + i, playerPos.getZ());
             BlockState state = player.level.getBlockState(check);
             Block block = state.getBlock();
 
-            if (player.level.canSeeSkyFromBelowWater(check)) return true;
             if (player.level.isEmptyBlock(check)) continue;
 
             // TODO: configurable clear blocks
@@ -54,10 +56,12 @@ public class WorldHelper {
                 || block instanceof StemBlock
             ) continue;
 
+            if (player.level.canSeeSky(check)) return true;
+            if (player.level.canSeeSkyFromBelowWater(check)) return true;
             if (state.canOcclude()) return false;
         }
 
-        return true;
+        return false;
     }
 
     public static boolean isBelowSeaLevel(Player player) {
