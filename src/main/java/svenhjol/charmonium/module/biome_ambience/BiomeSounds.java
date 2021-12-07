@@ -53,10 +53,10 @@ public class BiomeSounds {
             LUSH = RegistryHelper.sound("ambience.caves.lush");
 
             BiPredicate<ResourceKey<Biome>, Biome> dripstoneCavesCondition = (biomeKey, biome)
-                -> biomeKey == Biomes.DRIPSTONE_CAVES && !WorldHelper.isOutside(handler.getPlayer());
+                -> biomeKey.equals(Biomes.DRIPSTONE_CAVES);
 
             BiPredicate<ResourceKey<Biome>, Biome> lushCavesCondition = (biomeKey, biome)
-                -> biomeKey == Biomes.LUSH_CAVES && !WorldHelper.isOutside(handler.getPlayer());
+                -> biomeKey.equals(Biomes.LUSH_CAVES);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), dripstoneCavesCondition, () -> DRIPSTONE));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), lushCavesCondition, () -> LUSH));

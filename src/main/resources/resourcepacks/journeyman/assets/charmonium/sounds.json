@@ -60,6 +60,16 @@
       {"name": "charmonium:ambience/beach/beach1"}
     ]
   },
+  "ambience.caves.dripstone": {
+    "sounds": [
+      {"name": "charmonium:ambience/dripstone_caves/dripstone_caves1"}
+    ]
+  },
+  "ambience.caves.lush": {
+    "sounds": [
+      {"name": "charmonium:ambience/lush_caves/lush_caves1"}
+    ]
+  },
   "ambience.desert.day": {
     "sounds": [
       {"name": "charmonium:ambience/wind/wind1"},
