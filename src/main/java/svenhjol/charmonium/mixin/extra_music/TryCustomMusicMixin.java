@@ -13,17 +13,15 @@ import svenhjol.charmonium.module.extra_music.ExtraMusic;
 public class TryCustomMusicMixin {
     @Inject(
         method = "getSituationalMusic",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/world/level/Level;getBiome(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/biome/Biome;"
-        ),
+        at = @At(value = "RETURN"),
         cancellable = true
     )
     private void hookSituationalMusic(CallbackInfoReturnable<Music> cir) {
         if (Charmonium.LOADER.isEnabled(ExtraMusic.class)) {
-            Music music = ExtraMusic.getMusic();
-            if (music != null)
+            Music music = ExtraMusic.replaceMusic(cir.getReturnValue());
+            if (music != null) {
                 cir.setReturnValue(music);
+            }
         }
     }
 }
