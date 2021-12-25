@@ -10,11 +10,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @version 1.0.0-charm
+ * @version 4.0.0-charmonium
  */
 @SuppressWarnings("unused")
 public abstract class ModuleLoader<T extends CharmModule> {
     private static final List<String> MOD_IDS = new ArrayList<>();
+    private final Map<Class<? extends T>, Boolean> ENABLED_CLAZZ_CACHE = new HashMap<>();
     private final Map<String, T> MODULES = new TreeMap<>();
     private final String modId;
     private final String basePackage;
@@ -80,21 +81,11 @@ public abstract class ModuleLoader<T extends CharmModule> {
      * Use this anywhere to check a module's enabled status for any Charm-based module.
      */
     public boolean isEnabled(Class<? extends T> clazz) {
-        return getModules().stream().anyMatch(module -> module.getClass().equals(clazz));
-    }
-
-    /**
-     * Use this anywhere to check a module's enabled status for any Charm-based module.
-     */
-    public boolean isEnabled(String moduleName) {
-        if (DebugHelper.isDebugMode() && moduleName.contains(":")) {
-            // deprecated, warn about it
-            LogHelper.warn(ModuleLoader.class, "Deprecated: Module `" + moduleName + "` no longer requires namespace");
-            moduleName = moduleName.split(":")[1];
+        if (!ENABLED_CLAZZ_CACHE.containsKey(clazz)) {
+            boolean enabled = getModules().stream().anyMatch(module -> module.getClass().equals(clazz) && module.isEnabled());
+            ENABLED_CLAZZ_CACHE.put(clazz, enabled);
         }
-
-        T module = getModule(moduleName);
-        return module != null && module.isEnabled();
+        return ENABLED_CLAZZ_CACHE.get(clazz);
     }
 
     public List<T> getModules() {

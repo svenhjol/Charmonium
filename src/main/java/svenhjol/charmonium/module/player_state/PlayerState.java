@@ -1,37 +1,34 @@
 package svenhjol.charmonium.module.player_state;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
-import svenhjol.charm.api.CharmNetworkReferences;
-import svenhjol.charm.api.CharmPlayerStateKeys;
+import svenhjol.charm.api.event.ClientStateUpdateCallback;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.ClientModule;
-import svenhjol.charmonium.helper.NetworkHelper;
 import svenhjol.charmonium.loader.CharmModule;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ClientModule(mod = Charmonium.MOD_ID, description = "Updates player state from Charm, if present.", alwaysEnabled = true)
 public class PlayerState extends CharmModule {
-    private static final ResourceLocation MSG_CLIENT = new ResourceLocation(CharmNetworkReferences.ClientUpdatePlayerState.getSerializedName());
-
-    // special state properties fetched from server
-    public static boolean insideOverworldRuin;
+    public static List<ResourceLocation> WITHIN_STRUCTURES = new ArrayList<>();
 
     @Override
     public void register() {
-        // listen to network requests from Charm
-        ClientPlayNetworking.registerGlobalReceiver(MSG_CLIENT, this::handleUpdatePlayerState);
+        // Listen to state events from Charm.
+        ClientStateUpdateCallback.EVENT.register(this::handleCharmStateUpdates);
     }
 
-    private void handleUpdatePlayerState(Minecraft client, ClientPacketListener handler, FriendlyByteBuf data, PacketSender sender) {
-        CompoundTag nbt = NetworkHelper.decodeNbt(data);
-        if (nbt == null) return;
+    private void handleCharmStateUpdates(CompoundTag tag) {
+        var list = tag.getList("WithinStructures", 8);
 
-        client.execute(()
-            -> insideOverworldRuin = nbt.getBoolean(CharmPlayerStateKeys.InsideOverworldRuin.toString()));
+        WITHIN_STRUCTURES.clear();
+        WITHIN_STRUCTURES.addAll(list.stream()
+            .map(Tag::getAsString)
+            .map(ResourceLocation::new)
+            .collect(Collectors.toList()));
     }
 }

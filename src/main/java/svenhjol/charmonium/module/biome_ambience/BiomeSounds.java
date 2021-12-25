@@ -6,7 +6,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.biome.Biomes;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 
 import java.util.function.BiPredicate;
@@ -17,8 +17,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.beach.day");
-            NIGHT = RegistryHelper.sound("ambience.beach.night");
+            DAY = ClientRegistry.sound("ambience.beach.day");
+            NIGHT = ClientRegistry.sound("ambience.beach.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.BEACH && WorldHelper.isOutside(handler.getPlayer());
@@ -33,8 +33,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.badlands.day");
-            NIGHT = RegistryHelper.sound("ambience.badlands.night");
+            DAY = ClientRegistry.sound("ambience.badlands.day");
+            NIGHT = ClientRegistry.sound("ambience.badlands.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.MESA && WorldHelper.isOutside(handler.getPlayer());
@@ -49,8 +49,8 @@ public class BiomeSounds {
         public static SoundEvent LUSH;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DRIPSTONE = RegistryHelper.sound("ambience.caves.dripstone");
-            LUSH = RegistryHelper.sound("ambience.caves.lush");
+            DRIPSTONE = ClientRegistry.sound("ambience.caves.dripstone");
+            LUSH = ClientRegistry.sound("ambience.caves.lush");
 
             BiPredicate<ResourceKey<Biome>, Biome> dripstoneCavesCondition = (biomeKey, biome)
                 -> biomeKey.equals(Biomes.DRIPSTONE_CAVES);
@@ -68,8 +68,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.desert.day");
-            NIGHT = RegistryHelper.sound("ambience.desert.night");
+            DAY = ClientRegistry.sound("ambience.desert.day");
+            NIGHT = ClientRegistry.sound("ambience.desert.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.DESERT && WorldHelper.isOutside(handler.getPlayer());
@@ -84,8 +84,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.forest.day");
-            NIGHT = RegistryHelper.sound("ambience.forest.night");
+            DAY = ClientRegistry.sound("ambience.forest.day");
+            NIGHT = ClientRegistry.sound("ambience.forest.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.FOREST
@@ -102,8 +102,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.icy.day");
-            NIGHT = RegistryHelper.sound("ambience.icy.night");
+            DAY = ClientRegistry.sound("ambience.icy.day");
+            NIGHT = ClientRegistry.sound("ambience.icy.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.ICY && WorldHelper.isOutside(handler.getPlayer());
@@ -118,8 +118,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.jungle.day");
-            NIGHT = RegistryHelper.sound("ambience.jungle.night");
+            DAY = ClientRegistry.sound("ambience.jungle.day");
+            NIGHT = ClientRegistry.sound("ambience.jungle.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.JUNGLE && WorldHelper.isOutside(handler.getPlayer());
@@ -134,8 +134,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.mountains.day");
-            NIGHT = RegistryHelper.sound("ambience.mountains.night");
+            DAY = ClientRegistry.sound("ambience.mountains.day");
+            NIGHT = ClientRegistry.sound("ambience.mountains.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.MOUNTAIN && WorldHelper.isOutside(handler.getPlayer());
@@ -150,8 +150,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.ocean.day");
-            NIGHT = RegistryHelper.sound("ambience.ocean.night");
+            DAY = ClientRegistry.sound("ambience.ocean.day");
+            NIGHT = ClientRegistry.sound("ambience.ocean.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.OCEAN && WorldHelper.isOutside(handler.getPlayer());
@@ -166,8 +166,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.plains.day");
-            NIGHT = RegistryHelper.sound("ambience.plains.night");
+            DAY = ClientRegistry.sound("ambience.plains.day");
+            NIGHT = ClientRegistry.sound("ambience.plains.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> (biome.getBiomeCategory() == BiomeCategory.PLAINS
@@ -186,8 +186,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.savanna.day");
-            NIGHT = RegistryHelper.sound("ambience.savanna.night");
+            DAY = ClientRegistry.sound("ambience.savanna.day");
+            NIGHT = ClientRegistry.sound("ambience.savanna.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.SAVANNA && WorldHelper.isOutside(handler.getPlayer());
@@ -202,8 +202,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.swamp.day");
-            NIGHT = RegistryHelper.sound("ambience.swamp.night");
+            DAY = ClientRegistry.sound("ambience.swamp.day");
+            NIGHT = ClientRegistry.sound("ambience.swamp.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> (biome.getBiomeCategory() == BiomeCategory.SWAMP
@@ -220,8 +220,8 @@ public class BiomeSounds {
         public static SoundEvent NIGHT;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            DAY = RegistryHelper.sound("ambience.taiga.day");
-            NIGHT = RegistryHelper.sound("ambience.taiga.night");
+            DAY = ClientRegistry.sound("ambience.taiga.day");
+            NIGHT = ClientRegistry.sound("ambience.taiga.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.TAIGA
@@ -237,7 +237,7 @@ public class BiomeSounds {
         public static SoundEvent SOUND;
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            SOUND = RegistryHelper.sound("ambience.the_end");
+            SOUND = ClientRegistry.sound("ambience.the_end");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.THEEND;

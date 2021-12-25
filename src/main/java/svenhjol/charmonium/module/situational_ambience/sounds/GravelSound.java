@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
@@ -23,7 +23,7 @@ public class GravelSound extends SituationalSound {
     }
 
     public static void init(SoundHandler<SituationalSound> handler) {
-        SOUND = RegistryHelper.sound("situational.gravel");
+        SOUND = ClientRegistry.sound("situational.gravel");
 
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();

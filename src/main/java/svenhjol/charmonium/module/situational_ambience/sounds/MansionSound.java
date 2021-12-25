@@ -2,16 +2,14 @@ package svenhjol.charmonium.module.situational_ambience.sounds;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.data.worldgen.StructureFeatures;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
@@ -29,7 +27,7 @@ public class MansionSound extends SituationalSound {
     }
 
     public static void init(SoundHandler<SituationalSound> handler) {
-        SOUND = RegistryHelper.sound("situational.mansion");
+        SOUND = ClientRegistry.sound("situational.mansion");
 
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();

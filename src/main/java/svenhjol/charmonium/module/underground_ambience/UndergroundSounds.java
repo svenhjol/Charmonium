@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.DimensionHelper;
-import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.registry.ClientRegistry;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -20,7 +20,7 @@ public class UndergroundSounds {
         }
 
         public static void init(SoundHandler<UndergroundSound> handler) {
-            SOUND = RegistryHelper.sound("ambience.cave");
+            SOUND = ClientRegistry.sound("ambience.cave");
 
             // config check
             if (!UndergroundAmbience.playCaveAmbience) return;
@@ -54,7 +54,7 @@ public class UndergroundSounds {
         }
 
         public static void init(SoundHandler<UndergroundSound> handler) {
-            SOUND = RegistryHelper.sound("ambience.deep_cave");
+            SOUND = ClientRegistry.sound("ambience.deep_cave");
 
             // config check
             if (!UndergroundAmbience.playDeepCaveAmbience) return;

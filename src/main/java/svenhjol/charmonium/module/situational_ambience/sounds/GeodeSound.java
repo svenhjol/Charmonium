@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
@@ -24,7 +24,7 @@ public class GeodeSound extends SituationalSound {
     }
 
     public static void init(SoundHandler<SituationalSound> handler) {
-        SOUND = RegistryHelper.sound("situational.geode");
+        SOUND = ClientRegistry.sound("situational.geode");
 
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();

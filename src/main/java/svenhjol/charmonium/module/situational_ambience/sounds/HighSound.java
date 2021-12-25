@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.DimensionHelper;
-import svenhjol.charmonium.helper.RegistryHelper;
+import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 
@@ -20,7 +20,7 @@ public class HighSound extends SituationalSound {
     }
 
     public static void init(SoundHandler<SituationalSound> handler) {
-        SOUND = RegistryHelper.sound("situational.high");
+        SOUND = ClientRegistry.sound("situational.high");
 
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();

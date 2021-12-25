@@ -1,44 +1,4 @@
 {
-  "music.overworld": {
-    "category": "music",
-    "sounds": [
-      {
-        "name": "charmonium:music/overworld1",
-        "stream": true,
-        "volume": 0.25
-      }
-    ]
-  },
-  "music.nether": {
-    "category": "music",
-    "sounds": [
-      {
-        "name": "charmonium:music/nether1",
-        "stream": true,
-        "volume": 0.25
-      }
-    ]
-  },
-  "music.cold": {
-    "category": "music",
-    "sounds": [
-      {
-        "name": "charmonium:music/cold1",
-        "stream": true,
-        "volume": 0.32
-      }
-    ]
-  },
-  "music.ruin": {
-    "category": "music",
-    "sounds": [
-      {
-        "name": "charmonium:music/ruin1",
-        "stream": true,
-        "volume": 0.32
-      }
-    ]
-  },
   "ambience.cave": {
     "sounds": [
       {"name": "charmonium:ambience/cave_wind/cave_wind1"}

@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.module.extra_music.ExtraMusic;
 
 @Mixin(Minecraft.class)
@@ -19,7 +20,7 @@ public class TryCustomMusicMixin {
         cancellable = true
     )
     private void hookSituationalMusic(CallbackInfoReturnable<Music> cir) {
-        if (ExtraMusic.isEnabled) {
+        if (Charmonium.LOADER.isEnabled(ExtraMusic.class)) {
             Music music = ExtraMusic.getMusic();
             if (music != null)
                 cir.setReturnValue(music);

@@ -4,14 +4,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
 import svenhjol.charmonium.helper.DimensionHelper;
-import svenhjol.charmonium.helper.RegistryHelper;
 import svenhjol.charmonium.loader.CharmModule;
-import svenhjol.charmonium.module.player_state.PlayerState;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -23,73 +20,12 @@ import java.util.function.Predicate;
 @ClientModule(mod = Charmonium.MOD_ID, description = "Plays custom music tracks according to the location of the player.")
 public class ExtraMusic extends CharmModule {
     private static final List<MusicCondition> musicConditions = new ArrayList<>();
-    public static boolean isEnabled;
-
-    public static SoundEvent MUSIC_OVERWORLD;
-    public static SoundEvent MUSIC_COLD;
-    public static SoundEvent MUSIC_NETHER;
-    public static SoundEvent MUSIC_RUIN;
 
     @Config(name = "Play Creative music", description = "If true, the six Creative music tracks may play in survival mode.")
     public static boolean playCreativeMusic = true;
 
-    @Config(name = "Play Overworld music", description = "If true, custom overworld-themed tracks may play.")
-    public static boolean playOverworldMusic = true;
-
-    @Config(name = "Play Nether music", description = "If true, custom nether-themed tracks may play.")
-    public static boolean playNetherMusic = true;
-
-    @Config(name = "Play Ruin music", description = "If true, underground ruin-themed tracks may play.  This requires Charm on the server.")
-    public static boolean playRuinMusic = true;
-
-    @Override
-    public void register() {
-        MUSIC_OVERWORLD = RegistryHelper.sound("music.overworld");
-        MUSIC_NETHER = RegistryHelper.sound("music.nether");
-        MUSIC_COLD = RegistryHelper.sound("music.cold");
-        MUSIC_RUIN = RegistryHelper.sound("music.ruin");
-    }
-
     @Override
     public void runWhenEnabled() {
-        // static boolean for mixins to check
-        isEnabled = Charmonium.LOADER.isEnabled("extra_music");
-
-        // overworld music
-        if (playOverworldMusic) {
-            getMusicConditions().add(new MusicCondition(MUSIC_OVERWORLD, 1200, 3600, mc ->
-                mc.player != null
-                    && DimensionHelper.isOverworld(mc.player.level)
-                    && mc.player.level.random.nextFloat() < 0.08F
-            ));
-
-            // cold music, look for player pos in icy biome
-            getMusicConditions().add(new MusicCondition(MUSIC_COLD, 1200, 3600, mc ->
-                mc.player != null
-                    && mc.player.level.getBiome(mc.player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.ICY
-                    && mc.player.level.random.nextFloat() < 0.2F
-            ));
-        }
-
-        // nether music, look for player at low position in the nether
-        if (playNetherMusic) {
-            getMusicConditions().add(new MusicCondition(MUSIC_NETHER, 1200, 3600, mc ->
-                mc.player != null
-                    && DimensionHelper.isNether(mc.player.level)
-                    && mc.player.blockPosition().getY() < 48
-                    && mc.player.level.random.nextFloat() < 0.33F
-            ));
-        }
-
-        // ruin music
-        if (playRuinMusic) {
-            getMusicConditions().add(new MusicCondition(MUSIC_RUIN, 1200, 3600, mc ->
-                mc.player != null
-                    && PlayerState.insideOverworldRuin
-                    && mc.player.level.random.nextFloat() < 0.33F
-            ));
-        }
-
         // creative tracks in survival mode
         if (playCreativeMusic) {
             getMusicConditions().add(new MusicCondition(SoundEvents.MUSIC_CREATIVE, 1200, 3600, mc ->
