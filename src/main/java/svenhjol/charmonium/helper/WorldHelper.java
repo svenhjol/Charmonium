@@ -29,9 +29,6 @@ public class WorldHelper {
     }
 
     public static boolean isOutside(Player player) {
-        if (!DimensionHelper.isOverworld(player.level))
-            return false; // TODO: configurable outdoor dimensions
-
         if (player.isUnderWater()) return false;
 
         int blocks = 16;
