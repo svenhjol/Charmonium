@@ -24,9 +24,7 @@
     ]
   },
 
-  "mixins": [
-    "charmonium.mixins.json"
-  ],
+  "mixins": [],
   "accessWidener": "charmonium.accesswidener",
 
   "depends": {
