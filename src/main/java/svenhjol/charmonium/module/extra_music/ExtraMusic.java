@@ -24,7 +24,7 @@ public class ExtraMusic extends CharmModule {
     private static final List<MusicCondition> CONDITIONS = new ArrayList<>();
 
     @Config(name = "Creative music chance", description = "Chance (out of 1.0) of a Creative music track playing in survival mode whenever a new track is ready to play.")
-    public static float creativeMusicChance = 0.25F;
+    public static float creativeMusicChance = 0.12F;
 
     @Override
     public void register() {
