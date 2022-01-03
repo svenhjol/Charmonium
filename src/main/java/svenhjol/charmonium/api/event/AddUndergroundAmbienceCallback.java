@@ -4,6 +4,9 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.world.level.Level;
 
+/**
+ * @version 4.0.0-charmonium
+ */
 public interface AddUndergroundAmbienceCallback {
     Event<AddUndergroundAmbienceCallback> EVENT = EventFactory.createArrayBacked(AddUndergroundAmbienceCallback.class, listeners -> level -> {
         for (AddUndergroundAmbienceCallback listener : listeners) {

@@ -4,6 +4,9 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.world.level.Level;
 
+/**
+ * @version 4.0.0-charmonium
+ */
 public interface AddBiomeAmbienceCallback {
     Event<AddBiomeAmbienceCallback> EVENT = EventFactory.createArrayBacked(AddBiomeAmbienceCallback.class, listeners -> level -> {
         for (AddBiomeAmbienceCallback listener : listeners) {
