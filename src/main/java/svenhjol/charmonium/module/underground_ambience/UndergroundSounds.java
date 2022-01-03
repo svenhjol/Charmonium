@@ -30,7 +30,6 @@ public class UndergroundSounds {
                 Player player = underground.getPlayer();
                 ClientLevel level = underground.getLevel();
 
-                if (!UndergroundAmbience.validDimensions.contains(DimensionHelper.getDimension(level))) return false;
                 if (player.isUnderWater()) return false;
 
                 BlockPos pos = player.blockPosition();
@@ -64,7 +63,6 @@ public class UndergroundSounds {
                 Player player = underground.getPlayer();
                 ClientLevel level = underground.getLevel();
 
-                if (!UndergroundAmbience.validDimensions.contains(DimensionHelper.getDimension(level))) return false;
                 if (player.isUnderWater()) return false;
 
                 BlockPos pos = player.blockPosition();

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -11,13 +12,20 @@ import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
+import svenhjol.charmonium.api.event.AddBiomeAmbienceCallback;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.biome_ambience.BiomeSounds.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @ClientModule(mod = Charmonium.MOD_ID, description = "Plays ambient background sound according to the biome and time of day.")
 public class BiomeAmbience extends CharmModule {
     public Handler handler;
+
+    public static List<ResourceLocation> VALID_DIMENSIONS = new ArrayList<>();
 
     @Config(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.")
     public static float volumeScaling = 0.55F;
@@ -64,33 +72,52 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "The End ambience", description = "If true, plays ambient sounds in the End biomes.")
     public static boolean theEnd = true;
 
+    @Config(name = "Valid dimensions", description = "Dimensions in which biome ambience will be played.")
+    public static List<String> configDimensions = Arrays.asList(
+        "minecraft:overworld",
+        "minecraft:the_end"
+    );
+
     @Override
     public void runWhenEnabled() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
+
+        configDimensions.forEach(dim -> VALID_DIMENSIONS.add(new ResourceLocation(dim)));
     }
 
     private void handleEntityLoad(Entity entity, Level level) {
-        if (entity instanceof Player)
-            trySetupSoundHandler((Player)entity);
+        if (entity instanceof Player) {
+            var result = AddBiomeAmbienceCallback.EVENT.invoker().interact(level);
+            var id = level.dimension().location();
+
+            if (result && !VALID_DIMENSIONS.contains(id)) {
+                VALID_DIMENSIONS.add(id);
+            }
+
+            trySetupSoundHandler((Player) entity);
+        }
     }
 
     private void handleEntityUnload(Entity entity, Level level) {
-        if (entity instanceof LocalPlayer && handler != null)
+        if (entity instanceof LocalPlayer && handler != null) {
             handler.stop();
+        }
     }
 
     private void handleClientTick(Minecraft client) {
-        if (handler != null && !client.isPaused())
+        if (handler != null && !client.isPaused()) {
             handler.tick();
+        }
     }
 
     public void trySetupSoundHandler(Player player) {
         if (!(player instanceof LocalPlayer)) return;
 
-        if (handler == null)
+        if (handler == null) {
             handler = new Handler(player);
+        }
 
         handler.updatePlayer(player);
     }

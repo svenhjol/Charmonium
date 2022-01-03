@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
+import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.LogHelper;
 import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.LoopingSound;
@@ -60,11 +61,13 @@ public class BiomeSound implements IAmbientSound {
     public void tick() {
         boolean nowValid = isValid();
 
-        if (isValid && !nowValid)
+        if (isValid && !nowValid) {
             isValid = false;
+        }
 
-        if (!isValid && nowValid)
+        if (!isValid && nowValid) {
             isValid = true;
+        }
 
         if (isValid && !isPlaying()) {
             soundInstance = new LoopingSound(player, getSound(), getVolume() * getVolumeScaling(), getPitch(), p -> isValid);
@@ -83,6 +86,10 @@ public class BiomeSound implements IAmbientSound {
         }
 
         if (!player.isAlive()) {
+            return false;
+        }
+
+        if (!BiomeAmbience.VALID_DIMENSIONS.contains(level.dimension().location())) {
             return false;
         }
 

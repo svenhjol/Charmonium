@@ -6,6 +6,7 @@ import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
+import svenhjol.charmonium.helper.DimensionHelper;
 import svenhjol.charmonium.helper.LogHelper;
 import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.LoopingSound;
@@ -56,11 +57,13 @@ public class UndergroundSound implements IAmbientSound {
     public void tick() {
         boolean nowValid = isValid();
 
-        if (isValid && !nowValid)
+        if (isValid && !nowValid) {
             isValid = false;
+        }
 
-        if (!isValid && nowValid)
+        if (!isValid && nowValid) {
             isValid = true;
+        }
 
         if (isValid && !isPlaying()) {
             soundInstance = new LoopingSound(player, getSound(), getVolume() * getVolumeScaling(), getPitch(), p -> isValid);
@@ -74,11 +77,17 @@ public class UndergroundSound implements IAmbientSound {
 
     @Override
     public boolean isValid() {
-        if (client.level == null || level == null)
+        if (client.level == null || level == null) {
             return false;
+        }
 
-        if (!player.isAlive())
+        if (!player.isAlive()) {
             return false;
+        }
+
+        if (!UndergroundAmbience.VALID_DIMENSIONS.contains(level.dimension().location())) {
+            return false;
+        }
 
         return validCondition.test(this);
     }

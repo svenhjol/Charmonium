@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
+import svenhjol.charmonium.api.event.AddBiomeAmbienceCallback;
+import svenhjol.charmonium.api.event.AddUndergroundAmbienceCallback;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.underground_ambience.UndergroundSounds.Cave;
@@ -46,20 +48,28 @@ public class UndergroundAmbience extends CharmModule {
     @Config(name = "Light level", description = "When the light is lower than this level then cave and deepcave background sound will be triggered.")
     public static int lightLevel = 10;
 
-    public static List<ResourceLocation> validDimensions = new ArrayList<>();
+    public static List<ResourceLocation> VALID_DIMENSIONS = new ArrayList<>();
 
     @Override
     public void runWhenEnabled() {
-        configDimensions.forEach(dim -> validDimensions.add(new ResourceLocation(dim)));
-
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
+
+        configDimensions.forEach(dim -> VALID_DIMENSIONS.add(new ResourceLocation(dim)));
     }
 
     private void handleEntityLoad(Entity entity, Level level) {
-        if (entity instanceof Player)
-            trySetupSoundHandler((Player)entity);
+        if (entity instanceof Player) {
+            var result = AddUndergroundAmbienceCallback.EVENT.invoker().interact(level);
+            var id = level.dimension().location();
+
+            if (result && !VALID_DIMENSIONS.contains(id)) {
+                VALID_DIMENSIONS.add(id);
+            }
+
+            trySetupSoundHandler((Player) entity);
+        }
     }
 
     private void handleEntityUnload(Entity entity, Level level) {
