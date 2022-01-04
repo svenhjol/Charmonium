@@ -106,7 +106,9 @@ public class BiomeSounds {
             NIGHT = ClientRegistry.sound("ambience.icy.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.ICY && WorldHelper.isOutside(handler.getPlayer());
+                -> (biome.getBiomeCategory() == BiomeCategory.ICY
+                || biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS)
+                && WorldHelper.isOutside(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -170,14 +172,26 @@ public class BiomeSounds {
             NIGHT = ClientRegistry.sound("ambience.plains.night");
 
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> (biome.getBiomeCategory() == BiomeCategory.PLAINS
-                    || biome.getBiomeCategory() == BiomeCategory.RIVER
-                    || biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS)
+                -> biome.getBiomeCategory() == BiomeCategory.PLAINS
                 && WorldHelper.isOutside(handler.getPlayer())
                 && !WorldHelper.isThundering(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+        }
+    }
+
+    public static class River {
+        public static SoundEvent RIVER;
+
+        public static void init(SoundHandler<BiomeSound> handler) {
+            RIVER = ClientRegistry.sound("ambience.river");
+
+            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
+                -> biome.getBiomeCategory() == BiomeCategory.RIVER
+                && WorldHelper.isOutside(handler.getPlayer());
+
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition, () -> RIVER));
         }
     }
 

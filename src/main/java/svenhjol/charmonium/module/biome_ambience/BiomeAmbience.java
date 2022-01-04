@@ -60,6 +60,9 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "Plains ambience", description = "If true, plays ambient sounds in plains biomes.")
     public static boolean plains = true;
 
+    @Config(name = "River ambience", description = "If true, plays ambient sounds when in rivers and frozen rivers.")
+    public static boolean river = true;
+
     @Config(name = "Savanna ambience", description = "If true, plays ambient sounds in savanna biomes.")
     public static boolean savanna = true;
 
@@ -136,6 +139,7 @@ public class BiomeAmbience extends CharmModule {
             if (mountains) Mountains.init(this);
             if (ocean) Ocean.init(this);
             if (plains) Plains.init(this);
+            if (river) River.init(this);
             if (savanna) Savanna.init(this);
             if (swamp) Swamp.init(this);
             if (taiga) Taiga.init(this);

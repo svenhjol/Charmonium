@@ -163,6 +163,12 @@
       {"name": "charmonium:ambience/crickets/crickets4"}
     ]
   },
+  "ambience.river": {
+    "sounds": [
+      {"name": "charmonium:ambience/wind/wind4"},
+      {"name": "charmonium:ambience/cold_plains/cold_plains1"}
+    ]
+  },
   "ambience.savanna.day": {
     "sounds": [
       {"name": "charmonium:ambience/windy_plains/windy_plains1"},
