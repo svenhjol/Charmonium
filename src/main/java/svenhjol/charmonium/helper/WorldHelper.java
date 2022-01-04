@@ -2,10 +2,7 @@ package svenhjol.charmonium.helper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HugeMushroomBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.StemBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
@@ -49,6 +46,7 @@ public class WorldHelper {
             // TODO: configurable clear blocks
             if (state.getMaterial() == Material.GLASS
                 || (block instanceof RotatedPillarBlock && state.getMaterial() == Material.WOOD)
+                || block instanceof LeavesBlock
                 || block instanceof HugeMushroomBlock
                 || block instanceof StemBlock
             ) continue;
