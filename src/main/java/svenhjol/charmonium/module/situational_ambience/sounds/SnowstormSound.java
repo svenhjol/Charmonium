@@ -29,9 +29,11 @@ public class SnowstormSound extends SituationalSound {
         ));
     }
 
-    public static void init(SoundHandler<SituationalSound> handler) {
+    public static void register() {
         SOUND = ClientRegistry.sound("situational.snowstorm");
+    }
 
+    public static void init(SoundHandler<SituationalSound> handler) {
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();

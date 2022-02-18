@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
-import svenhjol.charmonium.api.event.AddBiomeAmbienceCallback;
 import svenhjol.charmonium.api.event.AddUndergroundAmbienceCallback;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.loader.CharmModule;
@@ -49,6 +48,12 @@ public class UndergroundAmbience extends CharmModule {
     public static int lightLevel = 10;
 
     public static List<ResourceLocation> VALID_DIMENSIONS = new ArrayList<>();
+
+    @Override
+    public void register() {
+        Cave.register();
+        DeepCave.register();
+    }
 
     @Override
     public void runWhenEnabled() {

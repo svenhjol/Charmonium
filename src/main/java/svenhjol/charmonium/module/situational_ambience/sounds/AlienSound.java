@@ -5,8 +5,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
+import svenhjol.charmonium.registry.ClientRegistry;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -18,9 +18,11 @@ public class AlienSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(SoundHandler<SituationalSound> handler) {
+    public static void register() {
         SOUND = ClientRegistry.sound("situational.alien");
+    }
 
+    public static void init(SoundHandler<SituationalSound> handler) {
         Predicate<SituationalSound> validCondition = situation -> {
             ClientLevel level = situation.getLevel();
             Player player = situation.getPlayer();

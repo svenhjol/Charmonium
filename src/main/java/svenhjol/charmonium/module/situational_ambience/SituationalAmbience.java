@@ -62,6 +62,23 @@ public class SituationalAmbience extends CharmModule {
     public static boolean village = true;
 
     @Override
+    public void register() {
+        AlienSound.register();
+        BleakSound.register();
+        CaveWaterSound.register();
+        DeepslateSound.register();
+        DrySound.register();
+        GeodeSound.register();
+        GravelSound.register();
+        HighSound.register();
+        MansionSound.register();
+        MineshaftSound.register();
+        NightPlainsSound.register();
+        SnowstormSound.register();
+        VillageSound.register();
+    }
+
+    @Override
     public void runWhenEnabled() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);

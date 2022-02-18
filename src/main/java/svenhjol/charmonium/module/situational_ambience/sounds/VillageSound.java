@@ -21,9 +21,11 @@ public class VillageSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(SoundHandler<SituationalSound> handler) {
+    public static void register() {
         SOUND = ClientRegistry.sound("situational.village");
+    }
 
+    public static void init(SoundHandler<SituationalSound> handler) {
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();

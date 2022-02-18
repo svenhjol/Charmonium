@@ -7,9 +7,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
+import svenhjol.charmonium.registry.ClientRegistry;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -22,9 +22,11 @@ public class GravelSound extends SituationalSound {
         super(player, validCondition, soundCondition);
     }
 
-    public static void init(SoundHandler<SituationalSound> handler) {
+    public static void register() {
         SOUND = ClientRegistry.sound("situational.gravel");
+    }
 
+    public static void init(SoundHandler<SituationalSound> handler) {
         Predicate<SituationalSound> validCondition = situation -> {
             Player player = situation.getPlayer();
             ClientLevel level = situation.getLevel();

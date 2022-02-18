@@ -82,6 +82,11 @@ public class BiomeAmbience extends CharmModule {
     );
 
     @Override
+    public void register() {
+        registerSounds();
+    }
+
+    @Override
     public void runWhenEnabled() {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
@@ -123,6 +128,24 @@ public class BiomeAmbience extends CharmModule {
         }
 
         handler.updatePlayer(player);
+    }
+
+    public void registerSounds() {
+        Beach.register();
+        Badlands.register();
+        Caves.register();
+        Desert.register();
+        Forest.register();
+        Icy.register();
+        Jungle.register();
+        Mountains.register();
+        Ocean.register();
+        Plains.register();
+        River.register();
+        Savanna.register();
+        Swamp.register();
+        Taiga.register();
+        TheEnd.register();
     }
 
     public static class Handler extends SoundHandler<BiomeSound> {
