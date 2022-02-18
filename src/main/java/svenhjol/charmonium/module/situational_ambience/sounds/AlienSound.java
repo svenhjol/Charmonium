@@ -24,7 +24,7 @@ public class AlienSound extends SituationalSound {
         Predicate<SituationalSound> validCondition = situation -> {
             ClientLevel level = situation.getLevel();
             Player player = situation.getPlayer();
-            return level.getBiome(player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.THEEND;
+            return level.getBiome(player.blockPosition()).value().getBiomeCategory() == Biome.BiomeCategory.THEEND;
         };
 
         Function<SituationalSound, SoundEvent> soundCondition = situation -> SOUND;

@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import svenhjol.charmonium.handler.SoundHandler;
+import svenhjol.charmonium.helper.BiomeHelper;
 import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
@@ -40,7 +41,7 @@ public class BleakSound extends SituationalSound {
             if (!WorldHelper.isOutside(player)) return false;
             if (WorldHelper.isBelowSeaLevel(player)) return false;
 
-            Biome biome = level.getBiome(player.blockPosition());
+            Biome biome = BiomeHelper.getBiome(level, player.blockPosition());
             BiomeCategory category = biome.getBiomeCategory();
             return validCategories.contains(category);
         };

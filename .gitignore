@@ -21,7 +21,7 @@
 /lib
 /web/node_modules
 /web/vendor
-copycharm.sh
+copydeps.sh
 replace.sh
 
 ## Windows

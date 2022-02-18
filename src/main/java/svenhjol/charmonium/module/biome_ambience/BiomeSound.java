@@ -9,13 +9,12 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.helper.DimensionHelper;
+import svenhjol.charmonium.helper.BiomeHelper;
 import svenhjol.charmonium.helper.LogHelper;
 import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.LoopingSound;
 
 import java.util.ConcurrentModificationException;
-import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
@@ -94,13 +93,13 @@ public class BiomeSound implements IAmbientSound {
         }
 
         BlockPos pos = player.blockPosition();
-        Biome biome = level.getBiome(pos);
-        Optional<ResourceKey<Biome>> biomeKey = level.getBiomeName(pos);
-        if (biome == null || biomeKey.isEmpty()) {
+        Biome biome = BiomeHelper.getBiome(level, pos);
+        ResourceKey<Biome> biomeKey = BiomeHelper.getBiomeKey(level, pos);
+        if (biome == null || biomeKey == null) {
             return false;
         }
 
-        return this.biomeCondition.test(biomeKey.get(), biome);
+        return this.biomeCondition.test(biomeKey, biome);
     }
 
     @Nullable

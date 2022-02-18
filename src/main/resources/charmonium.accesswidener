@@ -1,4 +1,6 @@
 accessWidener v1 named
 
+accessible method net/minecraft/world/level/biome/Biome getBiomeCategory ()Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
+
 accessible field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
 mutable    field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
