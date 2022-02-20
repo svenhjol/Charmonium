@@ -21,6 +21,9 @@
   "entrypoints": {
     "client": [
       "svenhjol.charmonium.Charmonium"
+    ],
+    "modmenu": [
+      "svenhjol.charmonium.integration.modmenu.CharmoniumModMenuPlugin"
     ]
   },
 
