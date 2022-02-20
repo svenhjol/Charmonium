@@ -90,8 +90,7 @@
     "sounds": [
       {"name": "charmonium:ambience/forest/forest1"},
       {"name": "charmonium:ambience/forest/forest2"},
-      {"name": "charmonium:ambience/forest/forest3"},
-      {"name": "charmonium:ambience/forest/forest4"}
+      {"name": "charmonium:ambience/forest/forest3"}
     ]
   },
   "ambience.forest.night": {
