@@ -3,13 +3,13 @@ package svenhjol.charmonium.module.biome_ambience;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.biome.Biomes;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.init.CharmoniumBiomes;
+import svenhjol.charmonium.registry.ClientRegistry;
 
-import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class BiomeSounds {
     public static class Beach {
@@ -22,11 +22,11 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.BEACH && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.BEACH.contains(biomeKey) && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -40,30 +40,36 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.MESA && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.BADLANDS.contains(biomeKey) && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
     public static class Caves {
+        public static SoundEvent DEEP_DARK;
         public static SoundEvent DRIPSTONE;
         public static SoundEvent LUSH;
 
         public static void register() {
+            DEEP_DARK = ClientRegistry.sound("ambience.caves.deep_dark");
             DRIPSTONE = ClientRegistry.sound("ambience.caves.dripstone");
             LUSH = ClientRegistry.sound("ambience.caves.lush");
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> dripstoneCavesCondition = (biomeKey, biome)
-                -> biomeKey.equals(Biomes.DRIPSTONE_CAVES);
+            Predicate<ResourceKey<Biome>> deepDarkCondition =
+                biomeKey -> biomeKey.equals(Biomes.DEEP_DARK);
 
-            BiPredicate<ResourceKey<Biome>, Biome> lushCavesCondition = (biomeKey, biome)
-                -> biomeKey.equals(Biomes.LUSH_CAVES);
+            Predicate<ResourceKey<Biome>> dripstoneCavesCondition =
+                biomeKey -> biomeKey.equals(Biomes.DRIPSTONE_CAVES);
 
+            Predicate<ResourceKey<Biome>> lushCavesCondition =
+                biomeKey -> biomeKey.equals(Biomes.LUSH_CAVES);
+
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), deepDarkCondition, () -> DEEP_DARK));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), dripstoneCavesCondition, () -> DRIPSTONE));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), lushCavesCondition, () -> LUSH));
         }
@@ -79,11 +85,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.DESERT && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.DESERT.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -97,13 +104,13 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.FOREST
-                && WorldHelper.isOutside(handler.getPlayer())
-                && !WorldHelper.isThundering(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.FOREST.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && !WorldHelper.isThundering(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -117,13 +124,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> (biome.getBiomeCategory() == BiomeCategory.ICY
-                || biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS)
-                && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.ICY.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -137,11 +143,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.JUNGLE && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.JUNGLE.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -155,11 +162,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.MOUNTAIN && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.MOUNTAIN.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -173,11 +181,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.OCEAN && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.OCEAN.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -191,13 +200,13 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.PLAINS
-                && WorldHelper.isOutside(handler.getPlayer())
-                && !WorldHelper.isThundering(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.PLAINS.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && !WorldHelper.isThundering(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -209,9 +218,9 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.RIVER
-                && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.RIVER.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition, () -> RIVER));
         }
@@ -227,11 +236,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.SAVANNA && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.SAVANNA.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -245,13 +255,12 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> (biome.getBiomeCategory() == BiomeCategory.SWAMP
-                    || biome.getBiomeCategory() == BiomeCategory.MUSHROOM)
-                && WorldHelper.isOutside(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.SWAMP.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -265,13 +274,13 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.TAIGA
-                && WorldHelper.isOutside(handler.getPlayer())
-                && !WorldHelper.isThundering(handler.getPlayer());
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.TAIGA.contains(biomeKey)
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && !WorldHelper.isThundering(handler.getPlayer());
 
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
-            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
+            handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and(k -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
         }
     }
 
@@ -283,8 +292,8 @@ public class BiomeSounds {
         }
 
         public static void init(SoundHandler<BiomeSound> handler) {
-            BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.THEEND;
+            Predicate<ResourceKey<Biome>> biomeCondition =
+                biomeKey -> CharmoniumBiomes.THEEND.contains(biomeKey);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition, () -> SOUND));
         }

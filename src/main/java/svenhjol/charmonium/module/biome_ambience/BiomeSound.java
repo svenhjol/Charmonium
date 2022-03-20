@@ -15,7 +15,7 @@ import svenhjol.charmonium.iface.IAmbientSound;
 import svenhjol.charmonium.sounds.LoopingSound;
 
 import java.util.ConcurrentModificationException;
-import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class BiomeSound implements IAmbientSound {
@@ -25,9 +25,9 @@ public class BiomeSound implements IAmbientSound {
     protected ClientLevel level;
     protected LoopingSound soundInstance = null;
     protected Supplier<SoundEvent> soundCondition;
-    protected BiPredicate<ResourceKey<Biome>, Biome> biomeCondition;
+    protected Predicate<ResourceKey<Biome>> biomeCondition;
 
-    protected BiomeSound(Player player, BiPredicate<ResourceKey<Biome>, Biome> biomeCondition, Supplier<SoundEvent> soundCondition) {
+    protected BiomeSound(Player player, Predicate<ResourceKey<Biome>> biomeCondition, Supplier<SoundEvent> soundCondition) {
         this.client = Minecraft.getInstance();
         this.player = player;
         this.level = (ClientLevel) player.level;
@@ -93,13 +93,12 @@ public class BiomeSound implements IAmbientSound {
         }
 
         BlockPos pos = player.blockPosition();
-        Biome biome = BiomeHelper.getBiome(level, pos);
         ResourceKey<Biome> biomeKey = BiomeHelper.getBiomeKey(level, pos);
-        if (biome == null || biomeKey == null) {
+        if (biomeKey == null) {
             return false;
         }
 
-        return this.biomeCondition.test(biomeKey, biome);
+        return this.biomeCondition.test(biomeKey);
     }
 
     @Nullable

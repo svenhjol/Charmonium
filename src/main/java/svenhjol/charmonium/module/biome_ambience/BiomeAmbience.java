@@ -14,6 +14,7 @@ import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
 import svenhjol.charmonium.api.event.AddBiomeAmbienceCallback;
 import svenhjol.charmonium.handler.SoundHandler;
+import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.biome_ambience.BiomeSounds.*;
 
@@ -30,56 +31,53 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.")
     public static float volumeScaling = 0.55F;
 
-    @Config(name = "Beach ambience", description = "If true, plays ambient sounds in beach biomes.")
-    public static boolean beach = true;
-
-    @Config(name = "Badlands ambience", description = "If true, plays ambient sounds in badlands (mesa) biomes.")
-    public static boolean badlands = true;
-
-    @Config(name = "Cave biome ambience", description = "If true, plays ambience sounds in underground biomes such as dripstone and lush caves.")
-    public static boolean caves = true;
-
-    @Config(name = "Desert ambience", description = "If true, plays ambient sounds in desert biomes.")
-    public static boolean desert = true;
-
-    @Config(name = "Forest ambience", description = "If true, plays ambient sounds in forest biomes.")
-    public static boolean forest = true;
-
-    @Config(name = "Icy ambience", description = "If true, plays ambient sounds in cold (tundra, snowy) biomes.")
-    public static boolean icy = true;
-
-    @Config(name = "Jungle ambience", description = "If true, plays ambient sounds in jungle biomes.")
-    public static boolean jungle = true;
-
-    @Config(name = "Mountains ambience", description = "If true, plays ambient sounds in mountain biomes.")
-    public static boolean mountains = true;
-
-    @Config(name = "Ocean ambience", description = "If true, plays ambient sounds in ocean biomes when above the water surface.")
-    public static boolean ocean = true;
-
-    @Config(name = "Plains ambience", description = "If true, plays ambient sounds in plains biomes.")
-    public static boolean plains = true;
-
-    @Config(name = "River ambience", description = "If true, plays ambient sounds when in rivers and frozen rivers.")
-    public static boolean river = true;
-
-    @Config(name = "Savanna ambience", description = "If true, plays ambient sounds in savanna biomes.")
-    public static boolean savanna = true;
-
-    @Config(name = "Swamp ambience", description = "If true, plays ambient sounds in swamp biomes.")
-    public static boolean swamp = true;
-
-    @Config(name = "Taiga ambience", description = "If true, plays ambient sounds in taiga biomes.")
-    public static boolean taiga = true;
-
-    @Config(name = "The End ambience", description = "If true, plays ambient sounds in the End biomes.")
-    public static boolean theEnd = true;
-
     @Config(name = "Valid dimensions", description = "Dimensions in which biome ambience will be played.")
     public static List<String> configDimensions = Arrays.asList(
         "minecraft:overworld",
         "minecraft:the_end"
     );
+
+    @Config(name = "Extra badlands biomes", description = "Biomes that will have badlands ambient sounds.")
+    public static List<String> extraBadlandsBiomes = new ArrayList<>();
+
+    @Config(name = "Extra beach biomes", description = "Biomes that will have beach ambient sounds.")
+    public static List<String> extraBeachBiomes = new ArrayList<>();
+
+    @Config(name = "Extra desert biomes", description = "Biomes that will have desert ambient sounds.")
+    public static List<String> extraDesertBiomes = new ArrayList<>();
+
+    @Config(name = "Extra forest biomes", description = "Biomes that will have forest ambient sounds.")
+    public static List<String> extraForestBiomes = new ArrayList<>();
+
+    @Config(name = "Extra icy biomes", description = "Biomes that will have icy ambient sounds.")
+    public static List<String> extraIcyBiomes = new ArrayList<>();
+
+    @Config(name = "Extra jungle biomes", description = "Biomes that will have jungle ambient sounds.")
+    public static List<String> extraJungleBiomes = new ArrayList<>();
+
+    @Config(name = "Extra mountain biomes", description = "Biomes that will have mountain ambient sounds.")
+    public static List<String> extraMountainBiomes = new ArrayList<>();
+
+    @Config(name = "Extra ocean biomes", description = "Biomes that will have ocean ambient sounds.")
+    public static List<String> extraOceanBiomes = new ArrayList<>();
+
+    @Config(name = "Extra plains biomes", description = "Biomes that will have plains ambient sounds.")
+    public static List<String> extraPlainsBiomes = new ArrayList<>();
+
+    @Config(name = "Extra river biomes", description = "Biomes that will have river ambient sounds.")
+    public static List<String> extraRiverBiomes = new ArrayList<>();
+
+    @Config(name = "Extra savanna biomes", description = "Biomes that will have savanna ambient sounds.")
+    public static List<String> extraSavannaBiomes = new ArrayList<>();
+
+    @Config(name = "Extra swamp biomes", description = "Biomes that will have swamp ambient sounds.")
+    public static List<String> extraSwampBiomes = new ArrayList<>();
+
+    @Config(name = "Extra taiga biomes", description = "Biomes that will have taiga ambient sounds.")
+    public static List<String> extraTaigaBiomes = new ArrayList<>();
+
+    @Config(name = "Extra End biomes", description = "Biomes that will have The End ambient sounds.")
+    public static List<String> extraEndBiomes = new ArrayList<>();
 
     @Override
     public void register() {
@@ -93,6 +91,21 @@ public class BiomeAmbience extends CharmModule {
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
 
         configDimensions.forEach(dim -> VALID_DIMENSIONS.add(new ResourceLocation(dim)));
+
+        extraBadlandsBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.BADLANDS));
+        extraBeachBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.BEACH));
+        extraDesertBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.DESERT));
+        extraForestBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.FOREST));
+        extraIcyBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.ICY));
+        extraJungleBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.JUNGLE));
+        extraMountainBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.MOUNTAIN));
+        extraOceanBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.OCEAN));
+        extraPlainsBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.PLAINS));
+        extraRiverBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.RIVER));
+        extraSavannaBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.SAVANNA));
+        extraSwampBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.SWAMP));
+        extraTaigaBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.TAIGA));
+        extraEndBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.THEEND));
     }
 
     private void handleEntityLoad(Entity entity, Level level) {
@@ -152,21 +165,21 @@ public class BiomeAmbience extends CharmModule {
         private Handler(@NotNull Player player) {
             super(player);
 
-            if (beach) Beach.init(this);
-            if (badlands) Badlands.init(this);
-            if (caves) Caves.init(this);
-            if (desert) Desert.init(this);
-            if (forest) Forest.init(this);
-            if (icy) Icy.init(this);
-            if (jungle) Jungle.init(this);
-            if (mountains) Mountains.init(this);
-            if (ocean) Ocean.init(this);
-            if (plains) Plains.init(this);
-            if (river) River.init(this);
-            if (savanna) Savanna.init(this);
-            if (swamp) Swamp.init(this);
-            if (taiga) Taiga.init(this);
-            if (theEnd) TheEnd.init(this);
+            Beach.init(this);
+            Badlands.init(this);
+            Caves.init(this);
+            Desert.init(this);
+            Forest.init(this);
+            Icy.init(this);
+            Jungle.init(this);
+            Mountains.init(this);
+            Ocean.init(this);
+            Plains.init(this);
+            River.init(this);
+            Savanna.init(this);
+            Swamp.init(this);
+            Taiga.init(this);
+            TheEnd.init(this);
         }
     }
 }

@@ -34,8 +34,14 @@
   },
   "ambience.deep_cave": {
     "sounds": [
-      {"name": "charmonium:ambience/deep_cave/deep_cave1"},
-      {"name": "charmonium:ambience/deep_cave/deep_cave2"}
+      {
+        "name": "charmonium:ambience/deep_cave/deep_cave1",
+        "volume": 0.9
+      },
+      {
+        "name": "charmonium:ambience/deep_cave/deep_cave2",
+        "volume": 0.9
+      }
     ]
   },
   "ambience.beach.day": {
@@ -56,6 +62,11 @@
   "ambience.caves.lush": {
     "sounds": [
       {"name": "charmonium:ambience/lush_caves/lush_caves1"}
+    ]
+  },
+  "ambience.caves.deep_dark": {
+    "sounds": [
+      {"name": "charmonium:ambience/deep_dark/deep_dark1"}
     ]
   },
   "ambience.desert.day": {

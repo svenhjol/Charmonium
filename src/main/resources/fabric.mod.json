@@ -21,9 +21,6 @@
   "entrypoints": {
     "client": [
       "svenhjol.charmonium.Charmonium"
-    ],
-    "modmenu": [
-      "svenhjol.charmonium.integration.modmenu.CharmoniumModMenuPlugin"
     ]
   },
 
@@ -31,12 +28,12 @@
   "accessWidener": "charmonium.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.11.7",
+    "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.18.*"
+    "minecraft": ">=1.18"
   },
   "suggests": {
     "flamingo": "*",
-    "charm": ">=4.0.0"
+    "charm": ">=4.1.0"
   }
 }
