@@ -55,7 +55,7 @@
   },
   "ambience.caves.lush": {
     "sounds": [
-      {"name": "charmonium:ambience/lush_caves/lush_caves1"}
+      {"name": "charmonium:ambience/lush_caves/lush_caves2"}
     ]
   },
   "ambience.desert.day": {
