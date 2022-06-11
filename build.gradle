@@ -19,7 +19,6 @@ loom {
 }
 
 dependencies {
-	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.layered {
 		officialMojangMappings()
@@ -49,13 +48,13 @@ dependencies {
 	// Enable charm at runtime for testing state sync
 	modRuntimeOnly "svenhjol.charm:charm:${project.charm_version}"
 
-	// Cloth Config
-//	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-//		exclude(group: "net.fabricmc.fabric-api")
-//	}
-//
-//	// ModMenu
-//	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
+	// ModMenu
+	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+	// Cloth Config for ModMenu building - do we need to replace with midnightlib at some point?
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
 }
 
 processResources {

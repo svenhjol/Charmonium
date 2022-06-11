@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.BiomeHelper;
 import svenhjol.charmonium.init.CharmoniumBiomes;
+import svenhjol.charmonium.module.situational_ambience.SituationalAmbience;
 import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
@@ -30,6 +31,7 @@ public class NightPlainsSound extends SituationalSound {
             ClientLevel level = situation.getLevel();
 
             if (WorldHelper.isDay(player)) return false;
+            if (!WorldHelper.isNearGround(player, SituationalAmbience.cullSoundAboveGround)) return false;
             if (!WorldHelper.isOutside(player)) return false;
             if (WorldHelper.isBelowSeaLevel(player)) return false;
 

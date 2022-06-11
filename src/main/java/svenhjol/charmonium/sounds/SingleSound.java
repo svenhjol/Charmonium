@@ -3,6 +3,7 @@ package svenhjol.charmonium.sounds;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.module.core.Core;
@@ -15,7 +16,7 @@ public class SingleSound extends AbstractTickableSoundInstance {
     }
 
     public SingleSound(Player player, SoundEvent sound, float volume, float pitch, @Nullable BlockPos pos) {
-        super(sound, Core.getSource());
+        super(sound, Core.getSource(), RandomSource.create());
 
         this.player = player;
         this.looping = false;

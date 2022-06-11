@@ -55,6 +55,6 @@ public class VillageSound extends SituationalSound {
 
     @Override
     public float getVolume() {
-        return 0.92F;
+        return 0.82F;
     }
 }

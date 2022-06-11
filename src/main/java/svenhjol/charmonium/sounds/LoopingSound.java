@@ -2,6 +2,7 @@ package svenhjol.charmonium.sounds;
 
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.module.core.Core;
 
@@ -16,7 +17,7 @@ public class LoopingSound extends AbstractTickableSoundInstance {
     private final float maxVolume;
 
     public LoopingSound(Player player, SoundEvent sound, float volume, float pitch, Predicate<Player> predicate) {
-        super(sound, Core.getSource());
+        super(sound, Core.getSource(), RandomSource.create());
 
         this.maxVolume = volume;
         this.player = player;

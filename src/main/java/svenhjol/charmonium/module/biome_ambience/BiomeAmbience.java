@@ -31,6 +31,9 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.")
     public static float volumeScaling = 0.55F;
 
+    @Config(name = "Above Ground For Ambience Silencing", description = "Number of blocks above the ground that biome ambience will be silenced.")
+    public static int cullSoundAboveGround = 24;
+
     @Config(name = "Valid dimensions", description = "Dimensions in which biome ambience will be played.")
     public static List<String> configDimensions = Arrays.asList(
         "minecraft:overworld",

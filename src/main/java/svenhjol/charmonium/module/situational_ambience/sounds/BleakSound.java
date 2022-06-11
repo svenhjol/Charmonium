@@ -5,10 +5,11 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.BiomeHelper;
+import svenhjol.charmonium.module.situational_ambience.SituationalAmbience;
+import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
-import svenhjol.charmonium.registry.ClientRegistry;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -31,6 +32,7 @@ public class BleakSound extends SituationalSound {
 
             if (WorldHelper.isNight(player)) return false;
             if (!WorldHelper.isOutside(player)) return false;
+            if (!WorldHelper.isNearGround(player, SituationalAmbience.cullSoundAboveGround)) return false;
             if (WorldHelper.isBelowSeaLevel(player)) return false;
 
             var biomeKey = BiomeHelper.getBiomeKey(level, player.blockPosition());
