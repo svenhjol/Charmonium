@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.Material;
 
 /**
@@ -57,6 +58,13 @@ public class WorldHelper {
         }
 
         return false;
+    }
+
+    public static boolean isNearGround(Player player, int allowedHeight) {
+        var level = player.getLevel();
+        var pos = player.blockPosition();
+        var groundHeight = level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ());
+        return pos.getY() < groundHeight + allowedHeight;
     }
 
     public static boolean isBelowSeaLevel(Player player) {

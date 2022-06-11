@@ -7,6 +7,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.BiomeHelper;
+import svenhjol.charmonium.module.situational_ambience.SituationalAmbience;
 import svenhjol.charmonium.registry.ClientRegistry;
 import svenhjol.charmonium.helper.WorldHelper;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
@@ -41,6 +42,7 @@ public class DrySound extends SituationalSound {
             ClientLevel level = situation.getLevel();
 
             if (!WorldHelper.isOutside(player)) return false;
+            if (!WorldHelper.isNearGround(player, SituationalAmbience.cullSoundAboveGround)) return false;
             if (WorldHelper.isNight(player)) return false;
             if (WorldHelper.isBelowSeaLevel(player)) return false;
 

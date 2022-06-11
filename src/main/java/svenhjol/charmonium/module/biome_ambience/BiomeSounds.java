@@ -23,7 +23,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.BEACH && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.BEACH
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -41,7 +43,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.MESA && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.MESA
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -80,7 +84,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.DESERT && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.DESERT
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -99,8 +105,9 @@ public class BiomeSounds {
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.FOREST
-                && WorldHelper.isOutside(handler.getPlayer())
-                && !WorldHelper.isThundering(handler.getPlayer());
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && !WorldHelper.isThundering(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -120,7 +127,8 @@ public class BiomeSounds {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> (biome.getBiomeCategory() == BiomeCategory.ICY
                 || biome.getBiomeCategory() == BiomeCategory.EXTREME_HILLS)
-                && WorldHelper.isOutside(handler.getPlayer());
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -138,7 +146,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.JUNGLE && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.JUNGLE
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -156,7 +166,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.MOUNTAIN && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.MOUNTAIN
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -174,7 +186,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.OCEAN && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.OCEAN
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -193,8 +207,9 @@ public class BiomeSounds {
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.PLAINS
-                && WorldHelper.isOutside(handler.getPlayer())
-                && !WorldHelper.isThundering(handler.getPlayer());
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && !WorldHelper.isThundering(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -211,7 +226,8 @@ public class BiomeSounds {
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.RIVER
-                && WorldHelper.isOutside(handler.getPlayer());
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition, () -> RIVER));
         }
@@ -228,7 +244,9 @@ public class BiomeSounds {
 
         public static void init(SoundHandler<BiomeSound> handler) {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
-                -> biome.getBiomeCategory() == BiomeCategory.SAVANNA && WorldHelper.isOutside(handler.getPlayer());
+                -> biome.getBiomeCategory() == BiomeCategory.SAVANNA
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -248,7 +266,8 @@ public class BiomeSounds {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> (biome.getBiomeCategory() == BiomeCategory.SWAMP
                     || biome.getBiomeCategory() == BiomeCategory.MUSHROOM)
-                && WorldHelper.isOutside(handler.getPlayer());
+                    && WorldHelper.isOutside(handler.getPlayer())
+                    && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
@@ -268,7 +287,8 @@ public class BiomeSounds {
             BiPredicate<ResourceKey<Biome>, Biome> biomeCondition = (biomeKey, biome)
                 -> biome.getBiomeCategory() == BiomeCategory.TAIGA
                 && WorldHelper.isOutside(handler.getPlayer())
-                && !WorldHelper.isThundering(handler.getPlayer());
+                && !WorldHelper.isThundering(handler.getPlayer())
+                && WorldHelper.isNearGround(handler.getPlayer(), BiomeAmbience.cullSoundAboveGround);
 
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isDay(handler.getPlayer())), () -> DAY));
             handler.getSounds().add(new BiomeSound(handler.getPlayer(), biomeCondition.and((k, b) -> WorldHelper.isNight(handler.getPlayer())), () -> NIGHT));
