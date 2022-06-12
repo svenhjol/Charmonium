@@ -11,7 +11,8 @@ import java.util.Arrays;
 
 @ClientModule(mod = Charmonium.MOD_ID, alwaysEnabled = true)
 public class Core extends CharmModule {
-    @Config(name = "Audio channel", description = "The channel that Charmonium will use for playing sounds. Defaults to 'ambient'.")
+    @Config(name = "Audio channel", description = "The channel that Charmonium will use for playing sounds. Defaults to 'ambient'.\n" +
+        "Options: music, record, weather, block, hostile, neutral, player, ambient, voice")
     public static String channel = "ambient";
 
     private static SoundSource source;
