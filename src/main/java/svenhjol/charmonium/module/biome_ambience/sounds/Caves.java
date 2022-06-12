@@ -12,10 +12,12 @@ import svenhjol.charmonium.registry.ClientRegistry;
 public class Caves {
     public static SoundEvent DRIPSTONE;
     public static SoundEvent LUSH;
+    public static SoundEvent DEEP_DARK;
 
     public static void register() {
         DRIPSTONE = ClientRegistry.sound("ambience.caves.dripstone");
         LUSH = ClientRegistry.sound("ambience.caves.lush");
+        DEEP_DARK = ClientRegistry.sound("ambience.caves.deep_dark");
     }
 
     public static void init(SoundHandler<BiomeSound> handler) {
@@ -55,6 +57,25 @@ public class Caves {
             @Override
             public SoundEvent getSound() {
                 return LUSH;
+            }
+        });
+
+        // Register deep dark caves.
+        handler.getSounds().add(new BiomeSound(handler.getPlayer()) {
+            @Override
+            public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
+                return biomeKey.equals(Biomes.DEEP_DARK);
+            }
+
+            @Override
+            public boolean isValidPlayerCondition() {
+                return true;
+            }
+
+            @Nullable
+            @Override
+            public SoundEvent getSound() {
+                return DEEP_DARK;
             }
         });
     }

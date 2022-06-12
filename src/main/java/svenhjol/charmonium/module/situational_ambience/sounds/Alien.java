@@ -1,9 +1,11 @@
 package svenhjol.charmonium.module.situational_ambience.sounds;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
+import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.module.situational_ambience.RepeatedSituationalSound;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 import svenhjol.charmonium.registry.ClientRegistry;
@@ -21,7 +23,8 @@ public class Alien {
         handler.getSounds().add(new RepeatedSituationalSound(handler.getPlayer()) {
             @Override
             public boolean isValidSituationCondition() {
-                return getBiome(player.blockPosition()).getBiomeCategory() == Biome.BiomeCategory.THEEND;
+                ResourceKey<Biome> biomeKey = getBiomeKey(player.blockPosition());
+                return CharmoniumBiomes.THEEND.contains(biomeKey);
             }
 
             @Override

@@ -6,6 +6,7 @@ import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.module.biome_ambience.BiomeSound;
 import svenhjol.charmonium.module.biome_ambience.SurfaceBiomeSound;
 import svenhjol.charmonium.registry.ClientRegistry;
@@ -15,9 +16,7 @@ import java.util.function.Predicate;
 public class Swamp {
     public static SoundEvent DAY;
     public static SoundEvent NIGHT;
-    public static final Predicate<Biome> VALID_BIOME = (biome)
-        -> biome.getBiomeCategory() == Biome.BiomeCategory.SWAMP
-        || biome.getBiomeCategory() == Biome.BiomeCategory.MUSHROOM;
+    public static final Predicate<ResourceKey<Biome>> VALID_BIOME = key -> CharmoniumBiomes.SWAMP.contains(key);
 
     public static void register() {
         DAY = ClientRegistry.sound("ambience.swamp.day");
@@ -41,7 +40,7 @@ public class Swamp {
 
             @Override
             public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return VALID_BIOME.test(biome);
+                return VALID_BIOME.test(biomeKey);
             }
         });
 
@@ -60,7 +59,7 @@ public class Swamp {
 
             @Override
             public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return VALID_BIOME.test(biome);
+                return VALID_BIOME.test(biomeKey);
             }
         });
     }

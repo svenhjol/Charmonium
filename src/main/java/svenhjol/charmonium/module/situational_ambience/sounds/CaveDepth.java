@@ -1,6 +1,9 @@
 package svenhjol.charmonium.module.situational_ambience.sounds;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.situational_ambience.LoopedSituationalSound;
@@ -20,6 +23,13 @@ public class CaveDepth {
             @Override
             public boolean isValidSituationCondition() {
                 var pos = player.blockPosition();
+
+                // Don't play this if the player is in the Deep Dark, the combined sounds are too intense.
+                ResourceKey<Biome> biomeKey = getBiomeKey(pos);
+                if (biomeKey == Biomes.DEEP_DARK) {
+                    return false;
+                }
+
                 var light = level.getMaxLocalRawBrightness(pos);
                 var bottom = level.getMinBuildHeight() < 0 ? 0 : 32;
                 return !level.canSeeSkyFromBelowWater(pos) && pos.getY() <= bottom && light < SituationalAmbience.CAVE_LIGHT_LEVEL;

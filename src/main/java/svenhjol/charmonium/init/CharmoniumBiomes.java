@@ -38,7 +38,7 @@ public class CharmoniumBiomes {
         PLAINS.addAll(List.of(Biomes.PLAINS, Biomes.SUNFLOWER_PLAINS, Biomes.WINDSWEPT_HILLS, Biomes.MEADOW));
         RIVER.addAll(List.of(Biomes.RIVER));
         SAVANNA.addAll(List.of(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA));
-        SWAMP.addAll(List.of(Biomes.SWAMP, Biomes.MUSHROOM_FIELDS));
+        SWAMP.addAll(List.of(Biomes.SWAMP, Biomes.MUSHROOM_FIELDS, Biomes.MANGROVE_SWAMP));
         TAIGA.addAll(List.of(Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA));
         THEEND.addAll(List.of(Biomes.THE_END, Biomes.THE_VOID, Biomes.END_BARRENS, Biomes.END_HIGHLANDS, Biomes.END_MIDLANDS, Biomes.SMALL_END_ISLANDS));
     }

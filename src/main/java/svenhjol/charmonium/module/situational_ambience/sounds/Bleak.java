@@ -1,10 +1,12 @@
 package svenhjol.charmonium.module.situational_ambience.sounds;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
+import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 import svenhjol.charmonium.module.situational_ambience.SurfaceSituationalSound;
 import svenhjol.charmonium.registry.ClientRegistry;
@@ -20,9 +22,9 @@ public class Bleak {
         handler.getSounds().add(new SurfaceSituationalSound(handler.getPlayer()) {
             @Override
             public boolean isValidSituationCondition() {
-                var biomeCategory = getBiome(player.blockPosition()).getBiomeCategory();
-                return biomeCategory == BiomeCategory.ICY
-                    || biomeCategory == BiomeCategory.EXTREME_HILLS;
+                ResourceKey<Biome> biomeKey = getBiomeKey(player.blockPosition());
+                return CharmoniumBiomes.ICY.contains(biomeKey)
+                    || CharmoniumBiomes.MOUNTAIN.contains(biomeKey);
             }
 
             @Override

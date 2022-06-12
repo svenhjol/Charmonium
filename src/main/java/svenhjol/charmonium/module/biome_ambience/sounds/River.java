@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
+import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.module.biome_ambience.BiomeSound;
 import svenhjol.charmonium.module.biome_ambience.SurfaceBiomeSound;
 import svenhjol.charmonium.registry.ClientRegistry;
@@ -28,7 +29,7 @@ public class River {
 
             @Override
             public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return biome.getBiomeCategory() == Biome.BiomeCategory.RIVER;
+                return CharmoniumBiomes.RIVER.contains(biomeKey);
             }
         });
     }

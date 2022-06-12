@@ -6,6 +6,7 @@ import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.WorldHelper;
+import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.module.biome_ambience.BiomeSound;
 import svenhjol.charmonium.module.biome_ambience.SurfaceBiomeSound;
 import svenhjol.charmonium.registry.ClientRegistry;
@@ -15,7 +16,7 @@ import java.util.function.Predicate;
 public class Mountains {
     public static SoundEvent DAY;
     public static SoundEvent NIGHT;
-    public static final Predicate<Biome> VALID_BIOME = (biome) -> biome.getBiomeCategory() == Biome.BiomeCategory.MOUNTAIN;
+    public static final Predicate<ResourceKey<Biome>> VALID_BIOME = key -> CharmoniumBiomes.MOUNTAIN.contains(key);
 
     public static void register() {
         DAY = ClientRegistry.sound("ambience.mountains.day");
@@ -39,7 +40,7 @@ public class Mountains {
 
             @Override
             public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return VALID_BIOME.test(biome);
+                return VALID_BIOME.test(biomeKey);
             }
         });
 
@@ -58,7 +59,7 @@ public class Mountains {
 
             @Override
             public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return VALID_BIOME.test(biome);
+                return VALID_BIOME.test(biomeKey);
             }
         });
     }
