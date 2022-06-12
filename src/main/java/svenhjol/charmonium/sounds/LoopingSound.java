@@ -14,7 +14,7 @@ public class LoopingSound extends AbstractTickableSoundInstance {
     private final Player player;
     private int longTicks;
     private final Predicate<Player> predicate;
-    private final float maxVolume;
+    public float maxVolume;
 
     public LoopingSound(Player player, SoundEvent sound, float volume, float pitch, Predicate<Player> predicate) {
         super(sound, Core.getSource(), RandomSource.create());

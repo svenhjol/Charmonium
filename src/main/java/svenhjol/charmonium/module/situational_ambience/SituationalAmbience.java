@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -11,19 +12,29 @@ import org.jetbrains.annotations.NotNull;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
+import svenhjol.charmonium.api.event.AddCaveAmbienceCheck;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.situational_ambience.sounds.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @ClientModule(mod = Charmonium.MOD_ID, description = "Plays specific ambient sound according to the situation or location.")
 public class SituationalAmbience extends CharmModule {
     public Handler handler;
 
+    public final static int CAVE_LIGHT_LEVEL = 10;
+
+    public static List<ResourceLocation> VALID_CAVE_DIMENSIONS = new ArrayList<>();
+
     @Config(name = "Volume scaling", description = "Affects the volume of all situational ambient sounds. 1.0 is full volume.")
     public static float volumeScaling = 0.55F;
 
-    @Config(name = "Above Ground For Ambience Silencing", description = "Number of blocks above the ground that situational ambience will be silenced.")
-    public static int cullSoundAboveGround = 24;
+    @Config(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
+        "Set to zero to disable.")
+    public static int cullSoundAboveGround = 32;
 
     @Config(name = "Alien ambience", description = "If true, plays ambient sounds while anywhere in the End.")
     public static boolean alien = true;
@@ -31,8 +42,11 @@ public class SituationalAmbience extends CharmModule {
     @Config(name = "Bleak ambience", description = "If true, plays ambient sounds in cold and/or barren overworld environments.")
     public static boolean bleak = true;
 
-    @Config(name = "Cave water ambience", description = "If true, plays water sounds from a nearby water source when underground.")
-    public static boolean caveWater = true;
+    @Config(name = "Cave drone ambience", description = "If true, plays a low drone sound when in a cave below Y 48.")
+    public static boolean caveDrone = true;
+
+    @Config(name = "Cave depth ambience", description = "If true, plays more intense cave sounds when below Y 0 and light level is lower than 10.")
+    public static boolean caveDepth = true;
 
     @Config(name = "Deepslate ambience", description = "If true, plays ambient sounds when the player is underground and near deepslate blocks.")
     public static boolean deepslate = true;
@@ -61,24 +75,34 @@ public class SituationalAmbience extends CharmModule {
     @Config(name = "Snowstorm ambience", description = "If true, plays ambient sounds when in a cold biome during a thunderstorm.")
     public static boolean snowstorm = true;
 
+    @Config(name = "Underground water ambience", description = "If true, plays water sounds from a nearby water source when underground.")
+    public static boolean undergroundWater = true;
+
     @Config(name = "Village ambience", description = "If true, plays ambient sounds when a player is inside a village.")
     public static boolean village = true;
 
+    @Config(name = "Valid cave drone dimensions", description = "Dimensions in which cave drone and cave depth sounds will be played.")
+    public static List<String> configCaveDimensions = Arrays.asList(
+        "minecraft:overworld"
+    );
+
     @Override
     public void register() {
-        AlienSound.register();
-        BleakSound.register();
-        CaveWaterSound.register();
-        DeepslateSound.register();
-        DrySound.register();
-        GeodeSound.register();
-        GravelSound.register();
-        HighSound.register();
-        MansionSound.register();
-        MineshaftSound.register();
-        NightPlainsSound.register();
-        SnowstormSound.register();
-        VillageSound.register();
+        Alien.register();
+        Bleak.register();
+        CaveDepth.register();
+        CaveDrone.register();
+        UndergroundWater.register();
+        Deepslate.register();
+        Dry.register();
+        Geode.register();
+        Gravel.register();
+        High.register();
+        Mansion.register();
+        Mineshaft.register();
+        NightPlains.register();
+        Snowstorm.register();
+        Village.register();
     }
 
     @Override
@@ -86,28 +110,41 @@ public class SituationalAmbience extends CharmModule {
         ClientEntityEvents.ENTITY_LOAD.register(this::handleEntityLoad);
         ClientEntityEvents.ENTITY_UNLOAD.register(this::handleEntityUnload);
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
+
+        configCaveDimensions.forEach(dim -> VALID_CAVE_DIMENSIONS.add(new ResourceLocation(dim)));
     }
 
     private void handleEntityLoad(Entity entity, Level level) {
-        if (entity instanceof Player)
-            trySetupSoundHandler((Player)entity);
+        if (entity instanceof Player) {
+            var result = AddCaveAmbienceCheck.EVENT.invoker().interact(level);
+            var id = level.dimension().location();
+
+            if (result && !VALID_CAVE_DIMENSIONS.contains(id)) {
+                VALID_CAVE_DIMENSIONS.add(id);
+            }
+
+            trySetupSoundHandler((Player) entity);
+        }
     }
 
     private void handleEntityUnload(Entity entity, Level level) {
-        if (entity instanceof LocalPlayer && handler != null)
+        if (entity instanceof LocalPlayer && handler != null) {
             handler.stop();
+        }
     }
 
     private void handleClientTick(Minecraft client) {
-        if (handler != null && !client.isPaused())
+        if (handler != null && !client.isPaused()) {
             handler.tick();
+        }
     }
 
     public void trySetupSoundHandler(Player player) {
         if (!(player instanceof LocalPlayer)) return;
 
-        if (handler == null)
+        if (handler == null) {
             handler = new Handler(player);
+        }
 
         handler.updatePlayer(player);
     }
@@ -116,19 +153,21 @@ public class SituationalAmbience extends CharmModule {
         public Handler(@NotNull Player player) {
             super(player);
 
-            if (alien) AlienSound.init(this);
-            if (bleak) BleakSound.init(this);
-            if (caveWater) CaveWaterSound.init(this);
-            if (deepslate) DeepslateSound.init(this);
-            if (dry) DrySound.init(this);
-            if (geode) GeodeSound.init(this);
-            if (gravel) GravelSound.init(this);
-            if (high) HighSound.init(this);
-            if (mansion) MansionSound.init(this);
-            if (mineshaft) MineshaftSound.init(this);
-            if (nightPlains) NightPlainsSound.init(this);
-            if (snowstorm) SnowstormSound.init(this);
-            if (village) VillageSound.init(this);
+            if (alien) Alien.init(this);
+            if (bleak) Bleak.init(this);
+            if (caveDepth) CaveDepth.init(this);
+            if (caveDrone) CaveDrone.init(this);
+            if (undergroundWater) UndergroundWater.init(this);
+            if (deepslate) Deepslate.init(this);
+            if (dry) Dry.init(this);
+            if (geode) Geode.init(this);
+            if (gravel) Gravel.init(this);
+            if (high) High.init(this);
+            if (mansion) Mansion.init(this);
+            if (mineshaft) Mineshaft.init(this);
+            if (nightPlains) NightPlains.init(this);
+            if (snowstorm) Snowstorm.init(this);
+            if (village) Village.init(this);
         }
     }
 }
