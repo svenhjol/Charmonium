@@ -3,9 +3,9 @@ package svenhjol.charmonium.sounds;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
+import svenhjol.charmonium.module.core.Core;
 
 public class SingleSound extends AbstractTickableSoundInstance {
     private final Player player;
@@ -15,7 +15,7 @@ public class SingleSound extends AbstractTickableSoundInstance {
     }
 
     public SingleSound(Player player, SoundEvent sound, float volume, float pitch, @Nullable BlockPos pos) {
-        super(sound, SoundSource.AMBIENT);
+        super(sound, Core.getSource());
 
         this.player = player;
         this.looping = false;
