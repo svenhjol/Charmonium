@@ -21,11 +21,14 @@ public abstract class SurfaceBiomeSound extends BiomeSound {
 
     @Override
     public float getVolumeScaling() {
-        var originalScaling = super.getVolumeScaling();
         var cullDistance = BiomeAmbience.cullSoundAboveGround;
-        var distanceFromGround = WorldHelper.distanceFromGround(getPlayer(), cullDistance);
-        var multiplier = 1.0F - (distanceFromGround / cullDistance);
-        var o = originalScaling * Math.max(0.0F, multiplier);
-        return o;
+
+        if (cullDistance > 0) {
+            var distanceFromGround = WorldHelper.distanceFromGround(getPlayer(), cullDistance);
+            var multiplier = 1.0F - (distanceFromGround / cullDistance);
+            return super.getVolumeScaling() * Math.max(0.0F, multiplier);
+        } else {
+            return super.getVolumeScaling();
+        }
     }
 }

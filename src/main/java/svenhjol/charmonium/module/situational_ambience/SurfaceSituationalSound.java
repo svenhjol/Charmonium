@@ -16,6 +16,11 @@ public abstract class SurfaceSituationalSound extends RepeatedSituationalSound {
     @Override
     public float getVolumeScaling() {
         var cullDistance = SituationalAmbience.cullSoundAboveGround;
-        return super.getVolumeScaling() * Math.max(0.0F, 1.0F - (WorldHelper.distanceFromGround(getPlayer(), cullDistance) / cullDistance));
+
+        if (cullDistance > 0) {
+            return super.getVolumeScaling() * Math.max(0.0F, 1.0F - (WorldHelper.distanceFromGround(getPlayer(), cullDistance) / cullDistance));
+        } else {
+            return super.getVolumeScaling();
+        }
     }
 }
