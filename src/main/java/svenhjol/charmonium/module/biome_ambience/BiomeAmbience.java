@@ -15,7 +15,7 @@ import svenhjol.charmonium.annotation.Config;
 import svenhjol.charmonium.api.event.AddBiomeAmbienceCallback;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.loader.CharmModule;
-import svenhjol.charmonium.module.biome_ambience.BiomeSounds.*;
+import svenhjol.charmonium.module.biome_ambience.sounds.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +31,10 @@ public class BiomeAmbience extends CharmModule {
     public static float volumeScaling = 0.55F;
 
     @Config(name = "Above Ground For Ambience Silencing", description = "Number of blocks above the ground that biome ambience will be silenced.")
-    public static int cullSoundAboveGround = 24;
+    public static int cullSoundAboveGround = 32;
+
+    @Config(name = "Biome sound blending", description = "Number of blocks to check for neighbouring biomes.")
+    public static int biomeBlend = 24;
 
     @Config(name = "Beach ambience", description = "If true, plays ambient sounds in beach biomes.")
     public static boolean beach = true;
@@ -78,7 +81,7 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "The End ambience", description = "If true, plays ambient sounds in the End biomes.")
     public static boolean theEnd = true;
 
-    @Config(name = "Valid dimensions", description = "Dimensions in which biome ambience will be played.")
+    @Config(name = "Valid biome dimensions", description = "Dimensions in which biome ambience will be played.")
     public static List<String> configDimensions = Arrays.asList(
         "minecraft:overworld",
         "minecraft:the_end"
@@ -86,7 +89,21 @@ public class BiomeAmbience extends CharmModule {
 
     @Override
     public void register() {
-        registerSounds();
+        Beach.register();
+        Badlands.register();
+        Caves.register();
+        Desert.register();
+        Forest.register();
+        Icy.register();
+        Jungle.register();
+        Mountains.register();
+        Ocean.register();
+        Plains.register();
+        River.register();
+        Savanna.register();
+        Swamp.register();
+        Taiga.register();
+        TheEnd.register();
     }
 
     @Override
@@ -131,24 +148,6 @@ public class BiomeAmbience extends CharmModule {
         }
 
         handler.updatePlayer(player);
-    }
-
-    public void registerSounds() {
-        Beach.register();
-        Badlands.register();
-        Caves.register();
-        Desert.register();
-        Forest.register();
-        Icy.register();
-        Jungle.register();
-        Mountains.register();
-        Ocean.register();
-        Plains.register();
-        River.register();
-        Savanna.register();
-        Swamp.register();
-        Taiga.register();
-        TheEnd.register();
     }
 
     public static class Handler extends SoundHandler<BiomeSound> {

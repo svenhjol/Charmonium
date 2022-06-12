@@ -7,9 +7,9 @@ import net.minecraft.world.level.Level;
 /**
  * @version 4.0.0-charmonium
  */
-public interface AddUndergroundAmbienceCallback {
-    Event<AddUndergroundAmbienceCallback> EVENT = EventFactory.createArrayBacked(AddUndergroundAmbienceCallback.class, listeners -> level -> {
-        for (AddUndergroundAmbienceCallback listener : listeners) {
+public interface AddCaveAmbienceCheck {
+    Event<AddCaveAmbienceCheck> EVENT = EventFactory.createArrayBacked(AddCaveAmbienceCheck.class, listeners -> level -> {
+        for (AddCaveAmbienceCheck listener : listeners) {
             if (listener.interact(level)) {
                 return true;
             }

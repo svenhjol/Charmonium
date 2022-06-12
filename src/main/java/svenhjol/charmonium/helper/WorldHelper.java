@@ -7,6 +7,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.Material;
 
+import java.util.List;
+
 /**
  * @version 1.0.0-charmonium
  */
@@ -29,7 +31,7 @@ public class WorldHelper {
     public static boolean isOutside(Player player) {
         if (player.isUnderWater()) return false;
 
-        int blocks = 16;
+        int blocks = 32;
         int start = 1;
 
         BlockPos playerPos = player.blockPosition();
@@ -37,7 +39,7 @@ public class WorldHelper {
         if (player.level.canSeeSky(playerPos)) return true;
         if (player.level.canSeeSkyFromBelowWater(playerPos)) return true;
 
-        for (int i = start; i < start + blocks; i++) {
+        for (int i = start; i < start + blocks; i += 2) {
             BlockPos check = new BlockPos(playerPos.getX(), playerPos.getY() + i, playerPos.getZ());
             BlockState state = player.level.getBlockState(check);
             Block block = state.getBlock();
@@ -57,14 +59,29 @@ public class WorldHelper {
             if (state.canOcclude()) return false;
         }
 
-        return false;
+        return player.level.canSeeSky(playerPos.above(blocks));
     }
 
-    public static boolean isNearGround(Player player, int allowedHeight) {
+    public static float distanceFromGround(Player player, int check) {
         var level = player.getLevel();
         var pos = player.blockPosition();
-        var groundHeight = level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ());
-        return pos.getY() < groundHeight + allowedHeight;
+        var playerHeight = pos.getY();
+
+        // Sample points.
+        var samples = List.of(
+            pos.east(check),
+            pos.west(check),
+            pos.north(check),
+            pos.south(check)
+        );
+
+        int avg = 0;
+        for (BlockPos sample : samples) {
+            avg += level.getHeight(Heightmap.Types.WORLD_SURFACE, sample.getX(), sample.getZ());
+        }
+        avg /= samples.size();
+        var dist = Math.max(0.0F, playerHeight - avg);
+        return dist;
     }
 
     public static boolean isBelowSeaLevel(Player player) {

@@ -246,11 +246,11 @@
       {"name": "charmonium:situational/crickets/crickets2"}
     ]
   },
-  "situational.cave_water": {
+  "situational.underground_water": {
     "sounds": [
-      {"name": "charmonium:situational/cave_water/cave_water1"},
-      {"name": "charmonium:situational/cave_water/cave_water2"},
-      {"name": "charmonium:situational/cave_water/cave_water3"}
+      {"name": "charmonium:situational/underground_water/underground_water1"},
+      {"name": "charmonium:situational/underground_water/underground_water2"},
+      {"name": "charmonium:situational/underground_water/underground_water3"}
     ]
   },
   "situational.alien": {
