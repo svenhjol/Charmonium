@@ -31,7 +31,7 @@ public class WorldHelper {
     public static boolean isOutside(Player player) {
         if (player.isUnderWater()) return false;
 
-        int blocks = 32;
+        int blocks = 24;
         int start = 1;
 
         BlockPos playerPos = player.blockPosition();
@@ -39,7 +39,7 @@ public class WorldHelper {
         if (player.level.canSeeSky(playerPos)) return true;
         if (player.level.canSeeSkyFromBelowWater(playerPos)) return true;
 
-        for (int i = start; i < start + blocks; i += 2) {
+        for (int i = start; i < start + blocks; i++) {
             BlockPos check = new BlockPos(playerPos.getX(), playerPos.getY() + i, playerPos.getZ());
             BlockState state = player.level.getBlockState(check);
             Block block = state.getBlock();

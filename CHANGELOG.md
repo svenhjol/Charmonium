@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.19 exclusive changes
+## 4.1.1
 
-* Added deep dark ambience.
+* Fixed checking of opaque blocks above player in certain situations.
 
 ## 4.1.0
 
@@ -11,3 +11,4 @@
 * Added ambience silencing above ground with configurable number of blocks.
 * Added biome ambience that blends across biome borders.
 * Added configurable output channel, defaulting to "ambient".
+* 1.19: Added deep dark ambience.
