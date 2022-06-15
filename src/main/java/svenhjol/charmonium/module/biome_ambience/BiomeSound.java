@@ -20,7 +20,8 @@ public abstract class BiomeSound implements IAmbientSound {
     protected Player player;
     protected ClientLevel level;
     protected LoopingSound soundInstance = null;
-    protected float blendScaling = 0.0F;
+    protected float blendScaling = 1.0F;
+    protected float volumeScaleFade = 0.005F;
 
     protected BiomeSound(Player player) {
         this.client = Minecraft.getInstance();
@@ -69,8 +70,9 @@ public abstract class BiomeSound implements IAmbientSound {
                     LogHelper.debug(this.getClass(), "Exception in tick");
                 }
             } else {
+
+                // Adjust sound volume with a fade.
                 if (soundInstance.maxVolume != volume) {
-                    float volumeScaleFade = 0.005F;
                     if (soundInstance.maxVolume < volume) {
                         soundInstance.maxVolume += volumeScaleFade;
                     } else {
@@ -94,25 +96,39 @@ public abstract class BiomeSound implements IAmbientSound {
         var pos = player.blockPosition();
         var blend = (float)BiomeAmbience.biomeBlend;
 
-        // Sample points.
-        var directions = List.of(
-            Direction.EAST,
-            Direction.WEST,
-            Direction.NORTH,
-            Direction.SOUTH
-        );
+        if (blend > 0) {
 
-        for (var direction : directions) {
-            for (int i = 0; i < blend; i += 2) {
-                var relativePos = pos.relative(direction, i);
-                var biome = getBiome(relativePos);
-                var biomeKey = getBiomeKey(relativePos);
+            // Sample points.
+            var directions = List.of(
+                Direction.EAST,
+                Direction.WEST,
+                Direction.NORTH,
+                Direction.SOUTH
+            );
 
-                if (isValidBiomeCondition(biomeKey, biome)) {
-                    var o = 1.0F - ((float)i / blend);
-                    this.blendScaling = o;
-                    return true;
+            for (var direction : directions) {
+                for (int i = 0; i < blend; i += 2) {
+                    var relativePos = pos.relative(direction, i);
+
+                    // Get the biome and key for condition check.
+                    var biome = getBiome(relativePos);
+                    var biomeKey = getBiomeKey(relativePos);
+
+                    if (isValidBiomeCondition(biomeKey, biome)) {
+                        this.blendScaling = 1.0F - ((float) i / blend);
+                        return true;
+                    }
                 }
+            }
+        } else {
+
+            // Get the biome and key for condition check.
+            var biome = getBiome(pos);
+            var biomeKey = getBiomeKey(pos);
+
+            if (isValidBiomeCondition(biomeKey, biome)) {
+                this.blendScaling = 1.0F;
+                return true;
             }
         }
 

@@ -30,11 +30,13 @@ public class BiomeAmbience extends CharmModule {
     @Config(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.")
     public static float volumeScaling = 0.55F;
 
-    @Config(name = "Above Ground For Ambience Silencing", description = "Number of blocks above the ground that biome ambience will be silenced.")
+    @Config(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
+            "Set to zero to disable.")
     public static int cullSoundAboveGround = 32;
 
-    @Config(name = "Biome sound blending", description = "Number of blocks to check for neighbouring biomes.")
-    public static int biomeBlend = 24;
+    @Config(name = "Biome sound blending", description = "Number of blocks to check for neighbouring biomes.\n" +
+            "Set to zero to disable.")
+    public static int biomeBlend = 32;
 
     @Config(name = "Beach ambience", description = "If true, plays ambient sounds in beach biomes.")
     public static boolean beach = true;
