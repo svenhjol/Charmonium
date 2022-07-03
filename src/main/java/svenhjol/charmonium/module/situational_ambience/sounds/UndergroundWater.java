@@ -17,7 +17,7 @@ public class UndergroundWater {
     public static SoundEvent UNDERGROUND_WATER;
 
     public static void register() {
-        UNDERGROUND_WATER = ClientRegistry.sound("situational.cave_water");
+        UNDERGROUND_WATER = ClientRegistry.sound("situational.underground_water");
     }
 
     public static void init(SoundHandler<SituationalSound> handler) {
