@@ -49,12 +49,7 @@ dependencies {
 	modRuntimeOnly "svenhjol.charm:charm:${project.charm_version}"
 
 	// ModMenu
-	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
-
-	// Cloth Config for ModMenu building - do we need to replace with midnightlib at some point?
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
+//	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {
