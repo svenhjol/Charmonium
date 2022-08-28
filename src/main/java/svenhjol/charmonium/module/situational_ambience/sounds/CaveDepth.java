@@ -25,8 +25,8 @@ public class CaveDepth {
                 var pos = player.blockPosition();
 
                 // Don't play this if the player is in the Deep Dark, the combined sounds are too intense.
-                ResourceKey<Biome> biomeKey = getBiomeKey(pos);
-                if (biomeKey == Biomes.DEEP_DARK) {
+                var key = getBiomeKey(pos);
+                if (key == Biomes.DEEP_DARK) {
                     return false;
                 }
 

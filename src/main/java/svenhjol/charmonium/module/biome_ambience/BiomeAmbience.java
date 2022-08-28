@@ -14,7 +14,6 @@ import svenhjol.charmonium.annotation.ClientModule;
 import svenhjol.charmonium.annotation.Config;
 import svenhjol.charmonium.api.event.AddBiomeAmbienceCallback;
 import svenhjol.charmonium.handler.SoundHandler;
-import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.loader.CharmModule;
 import svenhjol.charmonium.module.biome_ambience.sounds.*;
 
@@ -45,48 +44,6 @@ public class BiomeAmbience extends CharmModule {
         "minecraft:the_end"
     );
 
-    @Config(name = "Extra badlands biomes", description = "Biomes that will have badlands ambient sounds.")
-    public static List<String> extraBadlandsBiomes = new ArrayList<>();
-
-    @Config(name = "Extra beach biomes", description = "Biomes that will have beach ambient sounds.")
-    public static List<String> extraBeachBiomes = new ArrayList<>();
-
-    @Config(name = "Extra desert biomes", description = "Biomes that will have desert ambient sounds.")
-    public static List<String> extraDesertBiomes = new ArrayList<>();
-
-    @Config(name = "Extra forest biomes", description = "Biomes that will have forest ambient sounds.")
-    public static List<String> extraForestBiomes = new ArrayList<>();
-
-    @Config(name = "Extra icy biomes", description = "Biomes that will have icy ambient sounds.")
-    public static List<String> extraIcyBiomes = new ArrayList<>();
-
-    @Config(name = "Extra jungle biomes", description = "Biomes that will have jungle ambient sounds.")
-    public static List<String> extraJungleBiomes = new ArrayList<>();
-
-    @Config(name = "Extra mountain biomes", description = "Biomes that will have mountain ambient sounds.")
-    public static List<String> extraMountainBiomes = new ArrayList<>();
-
-    @Config(name = "Extra ocean biomes", description = "Biomes that will have ocean ambient sounds.")
-    public static List<String> extraOceanBiomes = new ArrayList<>();
-
-    @Config(name = "Extra plains biomes", description = "Biomes that will have plains ambient sounds.")
-    public static List<String> extraPlainsBiomes = new ArrayList<>();
-
-    @Config(name = "Extra river biomes", description = "Biomes that will have river ambient sounds.")
-    public static List<String> extraRiverBiomes = new ArrayList<>();
-
-    @Config(name = "Extra savanna biomes", description = "Biomes that will have savanna ambient sounds.")
-    public static List<String> extraSavannaBiomes = new ArrayList<>();
-
-    @Config(name = "Extra swamp biomes", description = "Biomes that will have swamp ambient sounds.")
-    public static List<String> extraSwampBiomes = new ArrayList<>();
-
-    @Config(name = "Extra taiga biomes", description = "Biomes that will have taiga ambient sounds.")
-    public static List<String> extraTaigaBiomes = new ArrayList<>();
-
-    @Config(name = "Extra End biomes", description = "Biomes that will have The End ambient sounds.")
-    public static List<String> extraEndBiomes = new ArrayList<>();
-
     @Override
     public void register() {
         Beach.register();
@@ -113,25 +70,10 @@ public class BiomeAmbience extends CharmModule {
         ClientTickEvents.END_CLIENT_TICK.register(this::handleClientTick);
 
         configDimensions.forEach(dim -> VALID_DIMENSIONS.add(new ResourceLocation(dim)));
-
-        extraBadlandsBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.BADLANDS));
-        extraBeachBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.BEACH));
-        extraDesertBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.DESERT));
-        extraForestBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.FOREST));
-        extraIcyBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.ICY));
-        extraJungleBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.JUNGLE));
-        extraMountainBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.MOUNTAIN));
-        extraOceanBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.OCEAN));
-        extraPlainsBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.PLAINS));
-        extraRiverBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.RIVER));
-        extraSavannaBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.SAVANNA));
-        extraSwampBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.SWAMP));
-        extraTaigaBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.TAIGA));
-        extraEndBiomes.forEach(r -> CharmoniumBiomes.tryAddBiome(r, CharmoniumBiomes.THEEND));
     }
 
     private void handleEntityLoad(Entity entity, Level level) {
-        if (entity instanceof Player) {
+        if (entity instanceof Player player) {
             var result = AddBiomeAmbienceCallback.EVENT.invoker().interact(level);
             var id = level.dimension().location();
 
@@ -139,7 +81,7 @@ public class BiomeAmbience extends CharmModule {
                 VALID_DIMENSIONS.add(id);
             }
 
-            trySetupSoundHandler((Player) entity);
+            trySetupSoundHandler(player);
         }
     }
 

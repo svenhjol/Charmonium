@@ -1,13 +1,15 @@
 package svenhjol.charmonium.module.biome_ambience.sounds;
 
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.module.biome_ambience.BiomeSound;
 import svenhjol.charmonium.registry.ClientRegistry;
+
+import javax.annotation.Nullable;
 
 public class Caves {
     public static SoundEvent DRIPSTONE;
@@ -21,12 +23,11 @@ public class Caves {
     }
 
     public static void init(SoundHandler<BiomeSound> handler) {
-
         // Register dripstone caves.
         handler.getSounds().add(new BiomeSound(handler.getPlayer()) {
             @Override
-            public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return biomeKey.equals(Biomes.DRIPSTONE_CAVES);
+            public boolean isValidBiomeCondition(Holder<Biome> holder, ResourceKey<Biome> key) {
+                return key.equals(Biomes.DRIPSTONE_CAVES);
             }
 
             @Override
@@ -44,8 +45,8 @@ public class Caves {
         // Register lush caves.
         handler.getSounds().add(new BiomeSound(handler.getPlayer()) {
             @Override
-            public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return biomeKey.equals(Biomes.LUSH_CAVES);
+            public boolean isValidBiomeCondition(Holder<Biome> holder, ResourceKey<Biome> key) {
+                return key.equals(Biomes.LUSH_CAVES);
             }
 
             @Override
@@ -63,8 +64,8 @@ public class Caves {
         // Register deep dark caves.
         handler.getSounds().add(new BiomeSound(handler.getPlayer()) {
             @Override
-            public boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome) {
-                return biomeKey.equals(Biomes.DEEP_DARK);
+            public boolean isValidBiomeCondition(Holder<Biome> holder, ResourceKey<Biome> key) {
+                return key.equals(Biomes.DEEP_DARK);
             }
 
             @Override
