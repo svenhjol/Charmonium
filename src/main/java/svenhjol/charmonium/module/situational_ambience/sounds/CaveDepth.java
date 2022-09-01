@@ -22,7 +22,11 @@ public class CaveDepth {
                 var pos = player.blockPosition();
                 var light = level.getMaxLocalRawBrightness(pos);
                 var bottom = level.getMinBuildHeight() < 0 ? 0 : 32;
-                return !level.canSeeSkyFromBelowWater(pos) && pos.getY() <= bottom && light < SituationalAmbience.CAVE_LIGHT_LEVEL;
+
+                return SituationalAmbience.VALID_CAVE_DIMENSIONS.contains(level.dimension().location())
+                    && !level.canSeeSkyFromBelowWater(pos)
+                    && pos.getY() <= bottom
+                    && light < SituationalAmbience.CAVE_LIGHT_LEVEL;
             }
 
             @Override
