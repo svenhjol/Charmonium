@@ -1,8 +1,6 @@
 package svenhjol.charmonium.module.situational_ambience.sounds;
 
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
@@ -27,6 +25,10 @@ public class CaveDepth {
                 // Don't play this if the player is in the Deep Dark, the combined sounds are too intense.
                 var key = getBiomeKey(pos);
                 if (key == Biomes.DEEP_DARK) {
+                    return false;
+                }
+
+                if (!SituationalAmbience.VALID_CAVE_DIMENSIONS.contains(level.dimension().location())) {
                     return false;
                 }
 

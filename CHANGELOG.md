@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.1
+
+* Fixed cave noises playing in the Nether.
+
 ## 4.2.0
 
 * Rework biome ambience so it uses tags properly.
