@@ -23,6 +23,10 @@ public class CaveDrone {
                 BlockPos pos = player.blockPosition();
                 int light = level.getMaxLocalRawBrightness(pos);
 
+                if (!SituationalAmbience.VALID_CAVE_DIMENSIONS.contains(level.dimension().location())) {
+                    return false;
+                }
+
                 if (!level.canSeeSkyFromBelowWater(pos) && pos.getY() <= player.level.getSeaLevel()) {
                     return pos.getY() <= 48 || light <= SituationalAmbience.CAVE_LIGHT_LEVEL;
                 }

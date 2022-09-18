@@ -5,6 +5,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
@@ -39,6 +40,10 @@ public interface IAmbientSound {
 
     default ResourceKey<Biome> getBiomeKey(BlockPos pos) {
         return BiomeHelper.getBiomeKey(getLevel(), pos);
+    }
+
+    default Holder<Biome> getBiomeHolder(BlockPos pos) {
+        return BiomeHelper.getBiomeHolder(getLevel(), pos);
     }
 
     default Minecraft getMinecraft() {

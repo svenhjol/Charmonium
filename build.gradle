@@ -46,7 +46,7 @@ dependencies {
 	include "com.electronwill.night-config:toml:${project.tomlnc_version}"
 
 	// Enable charm at runtime for testing state sync
-	modRuntimeOnly "svenhjol.charm:charm:${project.charm_version}"
+//	modRuntimeOnly "svenhjol.charm:charm:${project.charm_version}"
 
 	// ModMenu
 //	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"

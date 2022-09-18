@@ -23,6 +23,4 @@ public class BiomeHelper {
         var biome = getBiome(level, pos);
         return level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getResourceKey(biome).orElse(null);
     }
-
-
 }

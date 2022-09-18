@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.2.1
+
+* Fixed cave noises playing in the Nether.
+
+## 4.2.0
+
+* Rework biome ambience so it uses tags properly.
+
 ## 4.1.1
 
 * Fixed checking of opaque blocks above player in certain situations.

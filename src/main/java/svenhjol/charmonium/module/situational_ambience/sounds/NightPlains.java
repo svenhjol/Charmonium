@@ -1,12 +1,11 @@
 package svenhjol.charmonium.module.situational_ambience.sounds;
 
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.Nullable;
 import svenhjol.charmonium.handler.SoundHandler;
 import svenhjol.charmonium.helper.WorldHelper;
-import svenhjol.charmonium.init.CharmoniumBiomes;
+import svenhjol.charmonium.module.biome_ambience.sounds.Plains;
+import svenhjol.charmonium.module.biome_ambience.sounds.Savanna;
 import svenhjol.charmonium.module.situational_ambience.SituationalSound;
 import svenhjol.charmonium.module.situational_ambience.SurfaceSituationalSound;
 import svenhjol.charmonium.registry.ClientRegistry;
@@ -22,9 +21,10 @@ public class NightPlains {
         handler.getSounds().add(new SurfaceSituationalSound(handler.getPlayer()) {
             @Override
             public boolean isValidSituationCondition() {
-                ResourceKey<Biome> biomeKey = getBiomeKey(player.blockPosition());
-                return CharmoniumBiomes.PLAINS.contains(biomeKey)
-                    || CharmoniumBiomes.SAVANNA.contains(biomeKey);
+                var holder = getBiomeHolder(player.blockPosition());
+                var key = getBiomeKey(player.blockPosition());
+                return Plains.VALID_BIOME.test(holder, key)
+                    || Savanna.VALID_BIOME.test(holder);
             }
 
             @Override

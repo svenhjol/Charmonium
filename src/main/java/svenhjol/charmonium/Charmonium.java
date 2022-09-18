@@ -1,7 +1,6 @@
 package svenhjol.charmonium;
 
 import net.fabricmc.api.ClientModInitializer;
-import svenhjol.charmonium.init.CharmoniumBiomes;
 import svenhjol.charmonium.init.CharmoniumLog;
 import svenhjol.charmonium.init.CharmoniumPacks;
 import svenhjol.charmonium.loader.CharmModule;
@@ -14,7 +13,6 @@ public class Charmonium implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         CharmoniumLog.init();
-        CharmoniumBiomes.init();
         CharmoniumPacks.init();
         LOADER.init();
     }

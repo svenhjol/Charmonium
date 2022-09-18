@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
@@ -29,7 +30,7 @@ public abstract class BiomeSound implements IAmbientSound {
         this.level = (ClientLevel) player.level;
     }
 
-    public abstract boolean isValidBiomeCondition(ResourceKey<Biome> biomeKey, Biome biome);
+    public abstract boolean isValidBiomeCondition(Holder<Biome> holder, ResourceKey<Biome> key);
 
     @Override
     public void updatePlayer(Player player) {
@@ -111,22 +112,22 @@ public abstract class BiomeSound implements IAmbientSound {
                     var relativePos = pos.relative(direction, i);
 
                     // Get the biome and key for condition check.
-                    var biome = getBiome(relativePos);
-                    var biomeKey = getBiomeKey(relativePos);
-
-                    if (isValidBiomeCondition(biomeKey, biome)) {
+                    var holder = getBiomeHolder(relativePos);
+                    var key = getBiomeKey(relativePos);
+                    if (isValidBiomeCondition(holder, key)) {
                         this.blendScaling = 1.0F - ((float) i / blend);
                         return true;
                     }
                 }
             }
+
         } else {
 
             // Get the biome and key for condition check.
-            var biome = getBiome(pos);
-            var biomeKey = getBiomeKey(pos);
+            var holder = getBiomeHolder(pos);
+            var key = getBiomeKey(pos);
 
-            if (isValidBiomeCondition(biomeKey, biome)) {
+            if (isValidBiomeCondition(holder, key)) {
                 this.blendScaling = 1.0F;
                 return true;
             }
