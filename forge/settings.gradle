@@ -1,0 +1,10 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        maven {
+            url = 'https://maven.minecraftforge.net/'
+            url = 'https://repo.spongepowered.org/maven'
+        }
+    }
+}

@@ -1,0 +1,174 @@
+import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
+
+buildscript {
+    dependencies {
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7+'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+// Load props from parent gradle.properties.
+def props = new Properties()
+file("common/gradle.properties").withInputStream { props.load(it) }
+
+archivesBaseName = "${props.mod_id}-forge-${props.minecraft_version}"
+version = props.mod_version
+group = props.maven_group
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+minecraft {
+    mappings channel: "${props.mapping_channel}", version: "${props.mapping_version}"
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            arg "-mixin.config=" + props.mod_id + ".mixins.json" // Comment out if no common mixins.
+            arg "-mixin.config=" + props.mod_id + ".forge.mixins.json" // Comment out if no forge mixins.
+            source sourceSets.main
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            arg "-mixin.config=" + props.mod_id + ".mixins.json" // Comment out if no common mixins.
+            arg "-mixin.config=" + props.mod_id + ".forge.mixins.json" // Comment out if no forge mixins.
+            source sourceSets.main
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "src/main/java"
+            srcDir "common/src/main/java"
+        }
+        resources {
+            srcDir 'src/main/resources'
+            srcDir 'common/src/main/resources'
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dir 'src/main/resources/META-INF/jarjar'
+    }
+    mavenCentral()
+}
+
+// Required for jarjar to function.
+jarJar.enable()
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${props.minecraft_version}-${props.forge_version}"
+
+    // Depend on deobfuscated jarjar API and Core.
+    implementation fg.deobf(group: 'svenhjol', name: "charm_api-forge-${props.minecraft_version}", version: "[${props.api_version},)") {
+        jarJar.pin(it, props.api_version)
+    }
+
+    implementation fg.deobf(group: 'svenhjol', name: "charm_core-forge-${props.minecraft_version}", version: "[${props.core_version},)") {
+        jarJar.pin(it, props.core_version)
+    }
+
+    // This generates the <mod_id>-refmap.json in the jar.
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+mixin {
+    // Adds the generated <mod_id>-refmap.json to the jar.
+    add sourceSets.main, props.mod_id + ".refmap.json"
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title"     : props.mod_id,
+            "Specification-Vendor"    : props.mod_id,
+            "Specification-Version"   : "1", // We are version 1 of ourselves
+            "Implementation-Title"    : props.mod_id,
+            "Implementation-Version"  : project.jar.archiveVersion,
+            "Implementation-Vendor"   : props.mod_id,
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "MixinConfigs"            : props.mod_id + ".mixins.json" // Comment out if no common mixins.
+                + "," + props.mod_id + ".forge.mixins.json" // Comment out if no forge mixins.
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", props.mod_version
+
+    filesMatching([props.mod_id + ".mixins.json", props.mod_id + ".forge.mixins.json"]) {
+        expand "refmap_file": props.mod_id + ".refmap.json"
+    }
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": props.mod_version
+    }
+
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE)
+
+    // Expand resource templates.
+    filesMatching("**/*.template.json") {
+        JsonBuilder json = new JsonBuilder(new JsonSlurper().parseText(it.file.text))
+        String template = new JsonBuilder(json.content.template).toPrettyString()
+        def v = json.content.variants
+        Iterable<String> variants
+        if (v instanceof String) {
+            def f = file("${sourceSets.main.resources.srcDirs[1]}/META-INF/${v}.variants");
+            if (!f.exists()) {
+                throw new Exception("Can't find ${f.name}")
+            }
+            variants = f.readLines().findAll { !it.isEmpty() }
+        }
+        else variants = v
+        File dir = it.relativePath.parent.getFile(file("$buildDir/resources/main"))
+        dir.mkdirs()
+        String name = it.name.replace(".template.json", ".json")
+        String[] replacements = v instanceof String ? variants.remove(0).split(':') : ["VARIANT"]
+        for (variant in variants) {
+            Map<String, String> s = [replacements, variant.split(':', -1)].transpose().collectEntries()
+            def file = new File(dir, s.inject(name) { r, e -> r.replace(e.key, e.value) })
+            if (!file.exists()) {
+                file.createNewFile()
+                file.text = s.inject(template) { r, e -> r.replace(e.key, e.value) }
+            }
+        }
+        it.exclude()
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

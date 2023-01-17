@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "charmonium",
+  "version": "${version}",
+
+  "name": "Charmonium",
+  "description": "Ambience for Minecraft.",
+  "authors": [
+    "svenhjol"
+  ],
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "svenhjol.charmonium.fabric.FabricClientModInitializer"
+    ]
+  },
+  "mixins": [
+    "charmonium.mixins.json",
+    "charmonium.fabric.mixins.json"
+  ],
+  "accessWidener": "charmonium.accesswidener",
+  "depends": {
+    "charm_core": "5.0.*",
+    "fabricloader": ">=0.14.11",
+    "fabric-api": "*",
+    "fabric-key-binding-api-v1": "*",
+    "minecraft": "1.19.3",
+    "java": ">=17"
+  }
+}

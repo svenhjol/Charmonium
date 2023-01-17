@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[44,)"
+license="MIT"
+[[mods]]
+modId="charmonium"
+version="${version}"
+displayName="Charmonium"
+credits=""
+authors="svenhjol"
+description='''
+Ambience for Minecraft.
+'''
+logoFile="icon.png"
+[[dependencies.charmonium]]
+    modId="forge"
+    mandatory=true
+    versionRange="[44,)"
+    ordering="NONE"
+    side="CLIENT"
+[[dependencies.charmonium]]
+    modId="charm_api"
+    mandatory=true
+    versionRange="[5.0.0,)"
+    ordering="NONE"
+    side="CLIENT"
+[[dependencies.charmonium]]
+    modId="charm_core"
+    mandatory=true
+    versionRange="[5.0.0,)"
+    ordering="BEFORE"
+    side="CLIENT"
+[[dependencies.charmonium]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.3,1.20)"
+    ordering="NONE"
+    side="CLIENT"
