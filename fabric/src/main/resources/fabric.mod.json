@@ -25,10 +25,10 @@
   "accessWidener": "charmonium.accesswidener",
   "depends": {
     "charm_core": "5.0.*",
-    "fabricloader": ">=0.14.11",
+    "fabricloader": ">=0.14.17",
     "fabric-api": "*",
     "fabric-key-binding-api-v1": "*",
-    "minecraft": "1.19.3",
+    "minecraft": "1.19.4",
     "java": ">=17"
   }
 }

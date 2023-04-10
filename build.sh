@@ -9,4 +9,4 @@ build() {
 }
 
 build fabric
-build forge
+# build forge
