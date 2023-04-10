@@ -9,7 +9,7 @@
         "range": "[5.0.0,)",
         "artifactVersion": "5.0.0"
       },
-      "path": "META-INF/jarjar/charm_api-forge-1.19.3-5.0.0.jar",
+      "path": "META-INF/jarjar/charm_api-forge-1.19.4-5.0.0.jar",
       "isObfuscated": true
     },
     {
@@ -21,7 +21,7 @@
         "range": "[5.0.0,)",
         "artifactVersion": "5.0.0"
       },
-      "path": "META-INF/jarjar/charm_core-forge-1.19.3-5.0.0.jar",
+      "path": "META-INF/jarjar/charm_core-forge-1.19.4-5.0.0.jar",
       "isObfuscated": true
     }
   ]
