@@ -2,7 +2,7 @@
 
  import net.minecraft.sounds.SoundEvent;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.Charmonium;
+ import svenhjol.charmonium.CharmoniumClient;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Icy;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
  import svenhjol.charmonium.sound.ISoundType;
@@ -15,7 +15,7 @@
      public static SoundEvent SOUND;
 
      public Snowstorm() {
-         SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("world.snowstorm"));
+         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.snowstorm"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {

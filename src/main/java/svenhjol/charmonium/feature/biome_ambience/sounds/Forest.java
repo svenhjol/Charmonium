@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -23,8 +23,8 @@ public class Forest implements ISoundType<BiomeSound> {
         holder -> holder.is(BiomeTags.IS_FOREST) || holder.is(BiomeTagHelper.getForest());
 
     public Forest() {
-        DAY_SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.forest.day"));
-        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.forest.night"));
+        DAY_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.forest.day"));
+        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.forest.night"));
     }
 
     @Override

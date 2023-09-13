@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.biome_ambience.sounds.*;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@ClientFeature(mod = Charmonium.MOD_ID, description = "Plays ambient background sound according to the biome and time of day.")
+@ClientFeature(mod = CharmoniumClient.MOD_ID, description = "Plays ambient background sound according to the biome and time of day.")
 public class BiomeAmbience extends CharmFeature {
     public static List<ResourceLocation> VALID_DIMENSIONS = new ArrayList<>();
     private static final ISoundType<BiomeSound> BADLANDS = new Badlands();

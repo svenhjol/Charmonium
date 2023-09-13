@@ -4,7 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -22,8 +22,8 @@ public class Swamp implements ISoundType<BiomeSound> {
         holder -> holder.is(BiomeTagHelper.getSwamp());
 
     public Swamp() {
-        DAY_SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.swamp.day"));
-        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.swamp.night"));
+        DAY_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.swamp.day"));
+        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.swamp.night"));
     }
 
     @Override

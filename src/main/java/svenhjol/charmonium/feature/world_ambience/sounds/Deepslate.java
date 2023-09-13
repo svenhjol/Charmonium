@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.RepeatedWorldSound;
@@ -19,7 +19,7 @@ public class Deepslate implements ISoundType<WorldSound> {
     public static SoundEvent SOUND;
 
     public Deepslate() {
-        SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("world.deepslate"));
+        SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.deepslate"));
     }
 
     public void addSounds(SoundHandler<WorldSound> handler) {

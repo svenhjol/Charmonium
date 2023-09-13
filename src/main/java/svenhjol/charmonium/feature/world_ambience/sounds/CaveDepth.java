@@ -3,7 +3,7 @@ package svenhjol.charmonium.feature.world_ambience.sounds;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biomes;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.LoopedWorldSound;
@@ -14,7 +14,7 @@ public class CaveDepth implements ISoundType<WorldSound> {
     public static SoundEvent SOUND;
 
     public CaveDepth() {
-        SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("world.deep_cave"));
+        SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.deep_cave"));
     }
 
     @Override

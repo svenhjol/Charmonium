@@ -8,7 +8,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.biome_ambience.BiomeAmbience;
 
 import java.util.ConcurrentModificationException;
@@ -59,7 +59,7 @@ public abstract class BiomeSound implements ISoundInstance {
 
     @Override
     public void tick() {
-        var log = Charmonium.instance().log();
+        var log = CharmoniumClient.instance().log();
         boolean nowValid = isValid();
 
         if (isValid && !nowValid) isValid = false;

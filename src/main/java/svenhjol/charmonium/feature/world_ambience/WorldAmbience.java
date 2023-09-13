@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.world_ambience.sounds.*;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -22,7 +22,7 @@ import svenhjol.charmony.base.CharmFeature;
 import java.util.ArrayList;
 import java.util.List;
 
-@ClientFeature(mod = Charmonium.MOD_ID, description = "Plays ambient sound according to features of the world around the player.")
+@ClientFeature(mod = CharmoniumClient.MOD_ID, description = "Plays ambient sound according to features of the world around the player.")
 public class WorldAmbience extends CharmFeature {
     public static final int CAVE_LIGHT_LEVEL = 10;
     public static final List<ResourceLocation> VALID_CAVE_DIMENSIONS = new ArrayList<>();

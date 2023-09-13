@@ -2,13 +2,13 @@ package svenhjol.charmonium;
 
 import svenhjol.charmony.base.DefaultClientMod;
 
-public class Charmonium extends DefaultClientMod {
+public class CharmoniumClient extends DefaultClientMod {
     public static final String MOD_ID = "charmonium";
-    private static Charmonium instance;
+    private static CharmoniumClient instance;
 
-    public static Charmonium instance() {
+    public static CharmoniumClient instance() {
         if (instance == null) {
-            instance = new Charmonium();
+            instance = new CharmoniumClient();
         }
         return instance;
     }

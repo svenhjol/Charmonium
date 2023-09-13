@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -21,7 +21,7 @@ public class River implements ISoundType<BiomeSound> {
         (holder, key) -> key.equals(Biomes.RIVER) || holder.is(BiomeTagHelper.getRiver());
 
     public River() {
-        SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.river"));
+        SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.river"));
     }
 
     @Override

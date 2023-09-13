@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -19,7 +19,7 @@ public class TheEnd implements ISoundType<BiomeSound> {
         holder -> holder.is(BiomeTags.IS_END);
 
     public TheEnd() {
-        SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.the_end"));
+        SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.the_end"));
     }
 
     @Override

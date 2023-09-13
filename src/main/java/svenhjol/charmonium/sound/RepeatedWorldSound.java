@@ -4,7 +4,7 @@ import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 
 import java.util.ConcurrentModificationException;
 
@@ -24,7 +24,7 @@ public abstract class RepeatedWorldSound extends WorldSound {
 
     @Override
     public void tick() {
-        var log = Charmonium.instance().log();
+        var log = CharmoniumClient.instance().log();
 
         if (--soundTicks >= 0)
             return;

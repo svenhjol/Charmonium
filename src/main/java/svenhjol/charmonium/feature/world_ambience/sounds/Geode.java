@@ -6,7 +6,7 @@
  import net.minecraft.world.level.block.Block;
  import net.minecraft.world.level.block.Blocks;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.Charmonium;
+ import svenhjol.charmonium.CharmoniumClient;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
  import svenhjol.charmonium.sound.ISoundType;
  import svenhjol.charmonium.sound.RepeatedWorldSound;
@@ -20,7 +20,7 @@
      public static SoundEvent SOUND;
 
      public Geode() {
-         SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("world.geode"));
+         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.geode"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {

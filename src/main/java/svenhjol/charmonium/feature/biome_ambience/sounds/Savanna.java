@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -22,8 +22,8 @@ public class Savanna implements ISoundType<BiomeSound> {
         holder -> holder.is(BiomeTags.IS_SAVANNA);
 
     public Savanna() {
-        DAY_SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.savanna.day"));
-        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("biome.savanna.night"));
+        DAY_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.savanna.day"));
+        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.savanna.night"));
     }
 
     @Override

@@ -3,7 +3,7 @@ package svenhjol.charmonium.feature.world_ambience.sounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import org.jetbrains.annotations.Nullable;
-import svenhjol.charmonium.Charmonium;
+import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.LoopedWorldSound;
@@ -14,7 +14,7 @@ public class CaveDrone implements ISoundType<WorldSound> {
     public static SoundEvent SOUND;
 
     public CaveDrone() {
-        SOUND = SoundEvent.createVariableRangeEvent(Charmonium.instance().makeId("world.cave"));
+        SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.cave"));
     }
 
     public void addSounds(SoundHandler<WorldSound> handler) {
