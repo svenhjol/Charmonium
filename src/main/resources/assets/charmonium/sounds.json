@@ -1,0 +1,322 @@
+{
+  "world.cave": {
+    "sounds": [
+      {"name": "charmonium:biomes/cave_wind/cave_wind1"}
+    ]
+  },
+  "world.deep_cave": {
+    "sounds": [
+      {
+        "name": "charmonium:biomes/deep_cave/deep_cave1",
+        "volume": 0.9
+      },
+      {
+        "name": "charmonium:biomes/deep_cave/deep_cave2",
+        "volume": 0.9
+      }
+    ]
+  },
+  "biome.beach.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/beach/beach1"}
+    ]
+  },
+  "biome.beach.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/beach/beach1"}
+    ]
+  },
+  "biome.caves.dripstone": {
+    "sounds": [
+      {"name": "charmonium:biomes/dripstone_caves/dripstone_caves1"}
+    ]
+  },
+  "biome.caves.lush": {
+    "sounds": [
+      {"name": "charmonium:biomes/lush_caves/lush_caves2"}
+    ]
+  },
+  "biome.caves.deep_dark": {
+    "sounds": [
+      {"name": "charmonium:biomes/deep_dark/deep_dark1"}
+    ]
+  },
+  "biome.desert.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/wind/wind1"},
+      {"name": "charmonium:biomes/wind/wind2"},
+      {"name": "charmonium:biomes/wind/wind3"}
+    ]
+  },
+  "biome.desert.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/cicadas/cicadas1"},
+      {"name": "charmonium:biomes/wind/wind2"}
+    ]
+  },
+  "biome.mountains.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/windy_plains/windy_plains1"},
+      {"name": "charmonium:biomes/wind/wind1"},
+      {"name": "charmonium:biomes/wind/wind2"},
+      {"name": "charmonium:biomes/wind/wind3"}
+    ]
+  },
+  "biome.mountains.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/wind/wind1"},
+      {"name": "charmonium:biomes/wind/wind2"},
+      {"name": "charmonium:biomes/wind/wind3"}
+    ]
+  },
+  "biome.forest.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/forest/forest1"},
+      {"name": "charmonium:biomes/forest/forest2"},
+      {"name": "charmonium:biomes/forest/forest3"}
+    ]
+  },
+  "biome.forest.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/crickets/crickets1"},
+      {"name": "charmonium:biomes/crickets/crickets2"}
+    ]
+  },
+  "biome.icy.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/cold_plains/cold_plains1"},
+      {"name": "charmonium:biomes/cold_plains/cold_plains2"},
+      {"name": "charmonium:biomes/wind/wind4"}
+    ]
+  },
+  "biome.icy.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/wind/wind1"},
+      {"name": "charmonium:biomes/wind/wind2"},
+      {"name": "charmonium:biomes/wind/wind3"},
+      {"name": "charmonium:biomes/wind/wind4"},
+      {"name": "charmonium:biomes/cold_plains/cold_plains2"}
+    ]
+  },
+  "biome.jungle.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/lush_forest/lush_forest1"}
+    ]
+  },
+  "biome.jungle.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/crickets/crickets3"},
+      {"name": "charmonium:biomes/cicadas/cicadas3"}
+    ]
+  },
+  "biome.badlands.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/canyon/canyon1"},
+      {"name": "charmonium:biomes/canyon/canyon2"}
+    ]
+  },
+  "biome.badlands.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/crickets/crickets2"},
+      {"name": "charmonium:biomes/crickets/crickets4"}
+    ]
+  },
+  "biome.ocean.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/sea/sea1"},
+      {"name": "charmonium:biomes/sea/sea2"}
+    ]
+  },
+  "biome.ocean.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/sea/sea1"},
+      {"name": "charmonium:biomes/sea/sea2"}
+    ]
+  },
+  "biome.plains.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/plains/plains1"},
+      {"name": "charmonium:biomes/plains/plains2"},
+      {"name": "charmonium:biomes/plains/plains3"}
+    ]
+  },
+  "biome.plains.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/crickets/crickets1"},
+      {"name": "charmonium:biomes/crickets/crickets2"},
+      {"name": "charmonium:biomes/crickets/crickets4"}
+    ]
+  },
+  "biome.river": {
+    "sounds": [
+      {"name": "charmonium:biomes/wind/wind4"},
+      {"name": "charmonium:biomes/cold_plains/cold_plains1"},
+      {"name": "charmonium:biomes/cold_plains/cold_plains2"}
+    ]
+  },
+  "biome.savanna.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/windy_plains/windy_plains1"},
+      {"name": "charmonium:biomes/windy_plains/windy_plains2"},
+      {"name": "charmonium:biomes/cicadas/cicadas3"},
+      {"name": "charmonium:biomes/warm_plains/warm_plains1"},
+      {"name": "charmonium:biomes/warm_plains/warm_plains2"}
+    ]
+  },
+  "biome.savanna.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/crickets/crickets1"},
+      {"name": "charmonium:biomes/crickets/crickets2"},
+      {"name": "charmonium:biomes/crickets/crickets4"},
+      {"name": "charmonium:biomes/cicadas/cicadas1"},
+      {"name": "charmonium:biomes/cicadas/cicadas2"}
+    ]
+  },
+  "biome.swamp.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/swamp/swamp1"}
+    ]
+  },
+  "biome.swamp.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/crickets/crickets3"}
+    ]
+  },
+  "biome.taiga.day": {
+    "sounds": [
+      {"name": "charmonium:biomes/cold_forest/cold_forest1"},
+      {"name": "charmonium:biomes/cold_forest/cold_forest2"},
+      {"name": "charmonium:biomes/mountain_forest/mountain_forest1"}
+    ]
+  },
+  "biome.taiga.night": {
+    "sounds": [
+      {"name": "charmonium:biomes/wind/wind1"},
+      {"name": "charmonium:biomes/wind/wind3"}
+    ]
+  },
+  "biome.the_end": {
+    "sounds": [
+      {"name": "charmonium:biomes/the_end/the_end1"}
+    ]
+  },
+  "world.dry": {
+    "sounds": [
+      {"name": "charmonium:world/cicadas/cicadas1"},
+      {"name": "charmonium:world/cicadas/cicadas2"},
+      {"name": "charmonium:world/cicadas/cicadas3"}
+    ]
+  },
+  "world.bleak": {
+    "sounds": [
+      {"name": "charmonium:world/cold_wind/cold_wind1"},
+      {"name": "charmonium:world/cold_wind/cold_wind2"},
+      {"name": "charmonium:world/crow/crow1"},
+      {"name": "charmonium:world/crow/crow2"},
+      {"name": "charmonium:world/crow/crow3"},
+      {"name": "charmonium:world/crow/crow4"}
+    ]
+  },
+  "world.night_plains": {
+    "sounds": [
+      {"name": "charmonium:world/blackbird/blackbird1"},
+      {"name": "charmonium:world/blackbird/blackbird2"},
+      {"name": "charmonium:world/blackbird/blackbird3"},
+      {"name": "charmonium:world/blackbird/blackbird4"},
+      {"name": "charmonium:world/blackbird/blackbird5"},
+      {"name": "charmonium:world/blackbird/blackbird6"},
+      {"name": "charmonium:world/crickets/crickets1"},
+      {"name": "charmonium:world/crickets/crickets2"}
+    ]
+  },
+  "world.underground_water": {
+    "sounds": [
+      {"name": "charmonium:world/underground_water/underground_water1"},
+      {"name": "charmonium:world/underground_water/underground_water2"},
+      {"name": "charmonium:world/underground_water/underground_water3"}
+    ]
+  },
+  "world.alien": {
+    "sounds": [
+      {"name": "charmonium:world/alien/alien1"},
+      {"name": "charmonium:world/alien/alien2"},
+      {"name": "charmonium:world/alien/alien3"},
+      {"name": "charmonium:world/alien/alien4"},
+      {"name": "charmonium:world/alien/alien5"},
+      {"name": "charmonium:world/alien/alien6"},
+      {"name": "charmonium:world/alien/alien7"},
+      {"name": "charmonium:world/alien/alien8"}
+    ]
+  },
+  "world.mineshaft": {
+    "sounds": [
+      {"name": "charmonium:world/wood_creaking/wood_creaking1"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking2"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking3"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking4"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking5"}
+    ]
+  },
+  "world.mansion": {
+    "sounds": [
+      {"name": "charmonium:world/wood_creaking/wood_creaking1"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking2"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking3"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking4"},
+      {"name": "charmonium:world/wood_creaking/wood_creaking5"}
+    ]
+  },
+  "world.village": {
+    "sounds": [
+      {"name": "charmonium:world/village/village1"},
+      {"name": "charmonium:world/village/village2"},
+      {"name": "charmonium:world/village/village3"},
+      {"name": "charmonium:world/village/village4"},
+      {"name": "charmonium:world/village/village5"},
+      {"name": "charmonium:world/village/village6"},
+      {"name": "charmonium:world/village/village7"},
+      {"name": "charmonium:world/village/village8"},
+      {"name": "charmonium:world/village/village9"},
+      {"name": "charmonium:world/village/village10"},
+      {"name": "charmonium:world/village/village11"},
+      {"name": "charmonium:world/village/village12"}
+    ]
+  },
+  "world.snowstorm": {
+    "sounds": [
+      {"name": "charmonium:world/strong_wind/strong_wind1"},
+      {"name": "charmonium:world/strong_wind/strong_wind2"},
+      {"name": "charmonium:world/strong_wind/strong_wind3"}
+    ]
+  },
+  "world.high": {
+    "sounds": [
+      {"name": "charmonium:world/strong_wind/strong_wind1"},
+      {"name": "charmonium:world/strong_wind/strong_wind2"},
+      {"name": "charmonium:world/strong_wind/strong_wind3"}
+    ]
+  },
+  "world.geode": {
+    "sounds": [
+      {"name": "charmonium:world/geode/geode1"},
+      {"name": "charmonium:world/geode/geode2"},
+      {"name": "charmonium:world/geode/geode3"}
+    ]
+  },
+  "world.gravel": {
+    "sounds": [
+      {"name": "charmonium:world/gravel/gravel1"},
+      {"name": "charmonium:world/gravel/gravel2"},
+      {"name": "charmonium:world/gravel/gravel3"},
+      {"name": "charmonium:world/gravel/gravel4"}
+    ]
+  },
+  "world.deepslate": {
+    "sounds": [
+      {"name": "charmonium:world/deepslate/deepslate1"},
+      {"name": "charmonium:world/deepslate/deepslate2"},
+      {"name": "charmonium:world/deepslate/deepslate3"},
+      {"name": "charmonium:world/deepslate/deepslate4"}
+    ]
+  }
+}
