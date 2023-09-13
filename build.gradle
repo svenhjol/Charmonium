@@ -1,0 +1,15 @@
+buildscript {
+    dependencies {
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7+'
+    }
+}
+
+plugins {
+    id 'idea'
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+apply from: "https://charmony.work/gradle/forge.build.gradle"
+apply from: "https://charmony.work/gradle/forge-with-charmony.build.gradle"

@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+    modId="charmonium"
+    version="${version}"
+    displayName="Charmonium"
+    credits=""
+    authors="svenhjol"
+    description='''
+Simple ambient sounds for Minecraft.
+    '''
+    logoFile="icon.png"
+
+[[dependencies.charmonium]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.charmonium]]
+    modId="charmony"
+    mandatory=true
+    versionRange="[${charmony_version},)"
+    ordering="AFTER"
+    side="CLIENT"
+
+[[dependencies.charmonium]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[${minecraft_version},)"
+    ordering="NONE"
+    side="CLIENT"

@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "svenhjol",
+        "artifact": "charmony"
+      },
+      "version": {
+        "range": "[${charmony_version},)",
+        "artifactVersion": "${charmony_version}"
+      },
+      "path": "META-INF/jarjar/charmony-forge-${minecraft_version}-${charmony_version}.jar",
+      "isObfuscated": true
+    }
+  ]
+}
