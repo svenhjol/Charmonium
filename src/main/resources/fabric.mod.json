@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "charmonium",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Charmonium",
   "description": "Simple ambient sounds for Minecraft.",
   "authors": [
@@ -9,13 +9,16 @@
   ],
   "icon": "icon.png",
   "license": "MIT",
-  "environment": "*",
+  "environment": "client",
   "mixins": [
     "charmonium.mixins.json"
   ],
   "entrypoints": {
     "client": [
       "svenhjol.charmonium.fabric.ClientInitializer"
+    ],
+    "modmenu": [
+      "svenhjol.charmonium.integration.modmenu.CharmoniumModMenuPlugin"
     ]
   },
   "accessWidener": "charmonium.accesswidener",
@@ -24,5 +27,17 @@
     "charmony": ">=${charmony_version}",
     "minecraft": "${minecraft_version}",
     "java": ">=17"
+  },
+  "contact": {
+    "homepage": "https://svenhjol.github.io/Charm",
+    "sources": "https://github.com/svenhjol/Charmonium"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${discord_link}"
+      },
+      "update_checker": true
+    }
   }
 }
