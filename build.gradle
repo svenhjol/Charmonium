@@ -12,4 +12,5 @@ plugins {
 }
 
 apply from: "https://charmony.work/gradle/forge.build.gradle"
-apply from: "https://charmony.work/gradle/forge-with-charmony.build.gradle"
+apply from: "https://charmony.work/gradle/forge-bundle-charmony-api.build.gradle"
+apply from: "https://charmony.work/gradle/forge-bundle-charmony.build.gradle"

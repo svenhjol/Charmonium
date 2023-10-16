@@ -14,17 +14,17 @@ import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
 import svenhjol.charmony.annotation.ClientFeature;
 import svenhjol.charmony.annotation.Configurable;
-import svenhjol.charmony.api.event.ClientEntityJoinEvent;
-import svenhjol.charmony.api.event.ClientEntityLeaveEvent;
-import svenhjol.charmony.api.event.ClientTickEvent;
-import svenhjol.charmony.base.CharmFeature;
+import svenhjol.charmony.base.CharmonyFeature;
+import svenhjol.charmony_api.event.ClientEntityJoinEvent;
+import svenhjol.charmony_api.event.ClientEntityLeaveEvent;
+import svenhjol.charmony_api.event.ClientTickEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @ClientFeature(mod = CharmoniumClient.MOD_ID, description = "Plays ambient background sound according to the biome and time of day.")
-public class BiomeAmbience extends CharmFeature {
+public class BiomeAmbience extends CharmonyFeature {
     public static List<ResourceLocation> VALID_DIMENSIONS = new ArrayList<>();
     private static final ISoundType<BiomeSound> BADLANDS = new Badlands();
     private static final ISoundType<BiomeSound> BEACH = new Beach();

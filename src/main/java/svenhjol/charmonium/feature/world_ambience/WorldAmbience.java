@@ -14,16 +14,16 @@ import svenhjol.charmonium.sound.SoundHandler;
 import svenhjol.charmonium.sound.WorldSound;
 import svenhjol.charmony.annotation.ClientFeature;
 import svenhjol.charmony.annotation.Configurable;
-import svenhjol.charmony.api.event.ClientEntityJoinEvent;
-import svenhjol.charmony.api.event.ClientEntityLeaveEvent;
-import svenhjol.charmony.api.event.ClientTickEvent;
-import svenhjol.charmony.base.CharmFeature;
+import svenhjol.charmony.base.CharmonyFeature;
+import svenhjol.charmony_api.event.ClientEntityJoinEvent;
+import svenhjol.charmony_api.event.ClientEntityLeaveEvent;
+import svenhjol.charmony_api.event.ClientTickEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ClientFeature(mod = CharmoniumClient.MOD_ID, description = "Plays ambient sound according to features of the world around the player.")
-public class WorldAmbience extends CharmFeature {
+public class WorldAmbience extends CharmonyFeature {
     public static final int CAVE_LIGHT_LEVEL = 10;
     public static final List<ResourceLocation> VALID_CAVE_DIMENSIONS = new ArrayList<>();
     private static final ISoundType<WorldSound> ALIEN = new Alien();
@@ -109,6 +109,10 @@ public class WorldAmbience extends CharmFeature {
         caveDimensions.forEach(dim -> VALID_CAVE_DIMENSIONS.add(new ResourceLocation(dim)));
     }
 
+    /**
+     * Can be called by other mods to add cave ambience to a custom dimension at runtime.
+     */
+    @SuppressWarnings("unused")
     public static void addCaveAmbienceToDimension(Level level) {
         var dimension = level.dimension().location();
         if (!VALID_CAVE_DIMENSIONS.contains(dimension)) {

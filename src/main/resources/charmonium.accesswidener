@@ -1,0 +1,7 @@
+accessWidener v1 named
+
+## Fields
+accessible field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
+accessible field net/minecraft/client/resources/sounds/AbstractSoundInstance volume F
+mutable    field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
+mutable    field net/minecraft/client/resources/sounds/AbstractSoundInstance volume F
