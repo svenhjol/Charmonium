@@ -3,13 +3,15 @@ package svenhjol.charmonium.integration.modmenu;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
-import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.impl.builders.FieldBuilder;
-import svenhjol.charmonium.CharmoniumClient;
+import net.minecraft.network.chat.Component;
+import svenhjol.charmonium.Charmonium;
 import svenhjol.charmony.annotation.Configurable;
 import svenhjol.charmony.base.CharmonyConfig;
-import svenhjol.charmony.base.CharmonyFeature;
+import svenhjol.charmony.base.DefaultFeature;
+import svenhjol.charmony.base.Mods;
 import svenhjol.charmony.helper.TextHelper;
+import svenhjol.charmony.iface.IClientMod;
 import svenhjol.charmony.iface.ILog;
 
 import java.lang.reflect.Field;
@@ -18,22 +20,27 @@ import java.util.*;
 /**
  * This is a copy of Charm's ModMenuPlugin.
  * Changes should be done there first and then copied here.
+ * ModMenuConfig v1.0.0
  */
 public class CharmoniumModMenuPlugin implements ModMenuApi {
-    public String getModId() {
-        return CharmoniumClient.MOD_ID;
+    public IClientMod mod() {
+        return Mods.client(Charmonium.ID);
     }
 
-    public ILog getLog() {
-        return CharmoniumClient.instance().log();
+    public String modId() {
+        return Charmonium.ID;
     }
 
-    public CharmonyConfig getConfig() {
-        return CharmoniumClient.instance().config();
+    public ILog log() {
+        return mod().log();
     }
 
-    public List<CharmonyFeature> getFeatures() {
-        return CharmoniumClient.instance().loader().getFeatures();
+    public CharmonyConfig config() {
+        return (CharmonyConfig) mod().config();
+    }
+
+    public List<? extends DefaultFeature> getFeatures() {
+        return mod().loader().getFeatures();
     }
 
     @SuppressWarnings("unchecked")
@@ -41,84 +48,110 @@ public class CharmoniumModMenuPlugin implements ModMenuApi {
         return parent -> {
             var builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(TextHelper.translatable("cloth." + getModId() + ".title"));
+                .setTitle(TextHelper.translatable("cloth." + modId() + ".title"));
 
             var features = new LinkedList<>(getFeatures());
-            features.sort(Comparator.comparing(CharmonyFeature::getName));
+            features.sort(Comparator.comparing(DefaultFeature::name));
 
-            builder.setSavingRunnable(() -> {
-                // Serialise the config into the config file. This is called after all variables are updated.
-                getConfig().writeConfig(features);
-            });
+            // Serialise the config into the config file. This is called after all variables are updated.
+            builder.setSavingRunnable(() -> config().writeConfig(features));
 
-            ConfigCategory mainCategory = builder.getOrCreateCategory(TextHelper.translatable("cloth.category." + getModId() + ".title"));
+            builder.setGlobalized(true);
+            builder.setGlobalizedExpanded(false);
 
             for (var feature : features) {
+                var enabled = false;
+                var name = feature.name();
+                var description = feature.description();
                 var properties = getFeatureConfigProperties(feature);
-                var subcategory = builder.entryBuilder()
-                    .startSubCategory(TextHelper.literal(feature.getName()));
 
                 if (feature.canBeDisabled()) {
-                    var enabledValue = builder.entryBuilder()
-                        .startBooleanToggle(TextHelper.translatable("cloth.category." + getModId() + ".feature_enabled"), feature.isEnabledInConfig())
-                        .setDefaultValue(feature.isEnabledByDefault()) // Used when user click "Reset"
-                        .setTooltip(TextHelper.translatable(TextHelper.splitOverLines(feature.getDescription()))) // Shown when the user hover over this option
-                        .setSaveConsumer(feature::setEnabledInConfig)
-                        .requireRestart();
+                    var category = builder.getOrCreateCategory(Component.literal(name));
+                    category.addEntry(builder.entryBuilder()
+                        .startTextDescription(Component.literal(description))
+                        .build());
 
-                    if (enabledValue != null) {
-                        enabledValue.requireRestart(true);
-                        subcategory.add(enabledValue.build());
+                    var toggleFeatureName = TextHelper.translatable("cloth.category." + modId() + ".feature_enabled", name);
+                    var defaultValue = feature.isEnabledByDefault();
+                    enabled = feature.isEnabledInConfig();
+
+                    var featureEntryBuilder = builder.entryBuilder()
+                        .startBooleanToggle(toggleFeatureName, enabled)
+                        .setDefaultValue(() -> defaultValue)
+                        .setSaveConsumer(feature::setEnabledInConfig);
+
+                    if (featureEntryBuilder != null) {
+                        featureEntryBuilder.requireRestart();
+                        category.addEntry(featureEntryBuilder.build());
                     }
                 }
 
-                properties.forEach((prop, value) -> {
-                    var propBuilder = builder.entryBuilder();
-                    var annotation = prop.getDeclaredAnnotation(Configurable.class);
-                    var name = TextHelper.literal(annotation.name());
-                    var desc = TextHelper.literal(TextHelper.splitOverLines(annotation.description()));
+                for (Map.Entry<Field, Object> entry : properties.entrySet()) {
+                    var category = builder.getOrCreateCategory(Component.literal(name));
+                    var prop = entry.getKey();
+                    var value = entry.getValue();
 
-                    FieldBuilder<?, ?, ?> propValue = null;
+                    var annotation = prop.getDeclaredAnnotation(Configurable.class);
+                    var propName = TextHelper.literal(annotation.name());
+                    var propDescription = TextHelper.literal(TextHelper.splitOverLines(annotation.description()));
+                    var requireRestart = annotation.requireRestart();
+
+                    FieldBuilder<?, ?, ?> fieldBuilder = null;
 
                     if (value instanceof Boolean) {
-                        propValue = propBuilder
-                            .startBooleanToggle(name, (Boolean)value).setDefaultValue(() -> (Boolean)tryGetDefault(prop)).setTooltip(desc).setSaveConsumer(val -> trySetProp(prop, val));
+                        fieldBuilder = builder.entryBuilder()
+                            .startBooleanToggle(propName, (Boolean)value)
+                            .setDefaultValue(() -> (Boolean)tryGetDefault(prop))
+                            .setTooltip(propDescription)
+                            .setSaveConsumer(val -> trySetProp(prop, val));
                     } else if (value instanceof Integer) {
-                        propValue = propBuilder
-                            .startIntField(name, (Integer)value).setDefaultValue(() -> (Integer)tryGetDefault(prop)).setTooltip(desc).setSaveConsumer(val -> trySetProp(prop, val));
+                        fieldBuilder = builder.entryBuilder()
+                            .startIntField(propName, (Integer)value)
+                            .setDefaultValue(() -> (Integer)tryGetDefault(prop))
+                            .setTooltip(propDescription)
+                            .setSaveConsumer(val -> trySetProp(prop, val));
                     } else if (value instanceof Double) {
-                        propValue = propBuilder
-                            .startDoubleField(name, (Double)value).setDefaultValue(() -> (Double)tryGetDefault(prop)).setTooltip(desc).setSaveConsumer(val -> trySetProp(prop, val));
+                        fieldBuilder = builder.entryBuilder()
+                            .startDoubleField(propName, (Double)value)
+                            .setDefaultValue(() -> (Double)tryGetDefault(prop))
+                            .setTooltip(propDescription)
+                            .setSaveConsumer(val -> trySetProp(prop, val));
                     } else if (value instanceof Float) {
-                        propValue = propBuilder
-                            .startFloatField(name, (Float)value).setDefaultValue(() -> (Float)tryGetDefault(prop)).setTooltip(desc).setSaveConsumer(val -> trySetProp(prop, val));
+                        fieldBuilder = builder.entryBuilder()
+                            .startFloatField(propName, (Float)value)
+                            .setDefaultValue(() -> (Float)tryGetDefault(prop))
+                            .setTooltip(propDescription)
+                            .setSaveConsumer(val -> trySetProp(prop, val));
                     } else if (value instanceof String) {
-                        propValue = propBuilder
-                            .startTextField(name, (String)value).setDefaultValue(() -> (String)tryGetDefault(prop)).setTooltip(desc).setSaveConsumer(val -> trySetProp(prop, val));
+                        fieldBuilder = builder.entryBuilder()
+                            .startTextField(propName, (String)value)
+                            .setDefaultValue(() -> (String)tryGetDefault(prop))
+                            .setTooltip(propDescription)
+                            .setSaveConsumer(val -> trySetProp(prop, val));
                     } else if (value instanceof List) {
-                        propValue = propBuilder
-                            .startStrList(name, (List<String>)value).setDefaultValue(() -> (List<String>)tryGetDefault(prop)).setTooltip(desc).setSaveConsumer(val -> trySetProp(prop, val));
+                        fieldBuilder = builder.entryBuilder()
+                            .startStrList(propName, (List<String>)value)
+                            .setDefaultValue(() -> (List<String>)tryGetDefault(prop))
+                            .setTooltip(propDescription)
+                            .setSaveConsumer(val -> trySetProp(prop, val));
                     }
 
-                    if (propValue != null) {
-                        propValue.requireRestart(annotation.requireRestart());
-                        subcategory.add(propValue.build());
+                    if (fieldBuilder != null) {
+                        fieldBuilder.requireRestart(requireRestart);
+                        category.addEntry(fieldBuilder.build());
                     }
-                });
-
-                if (!subcategory.isEmpty())
-                    mainCategory.addEntry(subcategory.build());
+                }
             }
 
             return builder.build();
         };
     }
 
-    private Map<Field, Object> getFeatureConfigProperties(CharmonyFeature feature) {
+    private Map<Field, Object> getFeatureConfigProperties(DefaultFeature feature) {
         Map<Field, Object> properties = new LinkedHashMap<>();
 
         // Get and set feature config options
-        ArrayList<Field> classFields = new ArrayList<>(Arrays.asList(feature.getClass().getDeclaredFields()));
+        var classFields = new ArrayList<>(Arrays.asList(feature.getClass().getDeclaredFields()));
         classFields.forEach(prop -> {
             try {
                 Configurable annotation = prop.getDeclaredAnnotation(Configurable.class);
@@ -128,7 +161,7 @@ public class CharmoniumModMenuPlugin implements ModMenuApi {
                 properties.put(prop, value);
 
             } catch (Exception e) {
-                getLog().error(getClass(), "Failed to read config property " + prop.getName() + " in " + feature.getName());
+                log().error(getClass(), "Failed to read config property " + prop.getName() + " in " + feature.name());
             }
         });
 
@@ -139,7 +172,7 @@ public class CharmoniumModMenuPlugin implements ModMenuApi {
         try {
             prop.set(null, val);
         } catch (IllegalAccessException e) {
-            getLog().error(getClass(), e.getMessage());
+            log().error(getClass(), e.getMessage());
         }
     }
 

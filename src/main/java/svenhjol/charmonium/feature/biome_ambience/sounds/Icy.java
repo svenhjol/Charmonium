@@ -2,9 +2,10 @@ package svenhjol.charmonium.feature.biome_ambience.sounds;
 
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
-import svenhjol.charmonium.CharmoniumClient;
+import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -23,8 +24,8 @@ public class Icy implements ISoundType<BiomeSound> {
         holder -> holder.is(BiomeTagHelper.getIcy()) || holder.is(BiomeTagHelper.getSnowy());
 
     public Icy() {
-        DAY_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.icy.day"));
-        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.icy.night"));
+        DAY_SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.icy.day"));
+        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.icy.night"));
     }
 
     @Override

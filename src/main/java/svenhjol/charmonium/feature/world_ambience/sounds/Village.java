@@ -1,10 +1,11 @@
  package svenhjol.charmonium.feature.world_ambience.sounds;
 
+ import net.minecraft.resources.ResourceLocation;
  import net.minecraft.sounds.SoundEvent;
  import net.minecraft.world.entity.npc.Villager;
  import net.minecraft.world.phys.AABB;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.CharmoniumClient;
+ import svenhjol.charmonium.Charmonium;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
  import svenhjol.charmonium.sound.ISoundType;
  import svenhjol.charmonium.sound.SoundHandler;
@@ -18,7 +19,7 @@
      public static SoundEvent SOUND;
 
      public Village() {
-         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.village"));
+         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.village"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {
