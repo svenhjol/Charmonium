@@ -2,11 +2,12 @@ package svenhjol.charmonium.feature.biome_ambience.sounds;
 
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import svenhjol.charmonium.CharmoniumClient;
+import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
@@ -23,9 +24,9 @@ public class Caves implements ISoundType<BiomeSound> {
         holder -> holder.is(BiomeTags.IS_BEACH);
 
     public Caves() {
-        DEEP_DARK = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.caves.deep_dark"));
-        DRIPSTONE = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.caves.dripstone"));
-        LUSH = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("biome.caves.lush"));
+        DEEP_DARK = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.deep_dark"));
+        DRIPSTONE = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.dripstone"));
+        LUSH = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.lush"));
     }
 
     @Override

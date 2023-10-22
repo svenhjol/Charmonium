@@ -7,14 +7,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import svenhjol.charmonium.CharmoniumClient;
 import svenhjol.charmonium.feature.biome_ambience.sounds.*;
 import svenhjol.charmonium.sound.BiomeSound;
 import svenhjol.charmonium.sound.ISoundType;
 import svenhjol.charmonium.sound.SoundHandler;
-import svenhjol.charmony.annotation.ClientFeature;
 import svenhjol.charmony.annotation.Configurable;
-import svenhjol.charmony.base.CharmonyFeature;
+import svenhjol.charmony.client.ClientFeature;
 import svenhjol.charmony_api.event.ClientEntityJoinEvent;
 import svenhjol.charmony_api.event.ClientEntityLeaveEvent;
 import svenhjol.charmony_api.event.ClientTickEvent;
@@ -23,8 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@ClientFeature(mod = CharmoniumClient.MOD_ID, description = "Plays ambient background sound according to the biome and time of day.")
-public class BiomeAmbience extends CharmonyFeature {
+public class BiomeAmbience extends ClientFeature {
     public static List<ResourceLocation> VALID_DIMENSIONS = new ArrayList<>();
     private static final ISoundType<BiomeSound> BADLANDS = new Badlands();
     private static final ISoundType<BiomeSound> BEACH = new Beach();
@@ -59,6 +56,11 @@ public class BiomeAmbience extends CharmonyFeature {
         "minecraft:overworld",
         "minecraft:the_end"
     );
+
+    @Override
+    public String description() {
+        return "Plays ambient background sound according to the biome and time of day.";
+    }
 
     @Override
     public void runWhenEnabled() {

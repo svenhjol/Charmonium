@@ -1,8 +1,9 @@
  package svenhjol.charmonium.feature.world_ambience.sounds;
 
+ import net.minecraft.resources.ResourceLocation;
  import net.minecraft.sounds.SoundEvent;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.CharmoniumClient;
+ import svenhjol.charmonium.Charmonium;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Plains;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Savanna;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
@@ -16,7 +17,7 @@
      public static SoundEvent SOUND;
 
      public NightPlains() {
-         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.nightplains"));
+         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.nightplains"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {

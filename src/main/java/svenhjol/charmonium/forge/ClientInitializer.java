@@ -1,13 +1,14 @@
 package svenhjol.charmonium.forge;
 
-import svenhjol.charmonium.CharmoniumClient;
+import svenhjol.charmonium.Charmonium;
+import svenhjol.charmony.base.Mods;
 
 public class ClientInitializer {
     public ClientInitializer() {
-        var client = CharmoniumClient.instance();
-        var loader = client.loader();
+        var instance = Mods.client(Charmonium.ID, Charmonium::new);
+        var loader = instance.loader();
 
         // Autoload all annotated client features from the feature namespace.
-        loader.init(client.featurePrefix(), client.featureAnnotation());
+        loader.init(instance.features());
     }
 }

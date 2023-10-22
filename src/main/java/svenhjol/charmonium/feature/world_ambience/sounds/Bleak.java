@@ -1,8 +1,9 @@
  package svenhjol.charmonium.feature.world_ambience.sounds;
 
+ import net.minecraft.resources.ResourceLocation;
  import net.minecraft.sounds.SoundEvent;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.CharmoniumClient;
+ import svenhjol.charmonium.Charmonium;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Icy;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Mountains;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
@@ -16,7 +17,7 @@
      public static SoundEvent SOUND;
 
      public Bleak() {
-         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.bleak"));
+         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.bleak"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {

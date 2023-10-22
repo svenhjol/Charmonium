@@ -1,13 +1,14 @@
  package svenhjol.charmonium.feature.world_ambience.sounds;
 
  import net.minecraft.core.BlockPos;
+ import net.minecraft.resources.ResourceLocation;
  import net.minecraft.sounds.SoundEvent;
  import net.minecraft.world.entity.monster.Monster;
  import net.minecraft.world.level.block.Block;
  import net.minecraft.world.level.block.Blocks;
  import net.minecraft.world.phys.AABB;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.CharmoniumClient;
+ import svenhjol.charmonium.Charmonium;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
  import svenhjol.charmonium.sound.ISoundType;
  import svenhjol.charmonium.sound.RepeatedWorldSound;
@@ -21,7 +22,7 @@
      public static SoundEvent SOUND;
 
      public Mansion() {
-         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.mansion"));
+         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.mansion"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {

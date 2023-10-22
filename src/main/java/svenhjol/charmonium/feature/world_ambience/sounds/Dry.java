@@ -1,8 +1,9 @@
  package svenhjol.charmonium.feature.world_ambience.sounds;
 
+ import net.minecraft.resources.ResourceLocation;
  import net.minecraft.sounds.SoundEvent;
  import org.jetbrains.annotations.Nullable;
- import svenhjol.charmonium.CharmoniumClient;
+ import svenhjol.charmonium.Charmonium;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Badlands;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Desert;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Savanna;
@@ -17,7 +18,7 @@
      public static SoundEvent SOUND;
 
      public Dry() {
-         SOUND = SoundEvent.createVariableRangeEvent(CharmoniumClient.instance().makeId("world.dry"));
+         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.dry"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {
