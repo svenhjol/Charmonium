@@ -41,14 +41,14 @@ public class BiomeAmbience extends ClientFeature {
     private Handler handler;
 
     @Configurable(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
-        "Set to zero to disable.")
+        "Set to zero to disable.", requireRestart = false)
     public static int cullSoundAboveGround = 32;
 
     @Configurable(name = "Biome sound blending", description = "Number of blocks to check for neighbouring biomes.\n" +
-        "Set to zero to disable.")
+        "Set to zero to disable.", requireRestart = false)
     public static int biomeBlend = 32;
 
-    @Configurable(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.")
+    @Configurable(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.", requireRestart = false)
     public static double volumeScaling = 0.55D;
 
     @Configurable(name = "Valid dimensions", description = "Dimensions in which biome ambience will be played.")

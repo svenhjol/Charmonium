@@ -40,59 +40,59 @@ public class WorldAmbience extends ClientFeature {
     private static final ISoundType<WorldSound> VILLAGE = new Village();
     private Handler handler;
 
-    @Configurable(name = "Volume scaling", description = "Affects the volume of all situational ambient sounds. 1.0 is full volume.")
+    @Configurable(name = "Volume scaling", description = "Affects the volume of all situational ambient sounds. 1.0 is full volume.", requireRestart = false)
     public static double volumeScaling = 0.55D;
 
     @Configurable(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
-        "Set to zero to disable.")
+        "Set to zero to disable.", requireRestart = false)
     public static int cullSoundAboveGround = 32;
 
-    @Configurable(name = "Alien", description = "If true, plays ambient sounds while anywhere in the End.")
+    @Configurable(name = "Alien", description = "If true, plays ambient sounds while anywhere in the End.", requireRestart = false)
     public static boolean alien = true;
 
-    @Configurable(name = "Bleak", description = "If true, plays ambient sounds in cold and/or barren overworld environments.")
+    @Configurable(name = "Bleak", description = "If true, plays ambient sounds in cold and/or barren overworld environments.", requireRestart = false)
     public static boolean bleak = true;
 
-    @Configurable(name = "Cave depth", description = "If true, plays more intense cave sounds when below Y 0 and light level is lower than 10.")
+    @Configurable(name = "Cave depth", description = "If true, plays more intense cave sounds when below Y 0 and light level is lower than 10.", requireRestart = false)
     public static boolean caveDepth = true;
 
-    @Configurable(name = "Cave drone", description = "If true, plays a low drone sound when in a cave below Y 48.")
+    @Configurable(name = "Cave drone", description = "If true, plays a low drone sound when in a cave below Y 48.", requireRestart = false)
     public static boolean caveDrone = true;
 
-    @Configurable(name = "Deepslate", description = "If true, plays ambient sounds when the player is underground and near deepslate blocks.")
+    @Configurable(name = "Deepslate", description = "If true, plays ambient sounds when the player is underground and near deepslate blocks.", requireRestart = false)
     public static boolean deepslate = true;
 
-    @Configurable(name = "Dry", description = "If true, plays ambient sounds in dry and/or hot overworld environments.")
+    @Configurable(name = "Dry", description = "If true, plays ambient sounds in dry and/or hot overworld environments.", requireRestart = false)
     public static boolean dry = true;
 
-    @Configurable(name = "Geode", description = "If true, plays ambient sounds from a nearby amethyst geode.")
+    @Configurable(name = "Geode", description = "If true, plays ambient sounds from a nearby amethyst geode.", requireRestart = false)
     public static boolean geode = true;
 
-    @Configurable(name = "Gravel", description = "If true, plays ambient sounds when the player is underground and near gravel blocks.")
+    @Configurable(name = "Gravel", description = "If true, plays ambient sounds when the player is underground and near gravel blocks.", requireRestart = false)
     public static boolean gravel = true;
 
-    @Configurable(name = "High", description = "If true, plays ambient sounds when high up in the overworld.")
+    @Configurable(name = "High", description = "If true, plays ambient sounds when high up in the overworld.", requireRestart = false)
     public static boolean high = true;
 
-    @Configurable(name = "Mansion", description = "If true, plays ambient sounds while inside a woodland mansion.")
+    @Configurable(name = "Mansion", description = "If true, plays ambient sounds while inside a woodland mansion.", requireRestart = false)
     public static boolean mansion = true;
 
-    @Configurable(name = "Mineshaft", description = "If true, plays ambient sounds from a nearby mineshaft.")
+    @Configurable(name = "Mineshaft", description = "If true, plays ambient sounds from a nearby mineshaft.", requireRestart = false)
     public static boolean mineshaft = true;
 
-    @Configurable(name = "Night plains", description = "If true, plays ambient sounds in plains environments at night.")
+    @Configurable(name = "Night plains", description = "If true, plays ambient sounds in plains environments at night.", requireRestart = false)
     public static boolean nightPlains = true;
 
-    @Configurable(name = "Snowstorm", description = "If true, plays ambient sounds when in a cold biome during a thunderstorm.")
+    @Configurable(name = "Snowstorm", description = "If true, plays ambient sounds when in a cold biome during a thunderstorm.", requireRestart = false)
     public static boolean snowstorm = true;
 
-    @Configurable(name = "Underground water", description = "If true, plays water sounds from a nearby water source when underground.")
+    @Configurable(name = "Underground water", description = "If true, plays water sounds from a nearby water source when underground.", requireRestart = false)
     public static boolean undergroundWater = true;
 
-    @Configurable(name = "Village", description = "If true, plays ambient sounds when a player is inside a village.")
+    @Configurable(name = "Village", description = "If true, plays ambient sounds when a player is inside a village.", requireRestart = false)
     public static boolean village = true;
 
-    @Configurable(name = "Valid cave ambience dimensions", description = "Dimensions in which cave ambience (drone and depth) will be played.")
+    @Configurable(name = "Valid cave ambience dimensions", description = "Dimensions in which cave ambience (drone and depth) will be played.", requireRestart = false)
     public static List<String> caveDimensions = List.of(
         "minecraft:overworld"
     );
