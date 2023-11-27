@@ -45,12 +45,12 @@
 
              @Override
              public int getDelay() {
-                 return level.random.nextInt(100) + 100;
+                 return level.random.nextInt(200) + 100;
              }
 
              @Override
              public float getVolume() {
-                 return 0.85F;
+                 return 0.5F;
              }
          });
      }

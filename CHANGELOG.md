@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.6
+
+- Reset the sound handler and apply new configuration when player rejoins world
+- Reduce volume and frequency of the wind sound when the player is at altitude
+
 ## 6.0.5
 
 - Charmony 6.11.x
