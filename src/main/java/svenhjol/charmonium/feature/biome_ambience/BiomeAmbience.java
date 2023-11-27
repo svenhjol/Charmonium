@@ -92,10 +92,7 @@ public class BiomeAmbience extends ClientFeature {
     private void trySetupSoundHandler(Player player) {
         if (!(player instanceof LocalPlayer)) return;
 
-        if (handler == null) {
-            handler = new Handler(player);
-        }
-
+        handler = new Handler(player);
         handler.updatePlayer(player);
     }
 
