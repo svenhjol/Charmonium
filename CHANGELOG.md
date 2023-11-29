@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.7
+
+- Incorrect sound reference id
+- Cave drone cutoff level now configurable
+- Cave light level now configurable
+
 ## 6.0.6
 
 - Reset the sound handler and apply new configuration when player rejoins world
