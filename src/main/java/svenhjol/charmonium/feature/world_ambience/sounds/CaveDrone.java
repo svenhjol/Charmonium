@@ -32,7 +32,7 @@ public class CaveDrone implements ISoundType<WorldSound> {
                 }
 
                 if (!level.canSeeSkyFromBelowWater(pos) && pos.getY() <= player.level().getSeaLevel()) {
-                    return pos.getY() <= 48 || light <= WorldAmbience.CAVE_LIGHT_LEVEL;
+                    return pos.getY() <= 48 || light <= WorldAmbience.getCaveLightLevel();
                 }
 
                 return false;

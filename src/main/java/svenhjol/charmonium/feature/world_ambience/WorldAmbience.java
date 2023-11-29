@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorldAmbience extends ClientFeature {
-    public static final int CAVE_LIGHT_LEVEL = 10;
     public static final List<ResourceLocation> VALID_CAVE_DIMENSIONS = new ArrayList<>();
     private static final ISoundType<WorldSound> ALIEN = new Alien();
     private static final ISoundType<WorldSound> BLEAK = new Bleak();
@@ -46,6 +45,9 @@ public class WorldAmbience extends ClientFeature {
     @Configurable(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
         "Set to zero to disable.", requireRestart = false)
     public static int cullSoundAboveGround = 32;
+
+    @Configurable(name = "Cave light level", description = "Light level at which cave ambience will be dampened.")
+    public static int caveLightLevel = 10;
 
     @Configurable(name = "Alien", description = "If true, plays ambient sounds while anywhere in the End.", requireRestart = false)
     public static boolean alien = true;
@@ -109,6 +111,10 @@ public class WorldAmbience extends ClientFeature {
         ClientTickEvent.INSTANCE.handle(this::handleClientTick);
 
         caveDimensions.forEach(dim -> VALID_CAVE_DIMENSIONS.add(new ResourceLocation(dim)));
+    }
+
+    public static int getCaveLightLevel() {
+        return Math.min(15, Math.max(0, caveLightLevel));
     }
 
     /**
