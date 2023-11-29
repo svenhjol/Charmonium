@@ -17,7 +17,7 @@
      public static SoundEvent SOUND;
 
      public NightPlains() {
-         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.nightplains"));
+         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.night_plains"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {
