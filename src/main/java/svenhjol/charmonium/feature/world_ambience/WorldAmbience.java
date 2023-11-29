@@ -46,20 +46,23 @@ public class WorldAmbience extends ClientFeature {
         "Set to zero to disable.", requireRestart = false)
     public static int cullSoundAboveGround = 32;
 
-    @Configurable(name = "Cave light level", description = "Light level at which cave ambience will be dampened.")
-    public static int caveLightLevel = 10;
-
     @Configurable(name = "Alien", description = "If true, plays ambient sounds while anywhere in the End.", requireRestart = false)
     public static boolean alien = true;
 
     @Configurable(name = "Bleak", description = "If true, plays ambient sounds in cold and/or barren overworld environments.", requireRestart = false)
     public static boolean bleak = true;
 
-    @Configurable(name = "Cave depth", description = "If true, plays more intense cave sounds when below Y 0 and light level is lower than 10.", requireRestart = false)
+    @Configurable(name = "Cave depth", description = "If true, plays more intense cave sounds when below Y 0 and light level is lower than the cave light level.", requireRestart = false)
     public static boolean caveDepth = true;
 
-    @Configurable(name = "Cave drone", description = "If true, plays a low drone sound when in a cave below Y 48.", requireRestart = false)
+    @Configurable(name = "Cave drone", description = "If true, plays a low drone sound when in a cave below the cave drone cutoff..", requireRestart = false)
     public static boolean caveDrone = true;
+
+    @Configurable(name = "Cave drone cutoff", description = "Height at which the cave drone will be silenced.", requireRestart = false)
+    public static int caveDroneCutoff = 48;
+
+    @Configurable(name = "Cave light level", description = "Light level at which cave ambience will be dampened.", requireRestart = false)
+    public static int caveLightLevel = 10;
 
     @Configurable(name = "Deepslate", description = "If true, plays ambient sounds when the player is underground and near deepslate blocks.", requireRestart = false)
     public static boolean deepslate = true;
@@ -115,6 +118,10 @@ public class WorldAmbience extends ClientFeature {
 
     public static int getCaveLightLevel() {
         return Math.min(15, Math.max(0, caveLightLevel));
+    }
+
+    public static int getCaveDroneCutoff() {
+        return Math.min(256, Math.max(-64, caveDroneCutoff));
     }
 
     /**
