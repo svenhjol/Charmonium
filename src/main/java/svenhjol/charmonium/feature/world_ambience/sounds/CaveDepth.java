@@ -41,7 +41,7 @@ public class CaveDepth implements ISoundType<WorldSound> {
                 var bottom = level.getMinBuildHeight() < 0 ? 0 : 32;
                 return !level.canSeeSkyFromBelowWater(pos)
                     && pos.getY() <= bottom
-                    && light < WorldAmbience.CAVE_LIGHT_LEVEL;
+                    && light < WorldAmbience.getCaveLightLevel();
             }
 
             @Override
