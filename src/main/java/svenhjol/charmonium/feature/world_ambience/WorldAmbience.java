@@ -13,9 +13,9 @@ import svenhjol.charmonium.sound.SoundHandler;
 import svenhjol.charmonium.sound.WorldSound;
 import svenhjol.charmony.annotation.Configurable;
 import svenhjol.charmony.client.ClientFeature;
-import svenhjol.charmony_api.event.ClientEntityJoinEvent;
-import svenhjol.charmony_api.event.ClientEntityLeaveEvent;
-import svenhjol.charmony_api.event.ClientTickEvent;
+import svenhjol.charmony.api.event.ClientEntityJoinEvent;
+import svenhjol.charmony.api.event.ClientEntityLeaveEvent;
+import svenhjol.charmony.api.event.ClientTickEvent;
 
 import java.util.ArrayList;
 import java.util.List;

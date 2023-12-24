@@ -1,8 +1,12 @@
 # Changelog
 
+## 6.0.8
+
+- Updated to Charmony 6.15.0
+
 ## 6.0.7
 
-- Incorrect sound reference id
+- Incorrect sound reference id for night_plains
 - Cave drone cutoff level now configurable
 - Cave light level now configurable
 - Updated to Charmony 6.12.0
