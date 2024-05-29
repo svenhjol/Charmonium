@@ -13,7 +13,7 @@
   "license": "MIT",
   "environment": "client",
   "mixins": [
-    "charmony.client.mixins.json"
+    "charmonium.charmony.client.mixins.json"
   ],
 
   "entrypoints": {
