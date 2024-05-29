@@ -8,7 +8,7 @@ import svenhjol.charmonium.charmony.client.ClientLoader;
 import svenhjol.charmonium.feature.ambience_settings.client.Registers;
 
 @Feature(description = "Settings for how ambient sounds are played.")
-public class AmbienceSettings extends ClientFeature {
+public final class AmbienceSettings extends ClientFeature {
     public final Registers registers;
 
     @Configurable(name = "Audio channel", description = "The channel that Charmonium will use for playing sounds. Defaults to 'ambient'.\n" +

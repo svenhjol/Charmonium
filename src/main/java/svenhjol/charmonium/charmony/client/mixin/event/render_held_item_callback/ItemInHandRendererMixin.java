@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import svenhjol.charmonium.charmony.client.callback.RenderHeldItemCallback;
+import svenhjol.charmonium.charmony.callback.RenderHeldItemCallback;
 
 @Mixin(ItemInHandRenderer.class)
 public class ItemInHandRendererMixin {

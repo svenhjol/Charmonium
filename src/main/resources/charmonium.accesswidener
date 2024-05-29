@@ -46,3 +46,9 @@ accessible field net/minecraft/client/particle/Particle speedUpWhenYMotionIsBloc
 accessible method net/minecraft/client/gui/screens/Screen addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 accessible method net/minecraft/client/particle/Particle setAlpha (F)V
 mutable    field net/minecraft/client/RecipeBookCategories AGGREGATE_CATEGORIES Ljava/util/Map;
+
+# General
+accessible field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
+accessible field net/minecraft/client/resources/sounds/AbstractSoundInstance volume F
+mutable    field net/minecraft/client/resources/sounds/AbstractTickableSoundInstance stopped Z
+mutable    field net/minecraft/client/resources/sounds/AbstractSoundInstance volume F
