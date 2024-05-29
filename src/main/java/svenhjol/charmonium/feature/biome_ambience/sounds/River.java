@@ -9,20 +9,20 @@ import net.minecraft.world.level.biome.Biomes;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.helper.BiomeTagHelper;
 import svenhjol.charmonium.feature.biome_ambience.client.BiomeSound;
-import svenhjol.charmonium.sound.ISoundType;
+import svenhjol.charmonium.sound.SoundType;
 import svenhjol.charmonium.sound.SoundHandler;
 import svenhjol.charmonium.feature.biome_ambience.client.SurfaceBiomeSound;
 
 import javax.annotation.Nullable;
 import java.util.function.BiPredicate;
 
-public class River implements ISoundType<BiomeSound> {
-    public static SoundEvent SOUND;
+public class River implements SoundType<BiomeSound> {
+    public final SoundEvent sound;
     public static BiPredicate<Holder<Biome>, ResourceKey<Biome>> VALID_BIOME =
         (holder, key) -> key.equals(Biomes.RIVER) || holder.is(BiomeTagHelper.getRiver());
 
     public River() {
-        SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.river"));
+        sound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.river"));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class River implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return SOUND;
+                return sound;
             }
 
             @Override

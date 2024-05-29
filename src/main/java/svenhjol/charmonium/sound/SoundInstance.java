@@ -15,7 +15,7 @@ import net.minecraft.world.level.biome.Biome;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-public interface ISoundInstance {
+public interface SoundInstance {
     boolean isValid();
 
     boolean isValidPlayerCondition();

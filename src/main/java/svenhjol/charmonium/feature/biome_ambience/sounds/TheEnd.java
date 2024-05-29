@@ -8,19 +8,19 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.feature.biome_ambience.client.BiomeSound;
-import svenhjol.charmonium.sound.ISoundType;
+import svenhjol.charmonium.sound.SoundType;
 import svenhjol.charmonium.sound.SoundHandler;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class TheEnd implements ISoundType<BiomeSound> {
-    public static SoundEvent SOUND;
+public class TheEnd implements SoundType<BiomeSound> {
+    public final SoundEvent sound;
     public static Predicate<Holder<Biome>> VALID_BIOME =
         holder -> holder.is(BiomeTags.IS_END);
 
     public TheEnd() {
-        SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.the_end"));
+        sound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.the_end"));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TheEnd implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return SOUND;
+                return sound;
             }
         });
     }

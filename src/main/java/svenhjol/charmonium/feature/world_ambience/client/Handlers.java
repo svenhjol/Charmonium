@@ -47,21 +47,21 @@ public final class Handlers extends FeatureHolder<WorldAmbience> {
             super(player);
             var registers = feature().registers;
 
-            registers.ALIEN.addSounds(this);
-            registers.BLEAK.addSounds(this);
-            registers.CAVE_DRONE.addSounds(this);
-            registers.CAVE_DEPTH.addSounds(this);
-            registers.DEEPSLATE.addSounds(this);
-            registers.DRY.addSounds(this);
-            registers.GEODE.addSounds(this);
-            registers.GRAVEL.addSounds(this);
-            registers.HIGH.addSounds(this);
-            registers.MANSION.addSounds(this);
-            registers.MINESHAFT.addSounds(this);
-            registers.NIGHT_PLAINS.addSounds(this);
-            registers.SNOWSTORM.addSounds(this);
-            registers.UNDERGROUND_WATER.addSounds(this);
-            registers.VILLAGE.addSounds(this);
+            registers.alien.addSounds(this);
+            registers.bleak.addSounds(this);
+            registers.caveDrone.addSounds(this);
+            registers.caveDepth.addSounds(this);
+            registers.deepslate.addSounds(this);
+            registers.dry.addSounds(this);
+            registers.geode.addSounds(this);
+            registers.gravel.addSounds(this);
+            registers.high.addSounds(this);
+            registers.mansion.addSounds(this);
+            registers.mineshaft.addSounds(this);
+            registers.nightPlains.addSounds(this);
+            registers.snowstorm.addSounds(this);
+            registers.undergroundWater.addSounds(this);
+            registers.village.addSounds(this);
         }
     }
 }

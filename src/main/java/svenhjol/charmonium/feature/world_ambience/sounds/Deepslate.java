@@ -10,18 +10,18 @@ import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.charmony.feature.FeatureResolver;
 import svenhjol.charmonium.charmony.helper.WorldHelper;
 import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
-import svenhjol.charmonium.sound.ISoundType;
+import svenhjol.charmonium.sound.SoundType;
 import svenhjol.charmonium.feature.world_ambience.client.RepeatedWorldSound;
 import svenhjol.charmonium.sound.SoundHandler;
 import svenhjol.charmonium.feature.world_ambience.client.WorldSound;
 
 import java.util.Optional;
 
-public class Deepslate implements ISoundType<WorldSound>, FeatureResolver<WorldAmbience> {
-    public static SoundEvent SOUND;
+public class Deepslate implements SoundType<WorldSound>, FeatureResolver<WorldAmbience> {
+    public final SoundEvent sound;
 
     public Deepslate() {
-        SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.deepslate"));
+        sound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.deepslate"));
     }
 
     public void addSounds(SoundHandler<WorldSound> handler) {
@@ -47,7 +47,7 @@ public class Deepslate implements ISoundType<WorldSound>, FeatureResolver<WorldA
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return SOUND;
+                return sound;
             }
 
             @Override
@@ -57,7 +57,7 @@ public class Deepslate implements ISoundType<WorldSound>, FeatureResolver<WorldA
 
             @Override
             public float getVolume() {
-                return 0.7F;
+                return 0.7f;
             }
         });
     }

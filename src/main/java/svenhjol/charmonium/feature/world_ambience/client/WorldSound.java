@@ -5,9 +5,9 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.player.Player;
 import svenhjol.charmonium.charmony.feature.FeatureResolver;
 import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
-import svenhjol.charmonium.sound.ISoundInstance;
+import svenhjol.charmonium.sound.SoundInstance;
 
-public abstract class WorldSound implements ISoundInstance, FeatureResolver<WorldAmbience> {
+public abstract class WorldSound implements SoundInstance, FeatureResolver<WorldAmbience> {
     protected Minecraft client;
     protected Player player;
     protected ClientLevel level;

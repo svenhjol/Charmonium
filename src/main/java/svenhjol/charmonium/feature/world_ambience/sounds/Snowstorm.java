@@ -8,16 +8,16 @@
  import svenhjol.charmonium.charmony.helper.WorldHelper;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Icy;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
- import svenhjol.charmonium.sound.ISoundType;
+ import svenhjol.charmonium.sound.SoundType;
  import svenhjol.charmonium.feature.world_ambience.client.RepeatedWorldSound;
  import svenhjol.charmonium.sound.SoundHandler;
  import svenhjol.charmonium.feature.world_ambience.client.WorldSound;
 
- public class Snowstorm implements ISoundType<WorldSound>, FeatureResolver<WorldAmbience> {
-     public static SoundEvent SOUND;
+ public class Snowstorm implements SoundType<WorldSound>, FeatureResolver<WorldAmbience> {
+     public final SoundEvent sound;
 
      public Snowstorm() {
-         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.snowstorm"));
+         sound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.snowstorm"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {
@@ -39,7 +39,7 @@
              @Nullable
              @Override
              public SoundEvent getSound() {
-                 return SOUND;
+                 return sound;
              }
 
              @Override
@@ -49,7 +49,7 @@
 
              @Override
              public float getVolume() {
-                 return 0.9F;
+                 return 0.9f;
              }
          });
      }

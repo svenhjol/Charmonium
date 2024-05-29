@@ -32,8 +32,8 @@ public abstract class SurfaceBiomeSound extends BiomeSound implements FeatureRes
 
         if (cullDistance > 0) {
             var distanceFromGround = WorldHelper.distanceFromGround(getPlayer(), cullDistance);
-            var multiplier = 1.0D - (distanceFromGround / cullDistance);
-            return super.getVolumeScaling() * Math.max(0.0D, multiplier);
+            var multiplier = 1.0d - (distanceFromGround / cullDistance);
+            return super.getVolumeScaling() * Math.max(0.0d, multiplier);
         } else {
             return super.getVolumeScaling();
         }

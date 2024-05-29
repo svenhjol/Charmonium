@@ -47,21 +47,21 @@ public final class Handlers extends FeatureHolder<BiomeAmbience> {
             super(player);
             var registers = Handlers.this.feature().registers;
 
-            registers.BADLANDS.addSounds(this);
-            registers.BEACH.addSounds(this);
-            registers.CAVES.addSounds(this);
-            registers.DESERT.addSounds(this);
-            registers.FOREST.addSounds(this);
-            registers.ICY.addSounds(this);
-            registers.JUNGLE.addSounds(this);
-            registers.MOUNTAINS.addSounds(this);
-            registers.OCEAN.addSounds(this);
-            registers.PLAINS.addSounds(this);
-            registers.RIVER.addSounds(this);
-            registers.SAVANNA.addSounds(this);
-            registers.SWAMP.addSounds(this);
-            registers.TAIGA.addSounds(this);
-            registers.THE_END.addSounds(this);
+            registers.badlands.addSounds(this);
+            registers.beach.addSounds(this);
+            registers.caves.addSounds(this);
+            registers.desert.addSounds(this);
+            registers.forest.addSounds(this);
+            registers.icy.addSounds(this);
+            registers.jungle.addSounds(this);
+            registers.mountains.addSounds(this);
+            registers.ocean.addSounds(this);
+            registers.plains.addSounds(this);
+            registers.river.addSounds(this);
+            registers.savanna.addSounds(this);
+            registers.swamp.addSounds(this);
+            registers.taiga.addSounds(this);
+            registers.theEnd.addSounds(this);
         }
     }
 }

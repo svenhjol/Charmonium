@@ -9,7 +9,7 @@ import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.helper.BiomeTagHelper;
 import svenhjol.charmonium.feature.biome_ambience.client.BiomeSound;
-import svenhjol.charmonium.sound.ISoundType;
+import svenhjol.charmonium.sound.SoundType;
 import svenhjol.charmonium.sound.SoundHandler;
 import svenhjol.charmonium.feature.biome_ambience.client.SurfaceBiomeSound;
 import svenhjol.charmonium.charmony.helper.WorldHelper;
@@ -17,15 +17,15 @@ import svenhjol.charmonium.charmony.helper.WorldHelper;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class Jungle implements ISoundType<BiomeSound> {
-    public static SoundEvent DAY_SOUND;
-    public static SoundEvent NIGHT_SOUND;
+public class Jungle implements SoundType<BiomeSound> {
+    public final SoundEvent daySound;
+    public final SoundEvent nightSound;
     public static final Predicate<Holder<Biome>> VALID_BIOME =
         holder -> holder.is(BiomeTags.IS_JUNGLE) || holder.is(BiomeTagHelper.getJungle());
 
     public Jungle() {
-        DAY_SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.jungle.day"));
-        NIGHT_SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.jungle.night"));
+        daySound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.jungle.day"));
+        nightSound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.jungle.night"));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Jungle implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return DAY_SOUND;
+                return daySound;
             }
 
             @Override
@@ -54,7 +54,7 @@ public class Jungle implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return NIGHT_SOUND;
+                return nightSound;
             }
 
             @Override

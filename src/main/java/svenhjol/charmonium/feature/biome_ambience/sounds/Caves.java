@@ -9,24 +9,24 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import svenhjol.charmonium.Charmonium;
 import svenhjol.charmonium.feature.biome_ambience.client.BiomeSound;
-import svenhjol.charmonium.sound.ISoundType;
+import svenhjol.charmonium.sound.SoundType;
 import svenhjol.charmonium.sound.SoundHandler;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class Caves implements ISoundType<BiomeSound> {
-    public static SoundEvent DEEP_DARK;
-    public static SoundEvent DRIPSTONE;
-    public static SoundEvent LUSH;
+public class Caves implements SoundType<BiomeSound> {
+    public final SoundEvent deepDark;
+    public final SoundEvent dripstone;
+    public final SoundEvent lush;
 
     public static final Predicate<Holder<Biome>> VALID_BIOME =
         holder -> holder.is(BiomeTags.IS_BEACH);
 
     public Caves() {
-        DEEP_DARK = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.deep_dark"));
-        DRIPSTONE = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.dripstone"));
-        LUSH = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.lush"));
+        deepDark = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.deep_dark"));
+        dripstone = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.dripstone"));
+        lush = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "biome.caves.lush"));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Caves implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return DEEP_DARK;
+                return deepDark;
             }
         });
 
@@ -65,7 +65,7 @@ public class Caves implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return DRIPSTONE;
+                return dripstone;
             }
         });
 
@@ -84,7 +84,7 @@ public class Caves implements ISoundType<BiomeSound> {
             @Nullable
             @Override
             public SoundEvent getSound() {
-                return LUSH;
+                return lush;
             }
         });
     }

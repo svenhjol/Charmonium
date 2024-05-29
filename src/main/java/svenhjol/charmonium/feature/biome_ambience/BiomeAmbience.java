@@ -17,18 +17,35 @@ public final class BiomeAmbience extends ClientFeature {
     public final Registers registers;
     public final Handlers handlers;
 
-    @Configurable(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
-        "Set to zero to disable.", requireRestart = false)
+    @Configurable(
+        name = "Above ground for ambience silencing",
+        description = """
+            Number of blocks above the ground that biome ambience will be silenced.
+            Set to zero to disable.""",
+        requireRestart = false
+    )
     private static int cullSoundAboveGround = 32;
 
-    @Configurable(name = "Biome sound blending", description = "Number of blocks to check for neighbouring biomes.\n" +
-        "Set to zero to disable.", requireRestart = false)
+    @Configurable(
+        name = "Biome sound blending",
+        description = """
+            Number of blocks to check for neighbouring biomes.
+            Set to zero to disable.""",
+        requireRestart = false
+    )
     private static int biomeBlend = 32;
 
-    @Configurable(name = "Volume scaling", description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.", requireRestart = false)
+    @Configurable(
+        name = "Volume scaling",
+        description = "Affects the volume of all biome ambient sounds. 1.0 is full volume.",
+        requireRestart = false
+    )
     private static double volumeScaling = 0.55d;
 
-    @Configurable(name = "Valid dimensions", description = "Dimensions in which biome ambience will be played.")
+    @Configurable(
+        name = "Valid dimensions",
+        description = "Dimensions in which biome ambience will be played."
+    )
     private static List<String> dimensions = Arrays.asList(
         "minecraft:overworld",
         "minecraft:the_end"

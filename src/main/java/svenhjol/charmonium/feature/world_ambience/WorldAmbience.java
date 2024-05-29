@@ -14,15 +14,20 @@ import svenhjol.charmonium.feature.world_ambience.client.Registers;
 import java.util.List;
 
 @Feature(description = "Plays ambient sound according to features of the world around the player.")
-public class WorldAmbience extends ClientFeature {
+public final class WorldAmbience extends ClientFeature {
     public final Registers registers;
     public final Handlers handlers;
 
     @Configurable(name = "Volume scaling", description = "Affects the volume of all situational ambient sounds. 1.0 is full volume.", requireRestart = false)
     private static double volumeScaling = 0.55d;
 
-    @Configurable(name = "Above ground for ambience silencing", description = "Number of blocks above the ground that biome ambience will be silenced.\n" +
-        "Set to zero to disable.", requireRestart = false)
+    @Configurable(
+        name = "Above ground for ambience silencing",
+        description = """
+            Number of blocks above the ground that biome ambience will be silenced.
+            Set to zero to disable.""",
+        requireRestart = false
+    )
     private static int cullSoundAboveGround = 32;
 
     @Configurable(name = "Alien", description = "If true, plays ambient sounds while anywhere in the End.", requireRestart = false)

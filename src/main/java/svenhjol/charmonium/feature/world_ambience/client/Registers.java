@@ -7,28 +7,28 @@ import svenhjol.charmonium.charmony.event.ClientTickEvent;
 import svenhjol.charmonium.charmony.feature.RegisterHolder;
 import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
 import svenhjol.charmonium.feature.world_ambience.sounds.*;
-import svenhjol.charmonium.sound.ISoundType;
+import svenhjol.charmonium.sound.SoundType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Registers extends RegisterHolder<WorldAmbience> {
     public final List<ResourceLocation> validCaveDimensions = new ArrayList<>();
-    public final ISoundType<WorldSound> ALIEN = new Alien();
-    public final ISoundType<WorldSound> BLEAK = new Bleak();
-    public final ISoundType<WorldSound> CAVE_DRONE = new CaveDrone();
-    public final ISoundType<WorldSound> CAVE_DEPTH = new CaveDepth();
-    public final ISoundType<WorldSound> DEEPSLATE = new Deepslate();
-    public final ISoundType<WorldSound> DRY = new Dry();
-    public final ISoundType<WorldSound> GEODE = new Geode();
-    public final ISoundType<WorldSound> GRAVEL = new Gravel();
-    public final ISoundType<WorldSound> HIGH = new High();
-    public final ISoundType<WorldSound> MANSION = new Mansion();
-    public final ISoundType<WorldSound> MINESHAFT = new Mineshaft();
-    public final ISoundType<WorldSound> NIGHT_PLAINS = new NightPlains();
-    public final ISoundType<WorldSound> SNOWSTORM = new Snowstorm();
-    public final ISoundType<WorldSound> UNDERGROUND_WATER = new UndergroundWater();
-    public final ISoundType<WorldSound> VILLAGE = new Village();
+    public final SoundType<WorldSound> alien = new Alien();
+    public final SoundType<WorldSound> bleak = new Bleak();
+    public final SoundType<WorldSound> caveDrone = new CaveDrone();
+    public final SoundType<WorldSound> caveDepth = new CaveDepth();
+    public final SoundType<WorldSound> deepslate = new Deepslate();
+    public final SoundType<WorldSound> dry = new Dry();
+    public final SoundType<WorldSound> geode = new Geode();
+    public final SoundType<WorldSound> gravel = new Gravel();
+    public final SoundType<WorldSound> high = new High();
+    public final SoundType<WorldSound> mansion = new Mansion();
+    public final SoundType<WorldSound> mineshaft = new Mineshaft();
+    public final SoundType<WorldSound> nightPlains = new NightPlains();
+    public final SoundType<WorldSound> snowstorm = new Snowstorm();
+    public final SoundType<WorldSound> undergroundWater = new UndergroundWater();
+    public final SoundType<WorldSound> village = new Village();
 
     public Registers(WorldAmbience feature) {
         super(feature);

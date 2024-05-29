@@ -10,19 +10,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import svenhjol.charmonium.charmony.feature.FeatureResolver;
 import svenhjol.charmonium.feature.biome_ambience.BiomeAmbience;
-import svenhjol.charmonium.sound.ISoundInstance;
+import svenhjol.charmonium.sound.SoundInstance;
 import svenhjol.charmonium.sound.LoopingSound;
 
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
-public abstract class BiomeSound implements ISoundInstance, FeatureResolver<BiomeAmbience> {
+public abstract class BiomeSound implements SoundInstance, FeatureResolver<BiomeAmbience> {
     protected Minecraft client;
     protected boolean isValid = false;
     protected Player player;
     protected ClientLevel level;
     protected LoopingSound soundInstance = null;
-    protected float blendScaling = 1.0F;
+    protected float blendScaling = 1.0f;
     protected float volumeScaleFade = 0.005f;
 
     protected BiomeSound(Player player) {
@@ -126,7 +126,7 @@ public abstract class BiomeSound implements ISoundInstance, FeatureResolver<Biom
                     var holder = getBiomeHolder(relativePos);
                     var key = getBiomeKey(relativePos);
                     if (isValidBiomeCondition(holder, key)) {
-                        this.blendScaling = 1.0F - ((float) i / blend);
+                        this.blendScaling = 1.0f - ((float) i / blend);
                         return true;
                     }
                 }
@@ -139,7 +139,7 @@ public abstract class BiomeSound implements ISoundInstance, FeatureResolver<Biom
             var key = getBiomeKey(pos);
 
             if (isValidBiomeCondition(holder, key)) {
-                this.blendScaling = 1.0F;
+                this.blendScaling = 1.0f;
                 return true;
             }
         }

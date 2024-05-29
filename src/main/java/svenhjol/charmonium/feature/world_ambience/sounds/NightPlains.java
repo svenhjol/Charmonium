@@ -9,16 +9,16 @@
  import svenhjol.charmonium.feature.biome_ambience.sounds.Plains;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Savanna;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
- import svenhjol.charmonium.sound.ISoundType;
+ import svenhjol.charmonium.sound.SoundType;
  import svenhjol.charmonium.sound.SoundHandler;
  import svenhjol.charmonium.feature.world_ambience.client.SurfaceWorldSound;
  import svenhjol.charmonium.feature.world_ambience.client.WorldSound;
 
- public class NightPlains implements ISoundType<WorldSound>, FeatureResolver<WorldAmbience> {
-     public static SoundEvent SOUND;
+ public class NightPlains implements SoundType<WorldSound>, FeatureResolver<WorldAmbience> {
+     public final SoundEvent sound;
 
      public NightPlains() {
-         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.night_plains"));
+         sound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.night_plains"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {
@@ -43,7 +43,7 @@
              @Nullable
              @Override
              public SoundEvent getSound() {
-                 return SOUND;
+                 return sound;
              }
 
              @Override
@@ -53,7 +53,7 @@
 
              @Override
              public float getVolume() {
-                 return 0.6F;
+                 return 0.6f;
              }
          });
      }

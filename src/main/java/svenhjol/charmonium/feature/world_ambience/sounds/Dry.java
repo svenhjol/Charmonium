@@ -10,16 +10,16 @@
  import svenhjol.charmonium.feature.biome_ambience.sounds.Desert;
  import svenhjol.charmonium.feature.biome_ambience.sounds.Savanna;
  import svenhjol.charmonium.feature.world_ambience.WorldAmbience;
- import svenhjol.charmonium.sound.ISoundType;
+ import svenhjol.charmonium.sound.SoundType;
  import svenhjol.charmonium.sound.SoundHandler;
  import svenhjol.charmonium.feature.world_ambience.client.SurfaceWorldSound;
  import svenhjol.charmonium.feature.world_ambience.client.WorldSound;
 
- public class Dry implements ISoundType<WorldSound>, FeatureResolver<WorldAmbience> {
-     public static SoundEvent SOUND;
+ public class Dry implements SoundType<WorldSound>, FeatureResolver<WorldAmbience> {
+     public final SoundEvent sound;
 
      public Dry() {
-         SOUND = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.dry"));
+         sound = SoundEvent.createVariableRangeEvent(new ResourceLocation(Charmonium.ID, "world.dry"));
      }
 
      public void addSounds(SoundHandler<WorldSound> handler) {
@@ -45,7 +45,7 @@
              @Nullable
              @Override
              public SoundEvent getSound() {
-                 return SOUND;
+                 return sound;
              }
 
              @Override
@@ -55,7 +55,7 @@
 
              @Override
              public float getVolume() {
-                 return 0.5F;
+                 return 0.5f;
              }
          });
      }

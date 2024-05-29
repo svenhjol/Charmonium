@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SoundHandler<T extends ISoundInstance> {
+public class SoundHandler<T extends SoundInstance> {
     private Player player;
     private final List<T> sounds = new ArrayList<>();
 
