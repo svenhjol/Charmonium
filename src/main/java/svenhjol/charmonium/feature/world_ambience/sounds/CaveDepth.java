@@ -34,7 +34,7 @@ public class CaveDepth implements ISoundType<WorldSound>, FeatureResolver<WorldA
                     return false;
                 }
 
-                if (!feature().registers.validCaveDimensions.contains(level.dimension().location())) {
+                if (!feature().validCaveDimensions().contains(level.dimension().location())) {
                     return false;
                 }
 

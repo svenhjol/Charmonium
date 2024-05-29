@@ -88,6 +88,11 @@ public class WorldAmbience extends ClientFeature {
         handlers = new Handlers(this);
     }
 
+    @Override
+    public boolean canBeDisabled() {
+        return true;
+    }
+
     public List<String> caveDimensions() {
         return caveDimensions;
     }

@@ -28,7 +28,7 @@ public class CaveDrone implements ISoundType<WorldSound>, FeatureResolver<WorldA
                 BlockPos pos = player.blockPosition();
                 int light = level.getMaxLocalRawBrightness(pos);
 
-                if (!feature().registers.validCaveDimensions.contains(level.dimension().location())) {
+                if (!feature().validCaveDimensions().contains(level.dimension().location())) {
                     return false;
                 }
 
