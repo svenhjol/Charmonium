@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "charmonium",
+  "version": "${mod_version}",
+
+  "name": "Charmonium",
+  "description": "Simple ambient sounds for Minecraft.",
+  "authors": [
+    "svenhjol"
+  ],
+  "icon": "icon.png",
+
+  "license": "MIT",
+  "environment": "client",
+  "mixins": [],
+
+  "entrypoints": {
+    "client": [
+      "svenhjol.charmonium.fabric.ClientInitializer"
+    ]
+  },
+
+  "accessWidener": "charmonium.accesswidener",
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "*",
+    "java": ">=21"
+  }
+}
