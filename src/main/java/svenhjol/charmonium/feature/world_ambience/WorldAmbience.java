@@ -39,7 +39,7 @@ public final class WorldAmbience extends ClientFeature {
     @Configurable(name = "Cave depth", description = "If true, plays more intense cave sounds when below Y 0 and light level is lower than the cave light level.", requireRestart = false)
     private static boolean caveDepth = true;
 
-    @Configurable(name = "Cave drone", description = "If true, plays a low drone sound when in a cave below the cave drone cutoff..", requireRestart = false)
+    @Configurable(name = "Cave drone", description = "If true, plays a low drone sound when in a cave below the cave drone cutoff.", requireRestart = false)
     private static boolean caveDrone = true;
 
     @Configurable(name = "Cave drone cutoff", description = "Height at which the cave drone will be silenced.", requireRestart = false)
