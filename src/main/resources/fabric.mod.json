@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "charmonium",
+  "version": "${mod_version}",
+
+  "name": "Charmonium",
+  "description": "Charmonium",
+
+  "authors": [
+    "svenhjol"
+  ],
+  "icon": "assets/charmonium/textures/gui/sprites/icon.png",
+  "license": "MIT",
+  "environment": "client",
+  
+  
+
+  "mixins": [],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "*",
+    "java": ">=${java_version}",
+    "fabric-api": "*",
+    "charmony": ">=${charmony_version}",
+    "charmony-api": ">=${api_version}",
+    "charmony-ambient-sounds": ">=${ambient_sounds_version}"
+  },
+
+  "contact": {
+    "homepage": "${homepage_link}",
+    "sources": "https://github.com/svenhjol/${mod_id}"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${discord_link}"
+      },
+      "update_checker": true
+    }
+  }
+}

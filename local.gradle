@@ -1,0 +1,10 @@
+def props = new Properties()
+new URL("https://charmony.work/1.22/build.properties").withInputStream { props.load(it) }
+file("gradle.properties").withInputStream { props.load(it) }
+
+dependencies {
+    // Include Ambient Sounds.
+    fetchJar("charmony-ambient-sounds-${props.ambient_sounds_version}.jar")
+    include "svenhjol.charmony:charmony-ambient-sounds:${props.ambient_sounds_version}"
+    modImplementation "svenhjol.charmony:charmony-ambient-sounds:${props.ambient_sounds_version}"
+}
