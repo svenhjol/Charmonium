@@ -22,9 +22,7 @@
     "minecraft": "*",
     "java": ">=${java_version}",
     "fabric-api": "*",
-    "charmony": ">=${charmony_version}",
-    "charmony-api": ">=${api_version}",
-    "charmony-ambient-sounds": ">=${ambient_sounds_version}"
+    "charmony": ">=${charmony_version}"
   },
 
   "contact": {

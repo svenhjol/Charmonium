@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.2
+
+- Refactor for Charmony 1.19.x.
+
 ## 8.0.1
 
 - Modmenu support.
