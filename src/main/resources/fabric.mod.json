@@ -4,7 +4,7 @@
   "version": "${mod_version}",
 
   "name": "Charmonium",
-  "description": "Charmonium",
+  "description": "Adds ambient sounds to the environment in keeping with vanilla Minecraft.",
 
   "authors": [
     "svenhjol"
