@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.6
+
+- Update mods.
+
 ## 8.0.5
 
 - Update mods and tooling.
