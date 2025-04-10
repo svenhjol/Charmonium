@@ -1,7 +1,0 @@
-def props = new Properties()
-new URL("https://charmony.dev/files/main/build.properties").withInputStream { props.load(it) }
-file("gradle.properties").withInputStream { props.load(it) }
-
-dependencies {
-    embedMod "charmony-ambient-sounds", props.ambient_sounds_version
-}

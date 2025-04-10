@@ -3,10 +3,12 @@ plugins {
     id 'maven-publish'
 }
 
-//apply from: resources.text.fromInsecureUri("http://charmony.dev/files/main/build.gradle")
-apply from: "https://charmony.dev/files/main/build.gradle"
+def javaDir = "${projectDir}/../../java"
+def buildFile = new File("${javaDir}/build.gradle")
+def buildUrl = "https://charmony.dev/files/main/build.gradle"
 
-def file = new File("${projectDir}/local.gradle")
-if (file.exists()) {
-    apply from: file
+apply from: buildFile.exists() ? buildFile : buildUrl
+
+dependencies {
+    embedMod "charmony-ambient-sounds", "ambient_sounds"
 }
