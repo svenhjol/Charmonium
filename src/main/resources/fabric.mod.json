@@ -9,7 +9,7 @@
   "authors": [
     "svenhjol"
   ],
-  "icon": "assets/charmonium/textures/gui/sprites/icon.png",
+  "icon": "assets/charmony/textures/gui/sprites/charmonium.png",
   "license": "MIT",
   "environment": "client",
   
